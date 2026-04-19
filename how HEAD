@@ -1,0 +1,185 @@
+[33mcommit 3a76d8010e0ba4ecb53260283ce35235b45cc8bc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: azharumar <azhar.umar@gmail.com>
+Date:   Sun Apr 19 05:59:03 2026 +0530
+
+    initial commit
+
+[1mdiff --git a/.cursor/rules/design-system-token-enforcement.mdc b/.cursor/rules/design-system-token-enforcement.mdc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0079707[m
+[1m--- /dev/null[m
+[1m+++ b/.cursor/rules/design-system-token-enforcement.mdc[m
+[36m@@ -0,0 +1,70 @@[m
+[32m+[m[32m---[m
+[32m+[m[32malwaysApply: true[m
+[32m+[m[32m---[m
+[32m+[m[32m# Design System Token Enforcement (Kowju)[m
+[32m+[m
+[32m+[m[32m**Goal:** One source of truth; remove drift. **Do not redesign**—normalize to tokens and shared layers.[m
+[32m+[m
+[32m+[m[32mSection rhythm and composition details: see [`design-system-usage.mdc`](design-system-usage.mdc).[m
+[32m+[m
+[32m+[m[32m## 1. Tokens are the only source[m
+[32m+[m
+[32m+[m[32m- Use values defined in [`design-system/tokens.ts`](design-system/tokens.ts) and what Tailwind/PrimeVue expose from them.[m
+[32m+[m[32m- **Forbidden in templates/components:** arbitrary Tailwind values such as `text-[…]`, `tracking-[…]`, `leading-[…]`, `min-h-[…]`, `aspect-[…]`, `w-[…]`, `gap-[…]` when used to invent sizes outside the scale.[m
+[32m+[m[32m- **Missing value:** add to `tokens.ts`, wire through `tailwind.config.ts` and/or [`app/themes/kowju.preset.ts`](app/themes/kowju.preset.ts), then use the generated class/CSS var.[m
+[32m+[m
+[32m+[m[32m## 2. No inline or forced overrides[m
+[32m+[m
+[32m+[m[32m- **No** `:style` bindings in app code **except** [`app/pages/design-system.vue`](app/pages/design-system.vue) (demo only; keep a short file-level comment that this is the exception).[m
+[32m+[m[32m- **No** `!` important utilities (e.g. `!text-body`).[m
+[32m+[m[32m- **Do not** style PrimeVue components ad hoc in templates (no extra `class` hacks on `Button`/`Card`/`Input` to fight the theme).[m
+[32m+[m[32m- **Customization:** adjust `kowju.preset.ts` and/or tokens, or global CSS tied to tokens—not one-off template classes.[m
+[32m+[m
+[32m+[m[32m## 3. Typography uses the scale only[m
+[32m+[m
+[32m+[m[32m- Use semantic utilities only: `text-h1`, `text-h2`, `text-body`, `text-caption`, etc. (as defined in the Tailwind theme from tokens).[m
+[32m+[m[32m- **Do not** set custom font sizes or line heights via arbitrary classes.[m
+[32m+[m[32m- **Missing step:** extend the type scale (Major Third) in tokens, then regenerate theme usage—no one-off sizes.[m
+[32m+[m
+[32m+[m[32m## 4. Spacing uses the scale[m
+[32m+[m
+[32m+[m[32m- Spacing: Tailwind scale derived from tokens (`p-*`, `m-*`, `gap-*`, `space-*`, section `py-*` per usage rule doc).[m
+[32m+[m[32m- Replace patterns like `min-h-[50vh]` with token-backed section/layout utilities or documented section spacing—not arbitrary dimensions.[m
+[32m+[m[32m- **No** arbitrary heights, widths, or gaps unless added as named tokens first.[m
+[32m+[m
+[32m+[m[32m## 5. Letter spacing and line height[m
+[32m+[m
+[32m+[m[32m- Remove arbitrary `tracking-*` / `leading-*` unless they map to token-backed theme keys.[m
+[32m+[m[32m- If product needs them: add `letterSpacing` / `lineHeight` (or equivalent) in `tokens.ts`, expose in Tailwind theme, then use the utility names—never bracket values.[m
+[32m+[m
+[32m+[m[32m## 6. PrimeVue consistency[m
+[32m+[m
+[32m+[m[32m- **All** Button, Card, Input (and shared primitives) variants come from [`app/themes/kowju.preset.ts`](app/themes/kowju.preset.ts) aligned with tokens.[m
+[32m+[m[32m- **Semantic roles:** `primary` = brand; `secondary` = neutral/surface-based—no duplicated or ambiguous “two primaries”; fix in preset, not in each page.[m
+[32m+[m[32m- Keep Tailwind semantic colors and PrimeVue `--p-*` / preset tokens aligned when changing either side.[m
+[32m+[m
+[32m+[m[32m## 7. Elevation and radius[m
+[32m+[m
+[32m+[m[32m- **No** ad hoc shadows/radius in templates (e.g. `hover:shadow-lg` as a random jump). Use token-mapped `shadow-*` / `rounded-*` from theme/preset only.[m
+[32m+[m[32m- Changes to elevation/radius: tokens → Tailwind + preset, not scattered utilities.[m
+[32m+[m
+[32m+[m[32m## 8. Base component enforcement[m
+[32m+[m
+[32m+[m[32m- **`BaseButton`**, **`BaseCard`**: thin wrappers that compose PrimeVue + token-backed classes; **do not** introduce new visual styles inside bases—only enforce preset/token usage.[m
+[32m+[m[32m- Prefer **`Base*`** for buttons/cards in `app/` instead of importing PrimeVue primitives directly in features/pages, unless a rare exception is explicitly justified.[m
+[32m+[m[32m- Base components: **`Base*.vue`** naming only; rename files that violate this when touching them.[m
+[32m+[m
+[32m+[m[32m## 9. Design system page exception[m
+[32m+[m
+[32m+[m[32m- [`app/pages/design-system.vue`](app/pages/design-system.vue) may use **inline styles solely for demos** (swatches, measurements). Document the exception in a comment at the top of the demo section or file.[m
+[32m+[m
+[32m+[m[32m## 10. When changing code (report format)[m
+[32m+[m
+[32m+[m[32mFor token or template work, report briefly:[m
+[32m+[m
+[32m+[m[32m1. File path[m[41m  [m
+[32m+[m[32m2. Problem (drift / arbitrary value / direct PrimeVue / wrong name)[m[41m  [m
+[32m+[m[32m3. Fix applied[m[41m  [m
+[32m+[m[32m4. If a token was added: show the token diff (name + value + where consumed)[m
+[32m+[m
+[32m+[m[32m**Constraints:** no new abstractions unless required to remove inconsistency; minimal diffs; YAGNI.[m
+[1mdiff --git a/.cursor/rules/motion-transitions-scroll.mdc b/.cursor/rules/motion-transitions-scroll.mdc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..8c1d62d[m
+[1m--- /dev/null[m
+[1m+++ b/.cursor/rules/motion-transitions-scroll.mdc[m
+[36m@@ -0,0 +1,81 @@[m
+[32m+[m[32m---[m
+[32m+[m[32mdescription: Subtle motion, transitions, scroll, and reduced-motion for premium calm hotel UX[m
+[32m+[m[32malwaysApply: true[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m# Motion, Transitions & Scroll (Premium Constraint)[m
+[32m+[m
+[32m+[m[32m**Core principle:** Motion is **subtle, intentional, and almost invisible**. If users notice the animation, it is too much.[m
+[32m+[m
+[32m+[m[32m## Transition philosophy[m
+[32m+[m
+[32m+[m[32m- **Minimal transitions only**—support clarity, not attention.[m
+[32m+[m[32m- Avoid flashy, bouncy, or exaggerated motion.[m
+[32m+[m
+[32m+[m[32m## Allowed types[m
+[32m+[m
+[32m+[m[32mOnly: **fade-in**, **slight translate** (prefer Y), **opacity**, **gentle scale** (minimal).[m
+[32m+[m
+[32m+[m[32m## Duration & easing[m
+[32m+[m
+[32m+[m[32m- **200ms–400ms**; smooth easing only (`ease-out` or standard cubic-bezier).[m
+[32m+[m[32m- Avoid: **>500ms**, linear or sharp motion.[m
+[32m+[m
+[32m+[m[32m## Page load & section entry[m
+[32m+[m
+[32m+[m[32m- Sections may **fade + slight slide-up (10–20px max)**; **once**, no looping.[m
+[32m+[m[32m- Do **not** animate everything—key sections only.[m
+[32m+[m
+[32m+[m[32m## Hover & interaction[m
+[32m+[m
+[32m+[m[32m- **Subtle** color transition; slight shadow/elevation change.[m
+[32m+[m[32m- Avoid: scale beyond **~1.02**, aggressive hover.[m
+[32m+[m
+[32m+[m[32m## Scroll behavior[m
+[32m+[m
+[32m+[m[32m- **Smooth scrolling** site-wide; natural, responsive feel.[m
+[32m+[m
+[32m+[m[32m## Scroll snap (sparingly)[m
+[32m+[m
+[32m+[m[32m**OK:** full-screen hero, horizontal carousels, image galleries.[m[41m  [m
+[32m+[m[32m**Avoid:** snap on long reading pages; anything that fights normal scroll/reading.[m
+[32m+[m
+[32m+[m[32m## Performance[m
+[32m+[m
+[32m+[m[32m- Prefer **`transform`** and **`opacity`** only.[m
+[32m+[m[32m- Avoid animating layout: `top`, `left`, `width`, `height` (and similar).[m
+[32m+[m
+[32m+[m[32m## Consistency[m
+[32m+[m
+[32m+[m[32m- **One motion style** across the site—do not mix animation “languages.”[m
+[32m+[m
+[32m+[m[32m## Accessibility[m
+[32m+[m
+[32m+[m[32mRespect reduced motion:[m
+[32m+[m
+[32m+[m[32m```css[m
+[32m+[m[32m@media (prefers-reduced-motion: reduce) {[m
+[32m+[m[32m  /* disable or greatly simplify motion */[m
+[32m+[m[32m}[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32m## Do not[m
+[32m+[m
+[32m+[m[32m- Parallax, autoplay motion, continuous/looping animation, complex timelines.[m
+[32m+[m[32m- Heavy animation libraries unless clearly necessary.[m
+[32m+[m
+[32m+[m[32m## Implementation[m
+[32m+[m
+[32m+[m[32m- Prefer **CSS transitions** or **minimal utilities**; keep JS motion minimal.[m
+[32m+[m
+[32m+[m[32m## Preflight (before adding motion)[m
+[32m+[m
+[32m+[m[32m1. Does it improve **clarity** or only look cool?[m[41m  [m
+[32m+[m[32m2. Would a **premium hotel** ship it?[m[41m  [m
+[32m+[m[32m3. Can you **remove it** and still have good UX?[m[41m  [m
+[32m+[m
+[32m+[m[32mIf the honest answer to (3) is yes—**do not add it**.[m
+[32m+[m
+[32m+[m[32m## Goal[m
+[32m+[m
+[32m+[m[32mMotion feels **smooth, calm, refined, and invisible**.[m
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2f550f2[m
+[1m--- /dev/null[m
+[1m+++ b/.gitignore[m
+[36m@@ -0,0 +1,9 @@[m
+[32m+[m[32mnode_modules[m
+[32m+[m[32m.nuxt[m
+[32m+[m[32m.output[m
+[32m+[m[32mdist[m
+[32m+[m[32m.env[m
+[32m+[m[32m.env.*[m
+[32m+[m[32m.DS_Store[m
+[32m+[m[32m.idea[m
+[32m+[m[32m.vscode[m
+\ No newline at end of file[m

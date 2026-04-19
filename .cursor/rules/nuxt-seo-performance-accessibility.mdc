@@ -1,0 +1,57 @@
+---
+description: Nuxt SEO module, heading/content structure, images, performance, ARIA & WCAG for hotel sites
+alwaysApply: true
+---
+
+# SEO, Performance & Accessibility (Nuxt Hotel Sites)
+
+Strict, repeatable standards. No scope beyond this document.
+
+## 1. Nuxt SEO module usage
+
+- Use the **latest** [`@nuxtjs/seo`](https://github.com/nuxt-modules/seo) (Nuxt SEO module); keep it upgraded with the Nuxt major you ship.
+- Configure SEO **once** in `nuxt.config` / shared SEO config: site URL, default title template, default description, default OG/Twitter defaults, locale defaults as required.
+- **Centralize** page metadata: composables, route meta, or layout-level defaults—**not** scattered `useHead` blobs that repeat the same keys.
+- **Defaults**: every route must resolve title, description, and canonical (or explicit noindex) via defaults when CMS/data omits values—never leave empty critical tags silently.
+- **No duplicates**: one canonical source per concern; do not stack conflicting `title`, `meta name="description"`, or `og:*` from multiple places for the same route. Merge/override in one layer only.
+
+## 2. Heading & content structure
+
+- **Exactly one `<h1>`** per page (visible main topic).
+- **Order**: `h1` → `h2` → `h3` only; **do not skip levels** (e.g. no `h1` then `h3`).
+- Headings describe **structure and meaning**, not visual size—use CSS for appearance.
+- Copy: **short, structured, scannable** (paragraphs, lists); consistent density page to page where the template allows.
+- **No keyword stuffing** in headings or body for SEO tricks.
+
+## 3. Image SEO
+
+- Every `<img>` and meaningful decorative pattern must have **`alt`** (empty `alt=""` only for truly decorative images).
+- `alt` **describes the image** in context; no keyword lists or redundant site name spam.
+- **File names**: lowercase, **kebab-case**, descriptive (e.g. `deluxe-king-room-window.jpg`).
+- **Banned**: generic names like `image1.jpg`, `pic.png`, `untitled`.
+
+## 4. Performance
+
+- **Minimize** third-party scripts and heavy dependencies; add only with a clear product need.
+- **Lazy-load** images below the fold (`loading="lazy"` and/or the stack’s image component lazy mode); prioritize LCP image.
+- **No data fetching** in leaf UI components—pages, route loaders, or composables own async work (aligns with project architecture rules).
+- Target **fast first load**: avoid blocking the main thread with large sync work on boot; split heavy client-only code.
+- Keep components **small and cheap**: avoid unnecessary watchers, giant templates, or re-render churn without need.
+
+## 5. Accessibility (ARIA + standards)
+
+- Prefer **semantic HTML** (`nav`, `main`, `header`, `footer`, `button`, `a`, `label`, headings) before ARIA.
+- Use **ARIA only when HTML is insufficient**; never duplicate native semantics (e.g. don’t `role="button"` on a native `<button>` without cause).
+- **Inputs**: every control has an associated **`<label>`** (or `aria-labelledby` / `aria-label` only when label is visually hidden by design).
+- **Buttons vs links**: `<button>` for actions; `<a href>` for navigation—don’t use `div` + click for those.
+- **Keyboard**: all interactive elements reachable and operable with Tab / Enter / Space as appropriate; no positive `tabindex` traps except intentional widgets (dialogs, roving tabindex per pattern).
+- **No ARIA misuse**: don’t slap random `role` / `aria-*` to silence warnings; fix the DOM instead.
+
+## 6. Accessibility compliance
+
+- Align with **WCAG 2.x** intent: perceivable, operable, understandable, robust—at **AA** for contrast and text sizing where applicable.
+- **Contrast**: text and UI graphics meet **AA** minimums (4.5:1 normal text, 3:1 large/UI components unless design system documents exceptions).
+- **Typography**: readable sizes and line length; avoid relying on color alone for meaning (use text, pattern, or icons + text).
+- **Focus**: visible **focus indicators** on interactive elements; do not `outline: none` without an equivalent visible focus style.
+- **Screen readers**: meaningful order in the DOM, live regions only when needed, status/errors exposed to assistive tech.
+- **Keyboard-only**: full primary flows usable without a mouse (booking, nav, forms, modals).

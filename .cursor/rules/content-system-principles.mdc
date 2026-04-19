@@ -1,0 +1,94 @@
+---
+description: Content schema, data contracts, component layers, and CMS migration boundaries for hotel sites
+alwaysApply: true
+---
+
+# Content System Principles (Hotel Sites)
+
+**Inversion (what kills repeatability at scale):** inconsistent schemas, uncontrolled components, messy relationships, ad-hoc per-dev decisions. These rules **eliminate those failure modes** with minimal overhead.
+
+Before adding patterns or new rules: *Does this reduce inconsistency? Help juniors avoid mistakes? Apply across hotel projects?* If not, skip (YAGNI: no i18n, RBAC, or workflow rules until needed).
+
+## 1. Schema versioning
+
+Every content structure (sections, shared entities) must include a **version** so old pages do not break silently when shapes evolve.
+
+```js
+{ type: "hero", version: 1, data: { /* ... */ } }
+```
+
+## 2. No implicit data assumptions
+
+UI must not assume fields exist or are correctly typed. Validate in adapters or use safe fallbacks—never raw `data.title.toUpperCase()` without guards.
+
+## 3. Required vs optional (per section)
+
+Each section type documents an explicit contract, e.g. **Hero**: `title` (required), `subtitle` (optional), `cta` (optional). Enforce at adapter/normalization, not only in docs.
+
+## 4. One source of truth per entity
+
+Room, amenity, rate plan, etc. live in **one** canonical place. Do not duplicate the same entity payload across pages or JSON files.
+
+## 5. Relationships over duplication
+
+Repeatable domain data is **referenced by id** (or stable key), not copied inline.
+
+```js
+// ❌ Duplicated blobs per room
+room: { name: "Deluxe", amenities: [{ id: "wifi", title: "WiFi" }, ...] }
+
+// ✅ References resolve to shared records
+room: { name: "Deluxe", amenity_ids: ["wifi", "tv"] }
+```
+
+## 6. Component ownership (strict layers)
+
+- `components/blocks` (or equivalent) → CMS-driven sections only
+- `components/base` → UI primitives
+- `components/layout` → shells, grids, page chrome
+
+Blocks are not base primitives; do not mix responsibilities across layers.
+
+## 7. No inline layout in pages
+
+Pages **orchestrate** data and section order. Grid columns, major spacing, and responsive layout belong in blocks/layout components or the layout system—not ad hoc in page templates.
+
+## 8. Controlled variants only
+
+Section visual/behavior differences use **predefined** `variant` (or enum) values from a fixed set—no one-off “almost hero” components.
+
+```js
+{ type: "hero", version: 1, variant: "centered", data: { /* ... */ } }
+```
+
+## 9. Media standard
+
+Pass **structured** media objects, not bare URLs:
+
+```js
+{ url, alt, width, height }
+```
+
+## 10. Slugs and naming
+
+Slugs: **kebab-case**, stable, no spaces or random suffixes. Example: `/deluxe-king-room` ✅, `/DeluxeRoomFinal` ❌.
+
+## 11. Performance
+
+No data fetching inside leaf/block components. Resolve data in pages, route loaders, or composables. Avoid redundant requests and heavy work in render paths.
+
+## 12. No hidden business rules in UI
+
+Pricing tiers, “premium” badges, eligibility, etc. belong in **adapters/composables** (or server). UI only renders flags/labels it receives—never `if (room.price > 5000) showPremiumBadge()`-style rules in templates.
+
+## 13. Graceful degradation
+
+Define defaults: fallback image, title copy, SEO fields. Missing CMS fields must **degrade** without throwing or broken layout.
+
+## 14. CMS migration boundary
+
+Switching local data → a headless CMS may change **only** the **data-fetching layer** and **adapters**. **Components** and **pages** stay stable when normalized contracts are unchanged—no vendor field names or response shapes outside adapters.
+
+## Out of scope (unless product asks)
+
+Multi-language, roles/permissions, and complex editorial workflows—add rules when there is a real requirement.

@@ -1,0 +1,157 @@
+---
+description: Nuxt URL routing & page structure (CMS-ready, hotel sites SSOT)
+alwaysApply: true
+---
+
+# URL Routing & Structure (Nuxt, CMS-Ready)
+
+Single source of truth for URL patterns on mid-scale airport hotel sites (Nuxt + structured CMS). Aligns with adapters at the boundary—no vendor field names in UI.
+
+## 1. Overview
+
+**Purpose:** Predictable URLs that scale, rank clearly, and map 1:1 to CMS collections and Nuxt file routes.
+
+**Principles:** simplicity (short paths), scalability (lists + `[slug]` detail), SEO clarity (stable kebab slugs), CMS compatibility (slug-driven fetches in loaders/composables—not in leaf components).
+
+## 2. Route Classification
+
+### Static routes
+
+**What qualifies:** Fixed editorial pages with a **fixed schema** (not a CMS “builder” page). URLs do not include `[slug]`; content may still come from CMS as single records or static local data.
+
+**Why not dynamic:** One URL per page forever; no per-entity slug in the path.
+
+**Examples:** Home, Meetings & Events, Dining, Amenities, Privacy Policy, Contact, Hotel Policies.
+
+### Dynamic routes
+
+**What qualifies:** Repeated entities (many rooms, posts, offers) addressed by **`[slug]`** in a stable parent segment.
+
+**CMS control:** Collections expose `slug` (+ title, body, SEO, etc.). App resolves `route.params.slug` in page/route middleware, fetches by slug via adapter, normalizes to app models.
+
+#### Rooms
+
+- Listing: all rooms (`/rooms`).
+- Detail: one room (`/rooms/[slug]`).
+
+#### Blog
+
+- Listing: archive/index (`/blog`).
+- Article: one post (`/blog/[slug]`).
+
+#### Offers
+
+- Listing: all offers (`/offers`).
+- Detail: one offer, including direct-booking benefits in **data**, same URL pattern (`/offers/[slug]`).
+
+## 3. Final URL Structure
+
+### Static
+
+| Path |
+|------|
+| `/` |
+| `/meetings-events` |
+| `/dining` |
+| `/amenities` |
+| `/privacy-policy` |
+| `/contact` |
+| `/hotel-policies` |
+
+### Dynamic
+
+| Pattern |
+|---------|
+| `/rooms` |
+| `/rooms/[slug]` |
+| `/blog` |
+| `/blog/[slug]` |
+| `/offers` |
+| `/offers/[slug]` |
+
+## 4. Nuxt Folder Structure
+
+Map to `pages/` (file-based routing):
+
+```
+pages/
+  index.vue
+  meetings-events.vue
+  dining.vue
+  amenities.vue
+  privacy-policy.vue
+  contact.vue
+  hotel-policies.vue
+  rooms/
+    index.vue
+    [slug].vue
+  blog/
+    index.vue
+    [slug].vue
+  offers/
+    index.vue
+    [slug].vue
+```
+
+**Mapping:** `pages/foo.vue` → `/foo`. `pages/rooms/index.vue` → `/rooms`. `pages/rooms/[slug].vue` → `/rooms/:slug`. Nested folders define path prefixes; dynamic params match segment names.
+
+## 5. Slug Rules (Strict)
+
+- Lowercase only.
+- **kebab-case** (hyphens between words).
+- No spaces; no arbitrary special characters (stick to `[a-z0-9-]`).
+- **Unique per collection** (unique `rooms.slug`, unique `blog_posts.slug`, unique `offers.slug`).
+- **Authoritative in CMS**; frontend does not invent slugs for production content.
+
+**Examples:** `deluxe-king-room`, `premium-twin-room`, `family-room`.
+
+## 6. CMS Compatibility
+
+**Idea:** Routes are **collection + slug**; adapters translate API → normalized models. Same components regardless of Strapi vs Directus.
+
+### Collections (conceptual)
+
+| Collection | Route | Key fields (minimum) |
+|------------|-------|----------------------|
+| `rooms` | `/rooms`, `/rooms/[slug]` | `slug`, `title`, `content` (+ media, SEO as per project) |
+| `blog_posts` | `/blog`, `/blog/[slug]` | `slug`, `title`, `content` |
+| `offers` | `/offers`, `/offers/[slug]` | `slug`, `title`, `content` (+ booking benefit fields in **data**, not in URL) |
+
+**Mapping:**
+
+- `/rooms/[slug]` → filter/query `rooms` where `slug === params.slug` (detail); listing queries all published rooms (with pagination as needed).
+- `/blog/[slug]` → `blog_posts` by `slug`.
+- `/offers/[slug]` → `offers` by `slug`.
+
+Use **slug as stable public identifier**; internal numeric IDs stay in adapters/API only if required.
+
+## 7. Do’s and Don’ts
+
+**Do:**
+
+- Group entities under parent routes (`/rooms`, `/blog`, `/offers`).
+- Keep paths short and meaningful; one pattern per content type.
+- Reuse this tree across hotel projects; vary only static page set if needed.
+- Pass links and canonical URLs from data/layout/composables—**not** hardcoded in presentational components.
+
+**Don’t:**
+
+- Flatten room URLs (e.g. `/deluxe-room` instead of `/rooms/deluxe-room`).
+- Mix naming styles (camelCase paths, random `/page-2` blobs).
+- Add deep nesting without a clear domain reason (e.g. `/hotel/rooms/category/slug` unless explicitly required).
+- Encode CMS vendor or internal IDs in public URLs.
+
+## 8. Future Scalability
+
+Optional later routes (same static-vs-dynamic rules):
+
+- `/gallery`, `/location`, `/faqs` — typically **static** pages or **static + optional `[slug]`** if galleries/FAQ become collections.
+
+**Do not implement until product asks**; current list/detail pattern already extends cleanly.
+
+## 9. Final Principles
+
+- **Consistency** over ad-hoc flexibility.
+- **Agreed structure** over one-off creative URLs.
+- **CMS-driven** slugs and copy; UI remains presentational.
+- **Reusable** across all hotel Nuxt projects in this portfolio.

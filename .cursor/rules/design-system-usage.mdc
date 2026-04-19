@@ -1,0 +1,45 @@
+---
+description: Kowju design tokens, Tailwind/PrimeVue usage, spacing and vertical rhythm
+globs:
+  - design-system/**
+  - app/themes/**
+  - app/assets/css/**
+  - app/components/**/*.vue
+alwaysApply: false
+---
+
+# Design System Usage (Kowju)
+
+Live reference: **`/design-system`** in the app (typography, color, spacing, radius, shadow, PrimeVue).
+
+## Source of truth
+
+- Spacing and type: **rem only**; numeric scales live in [`design-system/tokens.ts`](design-system/tokens.ts).
+- **Layout & composition:** Tailwind (`max-w-*`, `gap-*`, `p-*`, `grid`, `text-*`).
+- **Interactive UI:** PrimeVue; theme via [`app/themes/kowju.preset.ts`](app/themes/kowju.preset.ts) (`definePreset` on Aura).
+- **No** inline styles; **no** one-off component class overrides—use preset tokens or global CSS in [`app/assets/css/main.css`](app/assets/css/main.css).
+
+## Token → Tailwind → PrimeVue (summary)
+
+| Source | Tailwind examples | PrimeVue / CSS vars |
+|--------|-------------------|---------------------|
+| `colors.brand.*` | `text-brand-500`, `bg-brand-600` | `--p-brand-*`, `--p-primary-*`, `--p-secondary-*` |
+| `colors.gold.*` | `text-gold-400` | `--p-gold-*`, `--p-accent-*` |
+| `colors.warm.*` | `text-warm-700`, `border-warm-200` | `--p-warm-*`, surfaces / form borders |
+| `semantic.*` | `text-text`, `text-muted`, `bg-bg`, `border-border` | Align with `--p-*` where used |
+| `fontSize.*` | `text-h1`, `text-body`, `text-caption` | Typography via Tailwind; forms: `formField` in preset |
+| `spacing` | `p-4`, `gap-6` | Button/input padding in preset |
+| `radius`, `shadow` | `rounded-md`, `shadow`, `shadow-lg` | `borderRadius` + card/button in preset |
+
+## Vertical rhythm
+
+- Section separation: **`py-*`** on the section wrapper only (`py-12` small · `py-16` md `py-20` default · `py-20` lg `py-24` large). Inner stacks use **`gap-*`**, not extra `py-*` per line.
+- Inside sections: **tight** `gap-3`–`gap-4` · **default** `gap-6` · **loose** `gap-8`–`gap-10`.
+- **Critical:** section **`py-*` must exceed** internal **`gap-*`** on that section—otherwise hierarchy inverts (e.g. avoid `py-8` section + `gap-10` innards).
+- Headline / subtext / CTA: one `flex flex-col`; tight gap title→supporting line; default gap before CTA row.
+- Grids: `gap-6` or `gap-8`; fix card **`p-*`** instead of inflating grid gap.
+- Forms: `gap-4` within a field group; `gap-6`–`gap-8` between groups. Prefer **one** of `gap-*` vs `space-y-*` per container axis.
+
+## Breakpoints
+
+Default Tailwind: `sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px, `2xl` 1536px.

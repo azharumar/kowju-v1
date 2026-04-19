@@ -1,0 +1,101 @@
+---
+description: CMS-compatible architecture (Strapi/Directus ready) — sections, adapters, no hardcoded content
+alwaysApply: true
+---
+
+# CMS-Compatible Architecture (Headless CMS Ready)
+
+Build so Strapi, Directus, or similar can plug in later **without major refactors**. Target a **structured, form-based CMS**, not a visual page builder.
+
+**What breaks at scale:** inconsistent schemas, uncontrolled components, duplicated or tangled content relationships, and one-off dev decisions. **Guardrails** (versions, contracts, layers, references, migration boundary) live in **Content System Principles**—apply both files together.
+
+## Core principle
+
+- **CMS**: structured data + ordered sections
+- **Frontend**: layout, rendering, logic
+
+## 1. Separation of concerns
+
+- **Content**: external (local JSON or API-ready); never embedded in UI logic
+- **Structure**: expressed in data (section types, order), not hardcoded in templates
+- **UI**: presentational only; no fetching or CMS field names in leaf components
+
+Do not mix these layers.
+
+## 2. No hardcoded content
+
+- No static marketing copy, labels, or image URLs inside feature/page components
+- Pass all copy and media **via props** (after adapters)
+- Exceptions: true UI chrome only (e.g. “Close”, “Menu”) if unavoidable—keep minimal
+
+## 3. Ordered section-based pages
+
+- Support `sections[]` with `type`, `version`, `order`, and `data` (optional `variant` from a fixed set)
+- **Resolver**: map `type → component` in one place; do not hardcode section order in templates
+
+```js
+[
+  { type: "hero", version: 1, order: 1, data: { title, description, image, cta } },
+  { type: "features", version: 1, order: 2, data: { items: [...] } }
+]
+```
+
+## 4. Limited section types
+
+- **Max ~10–12** reusable section types; reuse across pages
+- Avoid one-off or page-specific section components—extend a shared type with data instead
+- **Highest ROI:** maintain an explicit catalog of allowed section types and their **schemas** (required/optional fields, `version`)—that is where most cross-project consistency comes from
+
+## 5. CMS-friendly data shape
+
+- Flat, predictable fields; avoid deep nesting and UI-specific blobs
+- Consistent names: `title`, `description`, `image`, `cta` (and project-wide conventions)
+
+## 6. Adapter layer
+
+- UI components do not consume raw API/CMS payloads
+- Normalize in **adapters or composables** so response shape changes stay at the boundary
+
+## 7. Fixed vs flexible pages
+
+- **Fixed schema** for predictable routes (e.g. room detail: known fields)
+- **Section arrays** only where editorial flexibility is required (e.g. homepage)
+- Do not default every page to fully dynamic sections
+
+## 8. Blog (structured, not block-based)
+
+- Fixed schema: `title`, `slug`, `content`, `cover_image`, `seo`, etc.
+- **Not** a section-builder page; treat as its own content type
+
+## 9. Slug-based routing
+
+- Prefer dynamic routes (e.g. `[slug].vue` / file-based equivalent)
+- No hardcoded canonical URLs inside presentational components
+
+## 10. SEO as data
+
+- `seo` as a separate object: `meta_title`, `meta_description`, `og_image`, etc.
+- Set meta in layout/page/composable—not inside dumb UI components
+
+## 11. UI library abstraction
+
+- Page/feature components use **wrappers** (`BaseButton`, `BaseCard`, …)
+- Do not import PrimeVue (or similar) directly in domain/section components
+
+## 12. CMS-agnostic code
+
+- No Strapi- or Directus-specific field names or response shapes outside adapters
+- Types and mocks should mirror **normalized** app models, not vendor JSON
+
+## Preflight (before implementing)
+
+1. Can this be stored in a **relational** headless CMS?
+2. Can a **non-visual** editor manage it?
+3. Am I **pushing layout choices into data**? If any answer is no, adjust first.
+
+**Before adding a new pattern or rule:** Will it reduce future inconsistency? Will it help a junior dev make fewer mistakes? Will it apply across **all** hotel projects? If not, skip (YAGNI).
+
+## Constraints
+
+- Minimal, repeatable patterns; avoid overengineering
+- Clarity and consistency over maximum flexibility

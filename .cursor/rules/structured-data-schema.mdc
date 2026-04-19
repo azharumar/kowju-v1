@@ -1,0 +1,121 @@
+---
+description: JSON-LD structured data — centralized schema generators, CMS-driven, Nuxt useHead injection
+alwaysApply: true
+---
+
+# Structured Data (Schema) Architecture & Management
+
+Implement **SEO structured data (JSON-LD)** with a **modular, centralized, CMS-driven** approach reusable across hotel projects.
+
+## Core principle
+
+- Schema is **generated from data**, not hand-written in UI
+- Schema logic is **centralized and reusable**, not scattered
+- CMS or local data supplies content → frontend **generates** JSON-LD
+
+## 1. Centralized schema system
+
+- All schema **logic** lives under a dedicated directory (e.g. `schema/`):
+
+```
+schema/
+  hotelSchema.js
+  roomSchema.js
+  blogSchema.js
+  offerSchema.js
+  faqSchema.js
+  breadcrumbSchema.js
+```
+
+- Do **not** define JSON-LD shape inside leaf components or inline in templates
+
+## 2. Generator functions only
+
+- Each export is a **function** that returns a schema object:
+
+```js
+export function generateHotelSchema(data) { /* ... */ }
+```
+
+- No inline JSON-LD object literals in pages/components except passing the **result** of a generator to `useHead`
+
+## 3. Data-driven (no hardcoding)
+
+Build schema only from **CMS** or **adapter-normalized** models. Do not hardcode hotel name, address, prices, long descriptions, or other editorial content inside schema modules.
+
+## 4. Adapter first, then schema
+
+Schema functions consume **normalized app data only**. Flow:
+
+```
+CMS → Adapter → Normalized data → Schema generator → JSON-LD
+```
+
+Raw CMS/API payloads stay out of schema files.
+
+## 5. Page-level responsibility
+
+Include schema that matches the page; do not add irrelevant types.
+
+| Page / route pattern | Typical schema |
+|---------------------|----------------|
+| Homepage | Hotel (+ FAQ if FAQ content on page) |
+| Room detail | HotelRoom + BreadcrumbList |
+| Blog post | BlogPosting + BreadcrumbList |
+| Offer detail | Offer + BreadcrumbList |
+
+## 6. Inject via head only (Nuxt)
+
+Use `useHead()` (or equivalent) with `type: "application/ld+json"` and `children: JSON.stringify(schema)`. Do **not** render JSON-LD as visible DOM in templates.
+
+```js
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify(schema),
+    },
+  ],
+});
+```
+
+## 7. One schema object per graph node / responsibility
+
+Do not merge unrelated `@type` blobs into one object when they should be separate nodes. Multiple scripts or `@graph` is fine; keep responsibilities clear (e.g. Hotel vs FAQPage as separate generators or explicit `@graph` assembly in one place—not ad hoc merges in components).
+
+## 8. Minimum supported types
+
+Support at least: **Hotel**, **HotelRoom**, **BlogPosting**, **Offer** (or `Product`/`Offer` per project convention—document once), **FAQPage**, **BreadcrumbList**. Do not add new schema types without a clear SEO/product need.
+
+## 9. Fallbacks
+
+Missing optional fields must not throw or produce invalid JSON-LD. Omit optional properties or use safe defaults; never assume nested fields exist without guards.
+
+## 10. Reusability across projects
+
+Generators stay **generic**: parameters are data shapes and site config, not a single property’s brand strings baked into code.
+
+## 11. No UI or business rules in schema modules
+
+Schema files must not format copy for the screen, branch on UI state, or import Vue components. Pricing/eligibility rules belong in adapters/composables; schema only maps **already normalized** fields to JSON-LD.
+
+## 12. Slug and URL context
+
+Use route/page context for canonical URLs, slugs, and breadcrumb hierarchy. Pass `url`, `slug`, and trail **as data** from the page/layout/composable—do not hardcode paths in generators.
+
+## 13. Version safety (recommended)
+
+If schema shapes evolve, version the generator contract or document breaking changes so old content records do not silently emit wrong JSON-LD.
+
+## Preflight (before implementing)
+
+1. Is this schema **generated from data** or manually written?
+2. Can this work **across all hotel projects** with different slugs and copy?
+3. Am I **duplicating** editorial content that already lives in CMS/adapters?
+
+If any answer is wrong → refactor.
+
+## Constraints
+
+- Keep the system **minimal**; avoid unnecessary schema types
+- **Consistency** over chasing every possible rich-result type

@@ -1,0 +1,67 @@
+---
+description: Enforce consistent naming conventions across the codebase
+alwaysApply: true
+---
+
+# Naming Discipline & Conventions
+
+- Use English only.
+- Use clear, descriptive names.
+- Avoid abbreviations unless they are universally understood.
+- Pick one term and reuse it everywhere; do not introduce synonyms for the same concept.
+
+## Case Conventions
+
+- Components: PascalCase.
+- General files: kebab-case.
+- Variables: camelCase.
+- Functions: camelCase.
+- Constants: UPPER_SNAKE_CASE.
+- Slugs and routes: kebab-case.
+
+## Component Naming
+
+- CMS-driven block components must use `[Name]Section.vue`.
+- UI primitives must use the `Base` prefix.
+- Layout components must use the `Layout` prefix.
+- One component should have one responsibility.
+- Avoid vague names like `Box` or `Container`.
+
+Examples:
+- `HeroSection.vue`
+- `RoomsSection.vue`
+- `BaseButton.vue`
+- `BaseCard.vue`
+- `LayoutDefault.vue`
+
+## Folder, Composable, Adapter, and Schema Naming
+
+- Folders must use kebab-case.
+- Composables must use the `use[Entity]` pattern.
+- Adapters must use the `map[Entity]` pattern.
+- Non-component files must use kebab-case.
+- Keep entity names consistent across CMS, frontend, and schema.
+
+Examples:
+- `components/base`
+- `components/blocks`
+- `usePage()`
+- `useRooms()`
+- `mapRoom()`
+- `mapBlogPost()`
+- `room-schema.js`
+- `seo-defaults.js`
+
+## Reserved Terms
+
+- Keep these terms consistent across all projects: `section`, `base`, `layout`, `adapter`, `schema`.
+- Do not invent one-off prefixes, suffixes, or project-specific naming patterns.
+- Reuse existing naming patterns even if a name is not ideal; consistency is more important than local perfection.
+
+## Final Naming Check
+
+Before introducing a new name, confirm:
+
+- Another developer could guess it without asking.
+- It can be reused across projects.
+- It does not introduce a new pattern unnecessarily.
