@@ -1,0 +1,70 @@
+---
+alwaysApply: true
+---
+# Design System Token Enforcement (Kowju)
+
+**Goal:** One source of truth; remove drift. **Do not redesign**—normalize to tokens and shared layers.
+
+Section rhythm and composition details: see [`design-system-usage.mdc`](design-system-usage.mdc).
+
+## 1. Tokens are the only source
+
+- Use values defined in [`design-system/tokens.ts`](design-system/tokens.ts) and what Tailwind/PrimeVue expose from them.
+- **Forbidden in templates/components:** arbitrary Tailwind values such as `text-[…]`, `tracking-[…]`, `leading-[…]`, `min-h-[…]`, `aspect-[…]`, `w-[…]`, `gap-[…]` when used to invent sizes outside the scale.
+- **Missing value:** add to `tokens.ts`, wire through `tailwind.config.ts` and/or [`app/themes/kowju.preset.ts`](app/themes/kowju.preset.ts), then use the generated class/CSS var.
+
+## 2. No inline or forced overrides
+
+- **No** `:style` bindings in app code **except** [`app/pages/design-system.vue`](app/pages/design-system.vue) (demo only; keep a short file-level comment that this is the exception).
+- **No** `!` important utilities (e.g. `!text-body`).
+- **Do not** style PrimeVue components ad hoc in templates (no extra `class` hacks on `Button`/`Card`/`Input` to fight the theme).
+- **Customization:** adjust `kowju.preset.ts` and/or tokens, or global CSS tied to tokens—not one-off template classes.
+
+## 3. Typography uses the scale only
+
+- Use semantic utilities only: `text-h1`, `text-h2`, `text-body`, `text-caption`, etc. (as defined in the Tailwind theme from tokens).
+- **Do not** set custom font sizes or line heights via arbitrary classes.
+- **Missing step:** extend the type scale (Major Third) in tokens, then regenerate theme usage—no one-off sizes.
+
+## 4. Spacing uses the scale
+
+- Spacing: Tailwind scale derived from tokens (`p-*`, `m-*`, `gap-*`, `space-*`, section `py-*` per usage rule doc).
+- Replace patterns like `min-h-[50vh]` with token-backed section/layout utilities or documented section spacing—not arbitrary dimensions.
+- **No** arbitrary heights, widths, or gaps unless added as named tokens first.
+
+## 5. Letter spacing and line height
+
+- Remove arbitrary `tracking-*` / `leading-*` unless they map to token-backed theme keys.
+- If product needs them: add `letterSpacing` / `lineHeight` (or equivalent) in `tokens.ts`, expose in Tailwind theme, then use the utility names—never bracket values.
+
+## 6. PrimeVue consistency
+
+- **All** Button, Card, Input (and shared primitives) variants come from [`app/themes/kowju.preset.ts`](app/themes/kowju.preset.ts) aligned with tokens.
+- **Semantic roles:** `primary` = brand; `secondary` = neutral/surface-based—no duplicated or ambiguous “two primaries”; fix in preset, not in each page.
+- Keep Tailwind semantic colors and PrimeVue `--p-*` / preset tokens aligned when changing either side.
+
+## 7. Elevation and radius
+
+- **No** ad hoc shadows/radius in templates (e.g. `hover:shadow-lg` as a random jump). Use token-mapped `shadow-*` / `rounded-*` from theme/preset only.
+- Changes to elevation/radius: tokens → Tailwind + preset, not scattered utilities.
+
+## 8. Base component enforcement
+
+- **`BaseButton`**, **`BaseCard`**: thin wrappers that compose PrimeVue + token-backed classes; **do not** introduce new visual styles inside bases—only enforce preset/token usage.
+- Prefer **`Base*`** for buttons/cards in `app/` instead of importing PrimeVue primitives directly in features/pages, unless a rare exception is explicitly justified.
+- Base components: **`Base*.vue`** naming only; rename files that violate this when touching them.
+
+## 9. Design system page exception
+
+- [`app/pages/design-system.vue`](app/pages/design-system.vue) may use **inline styles solely for demos** (swatches, measurements). Document the exception in a comment at the top of the demo section or file.
+
+## 10. When changing code (report format)
+
+For token or template work, report briefly:
+
+1. File path  
+2. Problem (drift / arbitrary value / direct PrimeVue / wrong name)  
+3. Fix applied  
+4. If a token was added: show the token diff (name + value + where consumed)
+
+**Constraints:** no new abstractions unless required to remove inconsistency; minimal diffs; YAGNI.

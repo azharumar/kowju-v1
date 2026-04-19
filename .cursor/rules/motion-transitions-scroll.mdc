@@ -1,0 +1,81 @@
+---
+description: Subtle motion, transitions, scroll, and reduced-motion for premium calm hotel UX
+alwaysApply: true
+---
+
+# Motion, Transitions & Scroll (Premium Constraint)
+
+**Core principle:** Motion is **subtle, intentional, and almost invisible**. If users notice the animation, it is too much.
+
+## Transition philosophy
+
+- **Minimal transitions only**—support clarity, not attention.
+- Avoid flashy, bouncy, or exaggerated motion.
+
+## Allowed types
+
+Only: **fade-in**, **slight translate** (prefer Y), **opacity**, **gentle scale** (minimal).
+
+## Duration & easing
+
+- **200ms–400ms**; smooth easing only (`ease-out` or standard cubic-bezier).
+- Avoid: **>500ms**, linear or sharp motion.
+
+## Page load & section entry
+
+- Sections may **fade + slight slide-up (10–20px max)**; **once**, no looping.
+- Do **not** animate everything—key sections only.
+
+## Hover & interaction
+
+- **Subtle** color transition; slight shadow/elevation change.
+- Avoid: scale beyond **~1.02**, aggressive hover.
+
+## Scroll behavior
+
+- **Smooth scrolling** site-wide; natural, responsive feel.
+
+## Scroll snap (sparingly)
+
+**OK:** full-screen hero, horizontal carousels, image galleries.  
+**Avoid:** snap on long reading pages; anything that fights normal scroll/reading.
+
+## Performance
+
+- Prefer **`transform`** and **`opacity`** only.
+- Avoid animating layout: `top`, `left`, `width`, `height` (and similar).
+
+## Consistency
+
+- **One motion style** across the site—do not mix animation “languages.”
+
+## Accessibility
+
+Respect reduced motion:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  /* disable or greatly simplify motion */
+}
+```
+
+## Do not
+
+- Parallax, autoplay motion, continuous/looping animation, complex timelines.
+- Heavy animation libraries unless clearly necessary.
+
+## Implementation
+
+- Prefer **CSS transitions** or **minimal utilities**; keep JS motion minimal.
+
+## Preflight (before adding motion)
+
+1. Does it improve **clarity** or only look cool?  
+2. Would a **premium hotel** ship it?  
+3. Can you **remove it** and still have good UX?  
+
+If the honest answer to (3) is yes—**do not add it**.
+
+## Goal
+
+Motion feels **smooth, calm, refined, and invisible**.
