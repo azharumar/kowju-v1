@@ -11,10 +11,10 @@ const isIndexable =
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   app: {
-    pageTransition: { name: "page", mode: "out-in" },
+    pageTransition: { name: "page" },
   },
   devtools: { enabled: true },
-  css: ["~/assets/css/main.css", "lenis/dist/lenis.css"],
+  css: ["~/assets/css/main.css"],
   modules: [
     "@nuxt/fonts",
     "@nuxtjs/tailwindcss",

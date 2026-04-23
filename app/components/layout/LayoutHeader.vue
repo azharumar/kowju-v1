@@ -54,17 +54,18 @@
             />
           </NuxtLink>
 
-          <Button
-            text
-            rounded
-            aria-label="Open navigation menu"
-            :aria-controls="isMobileMenuOpen ? mobileDrawerId : undefined"
-            :aria-expanded="isMobileMenuOpen"
-            class="lg:hidden"
-            @click="isMobileMenuOpen = true"
-          >
-            <i class="pi pi-bars text-body" />
-          </Button>
+          <div class="lg:hidden">
+            <Button
+              text
+              rounded
+              aria-label="Open navigation menu"
+              :aria-controls="isMobileMenuOpen ? mobileDrawerId : undefined"
+              :aria-expanded="isMobileMenuOpen"
+              @click="isMobileMenuOpen = true"
+            >
+              <i class="pi pi-bars text-body" />
+            </Button>
+          </div>
         </div>
       </div>
     </BaseContainer>

@@ -43,7 +43,7 @@ function panelValue(index: number) {
 <template>
   <section aria-label="Frequently asked questions" :class="props.class">
     <BaseContainer>
-      <BaseSection rhythm="default">
+      <BaseSection rhythm="comfortable">
         <BaseStack class="mx-auto w-full max-w-md">
           <BaseSectionHeader
             v-if="overline || title"
