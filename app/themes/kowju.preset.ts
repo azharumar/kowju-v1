@@ -115,7 +115,6 @@ export default {
         root: {
           paddingX: button.paddingX,
           paddingY: button.paddingY,
-          fontSize: button.fontSize,
           borderRadius: radius.md,
           sm: {
             fontSize: button.sm.fontSize,
