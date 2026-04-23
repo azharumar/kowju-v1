@@ -33,12 +33,17 @@ Live reference: **`/design-system`** in the app (typography, color, spacing, rad
 
 ## Vertical rhythm
 
-- Section separation: **`py-*`** on the section wrapper only (`py-12` small · `py-16` md `py-20` default · `py-20` lg `py-24` large). Inner stacks use **`gap-*`**, not extra `py-*` per line.
+- Prefer spacing primitives over ad-hoc classes:
+  - `BaseSection` for section rhythm (`hero`, `compact`, `default`, `comfortable`)
+  - `BaseStack` for vertical composition rhythm (`tight`, `default`, `loose`, `comfortable`)
+  - `BaseGrid` for grid rhythm (`compact`, `default`, `comfortable`)
+- Section separation: **`py-*`** on the section wrapper only (`py-12`/`md:py-16` compact, `py-16`/`md:py-20` default, `py-20`/`md:py-24` comfortable). Inner stacks use **`gap-*`**, not extra `py-*` per line.
 - Inside sections: **tight** `gap-3`–`gap-4` · **default** `gap-6` · **loose** `gap-8`–`gap-10`.
 - **Critical:** section **`py-*` must exceed** internal **`gap-*`** on that section—otherwise hierarchy inverts (e.g. avoid `py-8` section + `gap-10` innards).
 - Headline / subtext / CTA: one `flex flex-col`; tight gap title→supporting line; default gap before CTA row.
 - Grids: `gap-6` or `gap-8`; fix card **`p-*`** instead of inflating grid gap.
 - Forms: `gap-4` within a field group; `gap-6`–`gap-8` between groups. Prefer **one** of `gap-*` vs `space-y-*` per container axis.
+- Avoid one-off template spacing classes (`mt-*`, `mb-*`, `pt-*`, `pb-*`, `gap-*`) when an existing primitive variant covers the same need. Keep exceptions documented in the component.
 
 ## Breakpoints
 

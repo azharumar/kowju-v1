@@ -1,0 +1,86 @@
+---
+description: Enforces KISS, YAGNI, and DRY—avoid unnecessary abstractions, props, and duplication in Vue/TS/JS.
+globs:
+  - "**/*.vue"
+  - "**/*.ts"
+  - "**/*.js"
+alwaysApply: true
+---
+
+# No over-engineering (KISS / YAGNI / DRY)
+
+## KISS
+
+- Inline ternaries in templates instead of single-purpose `computed()` that return one value.
+- Do not use `computed()` for values that never change reactively from multiple dependencies—use `const` or inline expressions.
+- Avoid multi-step patterns (`NuxtLink` `custom` + `v-slot` + wrapper) when one element suffices.
+- Prefer `text-h${level}` template literals over a lookup map when the pattern is mechanical.
+
+## YAGNI
+
+- Do not add wrapper components that add no props, logic, or slots beyond passthrough—use the underlying component directly.
+- Do not add props with more than 3–4 variants unless every variant is used in the codebase when you add it.
+- Do not add `headingLevel`, `ctaVariant`, or similar flexibility props unless an existing caller needs each variant.
+- Do not default props to placeholders like `'#'`—make the prop required or omit it.
+
+## DRY
+
+- Do not write two computeds that repeat the same map lookup on the same prop—merge into one computed returning an object.
+- Do not repeat the same Tailwind class strings on sibling elements—extract to a shared variable or utility only if used 3+ times.
+- Do not duplicate type maps like `{ 2: 'h2', 3: 'h3', 4: 'h4' }`—derive mechanically when trivial.
+
+## Examples
+
+**Bad:**
+
+```ts
+const headingTag = computed(() => ({ 2: 'h2', 3: 'h3', 4: 'h4' }[props.level]))
+const titleClass = computed(() => ({ 2: 'text-h2', 3: 'text-h3', 4: 'text-h4' }[props.level]))
+```
+
+**Good:**
+
+```ts
+const heading = computed(() => ({ tag: `h${props.level}`, class: `text-h${props.level}` }))
+```
+
+---
+
+**Bad:**
+
+```ts
+const imageOrder = computed(() => props.position === 'left' ? 'md:order-none' : 'md:order-2')
+```
+
+**Good** (inline in template):
+
+```html
+:class="position === 'right' ? 'md:order-2' : 'md:order-none'"
+```
+
+---
+
+**Bad:**
+
+```vue
+<!-- BaseButton.vue -->
+<template><Button><slot /></Button></template>
+```
+
+**Good:** Remove the file. Use `<Button>` directly.
+
+---
+
+**Bad:**
+
+```vue
+<NuxtLink :to="href" custom v-slot="{ href, navigate }">
+  <BaseButton as="a" :href="href" @click="navigate">Label</BaseButton>
+</NuxtLink>
+```
+
+**Good:**
+
+```vue
+<Button as="a" :href="href">Label</Button>
+```

@@ -1,0 +1,64 @@
+---
+description: Catalog of reusable Vue components—check before building new section UI
+globs:
+  - app/pages/**/*.vue
+  - app/components/**/*.vue
+alwaysApply: false
+---
+
+# Reusable components (Kowju)
+
+Before adding new primitives or one-off markup for a section, **search this project** under `app/components/` and **reuse** these first. If something is missing, add a **small, named** component here and append a short entry below.
+
+## Layout & structure
+
+| Component | Path | Role |
+|-----------|------|------|
+| **Container** | `base/Container.vue` | Centers content; `max-w-5xl` + horizontal padding. Wrap section inner content when a max width is needed. |
+| **Section** | `base/Section.vue` | Semantic `<section>` with optional `id`, optional `title` (renders `h2`), scroll-margin, optional `enter` (motion). Slots: `intro`, default. Use for page sections instead of raw `<section>` when this pattern fits. |
+| **BaseStack** | `base/BaseStack.vue` | Vertical rhythm primitive for child spacing. Variants: `tight`, `default`, `loose`, `comfortable`. |
+| **BaseGrid** | `base/BaseGrid.vue` | Grid rhythm primitive with token-backed spacing. Variants: `compact`, `default`, `comfortable` (plus optional axis-specific gaps). |
+
+## Typography & headings
+
+| Component | Path | Role |
+|-----------|------|------|
+| **BasePageHeader** | `base/BasePageHeader.vue` | Page hero title: `title` or default slot, optional `lead`, `align` (`left` \| `center` \| `right`), `headingLevel` (`1` \| `2`). |
+| **BaseSectionHeader** | `base/BaseSectionHeader.vue` | Section title block: optional `overline` + `BaseOverline`, `title` or default slot, optional `lead` (or `#lead` slot), `align`, `dividers` on overline, `headingLevel` (`2` \| `3` \| `4`). Slot `overline` for custom overline content. |
+| **BaseOverline** | `base/BaseOverline.vue` | Small uppercase label (brand). Props: `dividers` (line decorations). Prefer via **BaseSectionHeader** unless used alone. |
+
+## Actions & links
+
+| Component | Path | Role |
+|-----------|------|------|
+| **BaseButton** | `base/BaseButton.vue` | Default CTA: wraps **BaseButtonPrimary** (PrimeVue `Button`). Slot = label/content. |
+| **BaseButtonPrimary** | `base/BaseButtonPrimary.vue` | Primary filled button (default emphasis). |
+| **BaseButtonSecondary** | `base/BaseButtonSecondary.vue` | Secondary severity button. |
+| **BaseButtonOutlined** | `base/BaseButtonOutlined.vue` | Outlined button. |
+| **BaseLinkText** | `base/BaseLinkText.vue` | Text link with arrow. Props: `to` (for links), `label` (default `"Learn more"`), `variant` (`default` | `label`), `as` (`link` | `text`) for non-link visual use. |
+| **BaseGalleryLightbox** | `base/BaseGalleryLightbox.vue` | Full-screen PrimeVue `Drawer` + `Galleria` with thumbnails: `images` (`src`, `alt`, optional `width`/`height`), `v-model:visible`, optional `drawerId` (for `aria-controls`), optional `startIndex`. |
+
+## Content patterns
+
+| Component | Path | Role |
+|-----------|------|------|
+| **BaseCard** | `base/BaseCard.vue` | PrimeVue `Card` with project border/surface/hover. Slot → `#content` body. |
+| **BaseTeaserCard** | `base/BaseTeaserCard.vue` | Generic linked teaser card (image, title, description, CTA link) with owned spacing contract. Optional `compact` shows image + CTA only (centered). With `compact`, optional `portraitImage` selects portrait vs landscape image crop (e.g. three-column vs two-column grids). |
+| **BaseTeaserGrid** | `base/BaseTeaserGrid.vue` | Teaser grid via `BaseGrid` rhythm. Prop `columns`: `2` (default) or `3` (`md` breakpoint). |
+| **SectionFaq** | `section/SectionFaq.vue` | FAQ block: `items` (`{ id?, question, answer }[]`), optional `overline` / `title`, `headingLevel`, `headingAlign`, Accordion `multiple`, `expandFirst`, optional root `class`. Uses **BaseSectionHeader** + PrimeVue Accordion. |
+| **SectionPageHero** | `section/SectionPageHero.vue` | Page hero strip: `bg-surface-muted`, **BaseContainer** inner, **BasePageHeader** (`title`, `lead`, `align`, `headingLevel`), cover `imageSrc` + `imageAlt` with rounded frame. Optional root `class`. |
+| **SectionExploreSite** | `section/SectionExploreSite.vue` | Internal-linking block: Rooms / Dining / Meetings & Events teasers from `data/explore-site-teasers`. Optional `exclude` (`rooms` \| `dining` \| `venues`); grid columns follow visible count. |
+| **SectionThingsToDo** | `section/SectionThingsToDo.vue` | Local attractions grid: overline + title, cards from `data/local-attractions` (image, title, body, map-marker + distance/time). |
+
+## Reuse workflow (new section)
+
+1. Sketch structure: **Container** (if needed) → **Section** or plain wrapper → **BaseSectionHeader** / **BasePageHeader** as appropriate.
+2. CTAs: **BaseButton** variants or **BaseLinkText**; avoid new button/link styling.
+3. Cards or repeating tiles: **BaseCard** before custom card markup.
+4. FAQ-style Q&A: **SectionFaq** before a custom accordion.
+5. After adding a **new** reusable component, **update this rule** with one row in the right table.
+
+## Related rules
+
+- Tokens, spacing, PrimeVue: [`design-system-usage.mdc`](design-system-usage.mdc).
+- Live UI reference: `/design-system` page when present.

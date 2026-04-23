@@ -75,6 +75,18 @@ Reason: readers must see “this is one block” via consistent inner gaps, and 
 
 Default Tailwind: `sm` 640px, `md` 768px, `lg` 1024px, `xl` 1280px, `2xl` 1536px.
 
+## Z-index
+
+Use only the named scale — never arbitrary `z-[999]` values.
+
+| Token | Tailwind class | Use |
+|-------|---------------|-----|
+| `base` | `z-base` | Default stacking |
+| `raised` | `z-raised` | Sticky headers, floating labels |
+| `overlay` | `z-overlay` | Dropdowns, tooltips |
+| `modal` | `z-modal` | Dialogs, drawers |
+| `toast` | `z-toast` | Notifications |
+
 ## Design System Enforcement Rules
 
 ### Core principle

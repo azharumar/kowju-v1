@@ -1,0 +1,48 @@
+---
+description: Prevent ad-hoc typography, sizing, and aspect utilities that bypass design-system tokens
+alwaysApply: true
+---
+
+# No Ad-hoc Typography, Sizing, or Aspect Utilities
+
+Do not hardcode typography, sizing, or aspect values in templates.
+
+- Avoid classes like `text-[...]`, `text-xs/sm/lg`, `font-*`, `leading-*`, `tracking-*` for body/headline styling.
+- Avoid arbitrary sizing classes like `min-h-[...]`, `w-[...]`, `max-w-[...]`, `h-[...]`, `gap-[...]`, and similar bracket-value utilities.
+- Never use raw arbitrary aspect values like `aspect-[21/9]` in templates.
+- Use approved design-system components and tokenized classes only.
+- If a required style does not exist yet, add/extend it in the design system first and use a named utility/class.
+- For hero media, use a named utility (example: `aspect-hero`) backed by design-system tokens/config, not `aspect-[21/9]`.
+
+## Must Prevent
+
+- Should never happen: multiple arbitrary Tailwind values not backed by token classes.
+- Should never happen: arbitrary sizing classes such as `min-h-[26rem]`, `md:min-h-[22rem]`, `w-[4.5rem]`, `max-w-[11rem]`.
+- Should never happen: arbitrary typography values.
+- Should never happen: raw arbitrary aspect value usage (for example `aspect-[21/9]`).
+
+## Examples
+
+```vue
+<!-- ❌ BAD -->
+<div class="text-[0.8125rem] font-medium leading-snug">...</div>
+
+<!-- ✅ GOOD -->
+<BaseOverline>...</BaseOverline>
+```
+
+```vue
+<!-- ❌ BAD -->
+<p class="text-sm leading-6">...</p>
+
+<!-- ✅ GOOD -->
+<p class="text-body-sm">...</p>
+```
+
+```vue
+<!-- ❌ BAD -->
+<img class="aspect-[21/9] w-full object-cover" />
+
+<!-- ✅ GOOD -->
+<img class="aspect-hero w-full object-cover" />
+```

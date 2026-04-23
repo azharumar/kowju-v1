@@ -1,3 +1,5 @@
+@import "primeicons/primeicons.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +11,7 @@
   }
 
   html {
-    font-size: 100%;
+    font-size: clamp(0.75rem, 0.6875rem + 0.4vw, 1rem);
     scroll-behavior: smooth;
   }
 
@@ -24,17 +26,20 @@
   }
 
   body {
-    @apply bg-bg font-sans text-text antialiased;
+    @apply bg-surface-muted font-sans text-text antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  a:not([class*='transition']):not(.motion-interactive) {
-    transition-property: color, background-color, border-color, text-decoration-color, opacity;
-    transition-duration: var(--motion-duration);
-    transition-timing-function: var(--motion-ease);
+  a:not([class*="transition"]):not(.motion-interactive) {
+    @apply duration-motion ease-motion;
+    transition-property:
+      color, background-color, border-color, text-decoration-color, opacity;
   }
 
   :focus-visible {
-    outline: 2px solid var(--p-primary-500);
+    outline: 2px solid var(--color-brand-500);
     outline-offset: 2px;
   }
 }
@@ -50,19 +55,6 @@
   }
 }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .motion-enter-scroll {
-      animation-name: motion-fade-up;
-      animation-duration: auto;
-      animation-timing-function: ease-out;
-      animation-fill-mode: both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 45%;
-    }
-  }
-}
-
 .motion-page-intro {
   animation: motion-fade-up var(--motion-duration) var(--motion-ease) both;
 }
@@ -73,36 +65,69 @@
   }
 }
 
+.page-enter-active,
+.page-leave-active {
+  transition:
+    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.page-enter-active {
+  transition-duration: 720ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+.page-enter-from {
+  transform: translateY(24px);
+}
+
+.page-leave-to {
+  transform: translateY(-8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter-active,
+  .page-leave-active {
+    transition: none;
+  }
+
+  .page-enter-from,
+  .page-leave-to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* PrimeVue hardcodes font-size/text-transform/letter-spacing; we wire our tokens here */
+.p-button {
+  font-size: var(--p-button-font-size);
+}
+
+.p-button-label {
+  text-transform: var(--p-button-label-text-transform);
+  letter-spacing: var(--p-button-label-letter-spacing);
+}
+
 @layer components {
   .motion-interactive {
-    transition-property: color, background-color, border-color, box-shadow, opacity;
-    transition-duration: var(--motion-duration);
-    transition-timing-function: var(--motion-ease);
+    @apply duration-motion ease-motion;
+    transition-property:
+      color, background-color, border-color, box-shadow, opacity;
   }
 
   .motion-card-hover {
+    @apply duration-motion ease-motion;
     transition-property: box-shadow, border-color;
-    transition-duration: var(--motion-duration);
-    transition-timing-function: var(--motion-ease);
-  }
-
-  .p-button {
-    transition-property: background-color, border-color, color, box-shadow, opacity;
-    transition-duration: var(--motion-duration);
-    transition-timing-function: var(--motion-ease);
-  }
-
-  .p-button.p-button-link {
-    height: auto;
-    min-height: 0;
-    padding-inline: 0;
-    @apply text-body-sm;
   }
 
   @media (prefers-reduced-motion: reduce) {
     .motion-interactive,
-    .motion-card-hover,
-    .p-button {
+    .motion-card-hover {
       transition: none;
     }
   }

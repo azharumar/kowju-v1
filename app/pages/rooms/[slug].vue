@@ -1,0 +1,66 @@
+<script setup lang="ts">
+import { getAdjacentRoomsBySlug, getRoomBySlug } from "~/data/rooms";
+
+const route = useRoute();
+const raw = route.params.slug;
+const slug = typeof raw === "string" ? raw : (raw?.[0] ?? "");
+const hotel = useHotel();
+
+const room = getRoomBySlug(slug);
+if (!room) {
+  throw createError({ statusCode: 404, statusMessage: "Room not found" });
+}
+const adjacentRooms = getAdjacentRoomsBySlug(slug);
+if (!adjacentRooms) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Adjacent rooms not found",
+  });
+}
+
+useSeoPage({
+  title: room.title,
+  description: room.description,
+  path: `/rooms/${room.slug}`,
+  image: room.imageSrc,
+  imageAlt: room.imageAlt,
+});
+
+const roomUrl = new URL(`/rooms/${room.slug}`, hotel.url).toString();
+useHead({
+  script: [
+    {
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "HotelRoom",
+        name: room.title,
+        description: room.description,
+        url: roomUrl,
+        image: new URL(room.imageSrc, hotel.url).toString(),
+        containedInPlace: {
+          "@type": "Hotel",
+          name: hotel.name,
+          url: hotel.url,
+        },
+      }),
+    },
+  ],
+});
+</script>
+
+<template>
+  <div>
+    <SectionPageHero
+      :title="room.title"
+      :lead="room.description"
+      :image-src="room.imageSrc"
+      :image-alt="room.imageAlt"
+    />
+    <SectionRoomGallery :images="room.gallery" />
+    <SectionRoomAdjacent
+      :previous-room="adjacentRooms.previous"
+      :next-room="adjacentRooms.next"
+    />
+  </div>
+</template>

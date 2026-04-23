@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Icon samples preview (Lucide)</title>
+  <style>
+    :root {
+      --bg: #f6f6f5;
+      --card: #fff;
+      --text: #1a1a1a;
+      --muted: #5c5c5c;
+      --border: #e2e2e0;
+      --icon-size: 64px;
+      --ink: #2c2c2c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 1.5rem clamp(1rem, 4vw, 2rem) 3rem;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--text);
+      background: var(--bg);
+    }
+    h1 { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.5rem; }
+    .notes {
+      max-width: 72ch;
+      margin: 0 0 1.5rem;
+      padding: 1rem 1.125rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .notes strong { color: var(--text); }
+    .notes code { font-size: 12px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    figure {
+      margin: 0;
+      padding: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-height: 0;
+    }
+    .icon-wrap {
+      width: var(--icon-size);
+      height: var(--icon-size);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    svg.icon {
+      max-width: 100%;
+      max-height: 100%;
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      overflow: visible;
+    }
+    figcaption { width: 100%; }
+    .label { font-weight: 600; font-size: 12px; color: var(--text); word-break: break-word; }
+    .file { font-size: 11px; color: var(--muted); margin-top: 4px; word-break: break-all; }
+    .file .lib { color: #888; }
+  </style>
+</head>
+<body>
+  <h1>Icon samples</h1>
+  <div class="notes">
+    <strong>Lucide outline set.</strong> Every tile uses an icon from <a href="https://lucide.dev/">Lucide</a> (ISC license), inlined as SVG: <code>viewBox="0 0 24 24"</code>, <code>stroke-width="1"</code>, <code>stroke="#2c2c2c"</code>, round caps/joins. Display size 48px. Sample assets under <code>public/icons/samples/</code> are vector-only (no PNG/JPEG). Regenerate: <code>node scripts/build-icons-preview.mjs</code>.
+  </div>
+  <div class="grid">
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8" />
+<path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
+<path d="M12 4v6" />
+<path d="M2 18h20" /></svg></div>
+      <figcaption>
+        <div class="label">Multi-level beds / Room occupancy</div>
+        <div class="file">multi-level-beds.svg · <span class="lib">Lucide · BedDouble</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M13 6v5a1 1 0 0 0 1 1h6.102a1 1 0 0 1 .712.298l.898.91a1 1 0 0 1 .288.702V17a1 1 0 0 1-1 1h-3" />
+<path d="M5 18H3a1 1 0 0 1-1-1V8a2 2 0 0 1 2-2h12c1.1 0 2.1.8 2.4 1.8l1.176 4.2" />
+<path d="M9 18h5" />
+<circle cx="16" cy="18" r="2" />
+<circle cx="7" cy="18" r="2" /></svg></div>
+      <figcaption>
+        <div class="label">Shuttle / Ground transfer (shared airport)</div>
+        <div class="file">shuttle.svg · <span class="lib">Lucide · Van</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /></svg></div>
+      <figcaption>
+        <div class="label">Shield + roof / Protection</div>
+        <div class="file">shield-protection.svg · <span class="lib">Lucide · Shield</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" /></svg></div>
+      <figcaption>
+        <div class="label">Airplane</div>
+        <div class="file">airplane.svg · <span class="lib">Lucide · Plane</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.1V7a4 4 0 0 0 8 0V3.1" />
+<path d="m9 15-1-1" />
+<path d="m15 15 1-1" />
+<path d="M9 19c-2.8 0-5-2.2-5-5v-4a8 8 0 0 1 16 0v4c0 2.8-2.2 5-5 5Z" />
+<path d="m8 19-2 3" />
+<path d="m16 19 2 3" /></svg></div>
+      <figcaption>
+        <div class="label">Train</div>
+        <div class="file">train.svg · <span class="lib">Lucide · TrainFront</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6Z" />
+<path d="M5 10h14" />
+<path d="M15 7v6" /></svg></div>
+      <figcaption>
+        <div class="label">Refrigerator</div>
+        <div class="file">refrigerator.svg · <span class="lib">Lucide · Refrigerator</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
+<path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" /></svg></div>
+      <figcaption>
+        <div class="label">Decorative quotation marks</div>
+        <div class="file">quotation-marks.svg · <span class="lib">Lucide · Quote</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+<circle cx="9" cy="9" r="2" />
+<path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg></div>
+      <figcaption>
+        <div class="label">Image / placeholder</div>
+        <div class="file">image-placeholder.svg · <span class="lib">Lucide · Image</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+<path d="M13 5v2" />
+<path d="M13 17v2" />
+<path d="M13 11v2" /></svg></div>
+      <figcaption>
+        <div class="label">Ticket / Discount</div>
+        <div class="file">ticket-discount.svg · <span class="lib">Lucide · Ticket</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+<path d="M12 6v6l4 2" /></svg></div>
+      <figcaption>
+        <div class="label">Clock</div>
+        <div class="file">clock.svg · <span class="lib">Lucide · Clock</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+<circle cx="12" cy="10" r="3" />
+<path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" /></svg></div>
+      <figcaption>
+        <div class="label">User avatar</div>
+        <div class="file">user-avatar.svg · <span class="lib">Lucide · UserCircle</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2" />
+<path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14" />
+<path d="M10 20h4" />
+<circle cx="16" cy="20" r="2" />
+<circle cx="8" cy="20" r="2" /></svg></div>
+      <figcaption>
+        <div class="label">Luggage + furniture</div>
+        <div class="file">luggage.svg · <span class="lib">Lucide · Luggage</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10" />
+<rect width="20" height="14" x="2" y="3" rx="2" /></svg></div>
+      <figcaption>
+        <div class="label">LCD / LED TV (flat screen)</div>
+        <div class="file">tv.svg · <span class="lib">Lucide · TvMinimal</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+<path d="m9 14 2 2 4-4" /></svg></div>
+      <figcaption>
+        <div class="label">Clipboard checklist</div>
+        <div class="file">clipboard-checklist.svg · <span class="lib">Lucide · ClipboardCheck</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14a2 2 0 0 0 2-2V8h-2" />
+<path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
+<path d="M8 14a2 2 0 0 0 2-2V8H8" /></svg></div>
+      <figcaption>
+        <div class="label">CTA / quote</div>
+        <div class="file">cta-quote.svg · <span class="lib">Lucide · MessageSquareQuote</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16" />
+<path d="M2 8h18a2 2 0 0 1 2 2v10" />
+<path d="M2 17h20" />
+<path d="M6 8v9" /></svg></div>
+      <figcaption>
+        <div class="label">Mattress</div>
+        <div class="file">mattress.svg · <span class="lib">Lucide · Bed</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8" />
+<path d="M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4" />
+<path d="M12 4v6" />
+<path d="M2 18h20" /></svg></div>
+      <figcaption>
+        <div class="label">King bed</div>
+        <div class="file">king-bed.svg · <span class="lib">Lucide · BedDouble</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20v-8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8" />
+<path d="M5 10V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4" />
+<path d="M3 18h18" /></svg></div>
+      <figcaption>
+        <div class="label">Twin bed</div>
+        <div class="file">twin-bed.svg · <span class="lib">Lucide · BedSingle</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3" />
+<path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
+<path d="M5 18v2" />
+<path d="M19 18v2" /></svg></div>
+      <figcaption>
+        <div class="label">Chair</div>
+        <div class="file">chair.svg · <span class="lib">Lucide · Armchair</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" /></svg></div>
+      <figcaption>
+        <div class="label">Work desk</div>
+        <div class="file">work-desk.svg · <span class="lib">Lucide · Table2</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
+<path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
+<path d="M4 18v2" />
+<path d="M20 18v2" />
+<path d="M12 4v9" /></svg></div>
+      <figcaption>
+        <div class="label">Sofa</div>
+        <div class="file">sofa.svg · <span class="lib">Lucide · Sofa</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3" />
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+<path d="m7 10 5 5 5-5" /></svg></div>
+      <figcaption>
+        <div class="label">Download</div>
+        <div class="file">download.svg · <span class="lib">Lucide · Download</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2" />
+<path d="M14 2v2" />
+<path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
+<path d="M6 2v2" /></svg></div>
+      <figcaption>
+        <div class="label">Hot beverage</div>
+        <div class="file">hot-beverage.svg · <span class="lib">Lucide · Coffee</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M10.827 16.379a6.082 6.082 0 0 1-8.618-7.002l5.412 1.45a6.082 6.082 0 0 1 7.002-8.618l-1.45 5.412a6.082 6.082 0 0 1 8.618 7.002l-5.412-1.45a6.082 6.082 0 0 1-7.002 8.618l1.45-5.412Z" />
+<path d="M12 12v.01" /></svg></div>
+      <figcaption>
+        <div class="label">Air purifier</div>
+        <div class="file">air-purifier.svg · <span class="lib">Lucide · Fan</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8" />
+<path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7" />
+<path d="m2.1 21.8 6.4-6.3" />
+<path d="m19 5-7 7" /></svg></div>
+      <figcaption>
+        <div class="label">Dining room</div>
+        <div class="file">dining-room.svg · <span class="lib">Lucide · UtensilsCrossed</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" />
+<path d="M9 17V7h4a3 3 0 0 1 0 6H9" /></svg></div>
+      <figcaption>
+        <div class="label">Parking</div>
+        <div class="file">parking.svg · <span class="lib">Lucide · SquareParking</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z" />
+<path d="M20 16a8 8 0 1 0-16 0" />
+<path d="M12 4v4" />
+<path d="M10 4h4" /></svg></div>
+      <figcaption>
+        <div class="label">Room service</div>
+        <div class="file">room-service.svg · <span class="lib">Lucide · ConciergeBell</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1" />
+<rect x="3" y="10" width="18" height="12" rx="2" />
+<path d="M7 10V7a5 5 0 0 1 10 0v3" /></svg></div>
+      <figcaption>
+        <div class="label">Safe / Electronic locker</div>
+        <div class="file">safe-locker.svg · <span class="lib">Lucide · LockKeyhole</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" />
+<path d="M12 6h.01" />
+<circle cx="12" cy="14" r="4" />
+<path d="M12 14h.01" /></svg></div>
+      <figcaption>
+        <div class="label">Speaker</div>
+        <div class="file">speaker.svg · <span class="lib">Lucide · Speaker</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="8" />
+<circle cx="12" cy="10" r="3" />
+<path d="M7 22h10" />
+<path d="M12 22v-4" /></svg></div>
+      <figcaption>
+        <div class="label">Conference / Auditorium</div>
+        <div class="file">conference.svg · <span class="lib">Lucide · Webcam</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+<path d="M7 2v20" />
+<path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /></svg></div>
+      <figcaption>
+        <div class="label">Fork &amp; knife / Dining</div>
+        <div class="file">utensils-dining.svg · <span class="lib">Lucide · Utensils</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg></div>
+      <figcaption>
+        <div class="label">Electricity</div>
+        <div class="file">electricity.svg · <span class="lib">Lucide · Zap</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6" />
+<path d="m21 3-7 7" />
+<path d="m3 21 7-7" />
+<path d="M9 21H3v-6" /></svg></div>
+      <figcaption>
+        <div class="label">Floor area / Room size</div>
+        <div class="file">floor-area.svg · <span class="lib">Lucide · Maximize2</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0" />
+<circle cx="10" cy="8" r="5" />
+<path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" /></svg></div>
+      <figcaption>
+        <div class="label">People / Group</div>
+        <div class="file">people-group.svg · <span class="lib">Lucide · UsersRound</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12h13a1 1 0 0 1 1 1 5 5 0 0 1-5 5h-.598a.5.5 0 0 0-.424.765l1.544 2.47a.5.5 0 0 1-.424.765H5.402a.5.5 0 0 1-.424-.765L7 18" />
+<path d="M8 18a5 5 0 0 1-5-5V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8" /></svg></div>
+      <figcaption>
+        <div class="label">Restroom</div>
+        <div class="file">restroom.svg · <span class="lib">Lucide · Toilet</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4 8 6" />
+<path d="M17 19v2" />
+<path d="M2 12h20" />
+<path d="M7 19v2" />
+<path d="M9 5 7.621 3.621A2.121 2.121 0 0 0 4 5v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" /></svg></div>
+      <figcaption>
+        <div class="label">Bathtub</div>
+        <div class="file">bathtub.svg · <span class="lib">Lucide · Bath</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4" />
+<path d="M3.34 19a10 10 0 1 1 17.32 0" /></svg></div>
+      <figcaption>
+        <div class="label">Thermostat / Dial control</div>
+        <div class="file">thermostat.svg · <span class="lib">Lucide · Gauge</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 17.5a2.5 2.5 0 1 1-4 2.03V12" />
+<path d="M6 12H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+<path d="M6 8h12" />
+<path d="M6.6 15.572A2 2 0 1 0 10 17v-5" /></svg></div>
+      <figcaption>
+        <div class="label">Air conditioning</div>
+        <div class="file">air-conditioning.svg · <span class="lib">Lucide · AirVent</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01" />
+<path d="M2 8.82a15 15 0 0 1 20 0" />
+<path d="M5 12.859a10 10 0 0 1 14 0" />
+<path d="M8.5 16.429a5 5 0 0 1 7 0" /></svg></div>
+      <figcaption>
+        <div class="label">Wi‑Fi</div>
+        <div class="file">wifi.svg · <span class="lib">Lucide · Wifi</span></div>
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="icon-wrap"><svg class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#2c2c2c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8" />
+<path d="M7 14h.01" />
+<path d="M17 14h.01" />
+<rect width="18" height="8" x="3" y="10" rx="2" />
+<path d="M5 18v2" />
+<path d="M19 18v2" /></svg></div>
+      <figcaption>
+        <div class="label">Car</div>
+        <div class="file">car.svg · <span class="lib">Lucide · CarFront</span></div>
+      </figcaption>
+    </figure>
+  </div>
+</body>
+</html>

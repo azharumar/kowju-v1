@@ -1,0 +1,166 @@
+<script setup lang="ts">
+export type RoomCardDetail = {
+  label: string;
+  /** PrimeIcons class (e.g. pi pi-users); omit when using `iconSrc`. */
+  icon?: string;
+  /** Design-system SVG under `public/icons/samples/` (see design-system/icon-samples.json). */
+  iconSrc?: string;
+};
+
+export type RoomCardAmenityIcon = {
+  src: string;
+  alt: string;
+  /** Visible label; defaults to `alt` when set. */
+  label?: string;
+};
+
+export type RoomCardAmenityLabelVariant = "caption" | "inline" | "tooltip";
+
+withDefaults(
+  defineProps<{
+    title: string;
+    description: string;
+    /** Price band, e.g. ₹4,500–6,000 (from CMS / property sheet). */
+    priceRange: string;
+    imageSrc: string;
+    imageAlt: string;
+    details: RoomCardDetail[];
+    amenityIcons?: RoomCardAmenityIcon[];
+    /** How amenity text is shown beside icons. */
+    amenityLabelVariant?: RoomCardAmenityLabelVariant;
+  }>(),
+  {
+    amenityIcons: () => [],
+    amenityLabelVariant: "caption",
+  },
+);
+
+function amenityLabel(item: RoomCardAmenityIcon) {
+  return item.label ?? item.alt;
+}
+</script>
+
+<template>
+  <article
+    class="motion-card-hover flex flex-col overflow-hidden rounded-2xl border border-border bg-surface md:flex-row md:items-stretch"
+  >
+    <div class="relative min-h-48 shrink-0 md:w-1/2 md:min-h-0 md:self-stretch">
+      <img
+        :src="imageSrc"
+        :alt="imageAlt"
+        class="absolute inset-0 size-full object-cover"
+        width="800"
+        height="560"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="flex min-h-0 min-w-0 flex-1 flex-col gap-4 p-6 md:gap-5 md:p-8">
+      <div
+        class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4"
+      >
+        <h3 class="text-h5 font-semibold leading-snug text-text">
+          {{ title }}
+        </h3>
+        <div class="shrink-0 sm:text-right">
+          <p class="text-body font-semibold tabular-nums text-text">
+            {{ priceRange }}
+          </p>
+        </div>
+      </div>
+      <p
+        class="text-body leading-snug text-muted line-clamp-2"
+        :title="description"
+      >
+        {{ description }}
+      </p>
+      <ul class="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2" role="list">
+        <li
+          v-for="(row, index) in details"
+          :key="index"
+          class="flex items-center gap-2 text-body-sm text-muted"
+        >
+          <img
+            v-if="row.iconSrc"
+            :src="row.iconSrc"
+            alt=""
+            class="size-5 shrink-0 object-contain opacity-90"
+            width="20"
+            height="20"
+            loading="lazy"
+            decoding="async"
+            role="presentation"
+          />
+          <span
+            v-else-if="row.icon"
+            class="shrink-0 text-lg leading-none"
+            :class="row.icon"
+            aria-hidden="true"
+          />
+          <span>{{ row.label }}</span>
+        </li>
+      </ul>
+      <template v-if="amenityIcons.length">
+        <hr class="border-0 border-t border-border" />
+        <ul
+          class="flex flex-wrap gap-x-3 gap-y-4"
+          role="list"
+          aria-label="Room amenities"
+        >
+          <li
+            v-for="(item, index) in amenityIcons"
+            :key="index"
+            class="text-muted"
+            :class="{
+              'flex w-18 flex-col items-center gap-2 text-center':
+                amenityLabelVariant === 'caption',
+              'flex max-w-44 items-center gap-2 text-left':
+                amenityLabelVariant === 'inline',
+              'flex flex-col items-center': amenityLabelVariant === 'tooltip',
+            }"
+          >
+            <span
+              v-if="amenityLabelVariant === 'tooltip'"
+              class="relative inline-flex"
+              :title="amenityLabel(item)"
+            >
+              <img
+                :src="item.src"
+                alt=""
+                role="presentation"
+                class="size-9 object-contain opacity-80"
+                width="36"
+                height="36"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="sr-only">{{ amenityLabel(item) }}</span>
+            </span>
+            <template v-else>
+              <img
+                :src="item.src"
+                alt=""
+                role="presentation"
+                class="size-9 shrink-0 object-contain opacity-80"
+                width="36"
+                height="36"
+                loading="lazy"
+                decoding="async"
+              />
+              <span
+                class="text-caption leading-tight text-muted line-clamp-2"
+                :class="
+                  amenityLabelVariant === 'inline' ? 'min-w-0 flex-1' : ''
+                "
+                >{{ amenityLabel(item) }}</span
+              >
+            </template>
+          </li>
+        </ul>
+      </template>
+      <div v-if="$slots.actions" class="mt-auto flex flex-wrap gap-3 pt-2">
+        <slot name="actions" />
+      </div>
+    </div>
+  </article>
+</template>

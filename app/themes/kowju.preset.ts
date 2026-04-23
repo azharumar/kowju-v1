@@ -1,6 +1,6 @@
 import { definePreset } from '@primeuix/themes'
 import Aura from '@primeuix/themes/aura'
-import { button, card, colors, formField, radius, shadow } from '../../design-system/tokens'
+import { button, card, colors, formField, navigation, radius, shadow } from '../../design-system/tokens'
 
 const brand = colors.brand
 const gold = colors.gold
@@ -76,6 +76,10 @@ export default {
         },
         borderRadius: formField.borderRadius,
       },
+      navigation: {
+        fontWeight: navigation.fontWeight,
+        letterSpacing: navigation.letterSpacing,
+      },
       colorScheme: {
         light: {
           surface: {
@@ -111,15 +115,35 @@ export default {
         root: {
           paddingX: button.paddingX,
           paddingY: button.paddingY,
+          fontSize: button.fontSize,
           borderRadius: radius.md,
-          label: {
-            fontWeight: button.labelFontWeight,
+          sm: {
+            fontSize: button.sm.fontSize,
+            paddingX: button.sm.paddingX,
+            paddingY: button.sm.paddingY,
+            iconOnlyWidth: button.sm.iconOnlyWidth,
+          },
+        },
+        label: {
+          fontWeight: button.labelFontWeight,
+          textTransform: button.labelTextTransform,
+          letterSpacing: button.labelLetterSpacing,
+        } as {
+          fontWeight: string
+          textTransform: string
+          letterSpacing: string
+        },
+        text: {
+          primary: {
+            color: '{primary.600}',
+            hoverBackground: '{primary.50}',
+            activeBackground: '{primary.100}',
           },
         },
         link: {
-          color: '{primary.600}',
-          hoverColor: '{primary.700}',
-          activeColor: '{primary.800}',
+          color: '{warm.600}',
+          hoverColor: 'transparent',
+          activeColor: 'transparent',
         },
       },
       inputtext: {
@@ -137,6 +161,20 @@ export default {
             paddingX: formField.lg.paddingX,
             paddingY: formField.lg.paddingY,
           },
+        },
+      },
+      accordion: {
+        panel: {
+          background: 'transparent',
+        },
+        header: {
+          background: 'transparent',
+          hoverBackground: 'transparent',
+          activeBackground: 'transparent',
+          activeHoverBackground: 'transparent',
+        },
+        content: {
+          background: 'transparent',
         },
       },
       card: {
