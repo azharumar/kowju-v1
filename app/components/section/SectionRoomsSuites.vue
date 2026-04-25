@@ -80,8 +80,9 @@ const carouselPt = {
 <template>
   <section id="rooms-suites" class="scroll-mt-24 bg-warm-100">
     <BaseContainer>
-      <BaseSection rhythm="default" stack="default">
-        <BaseStack size="comfortable" class="min-w-0 w-full">
+      <BaseScrollReveal>
+        <BaseSection rhythm="default" stack="default">
+        <BaseStack class="min-w-0 w-full">
           <BaseSectionHeader
             overline="Rooms & suites"
             title="Comfortable rooms, easy stays"
@@ -143,7 +144,8 @@ const carouselPt = {
             <BaseLinkText to="/rooms" label="View all" class="shrink-0" />
           </div>
         </BaseStack>
-      </BaseSection>
+        </BaseSection>
+      </BaseScrollReveal>
     </BaseContainer>
   </section>
 </template>

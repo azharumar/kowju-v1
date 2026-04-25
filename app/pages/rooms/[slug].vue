@@ -57,8 +57,14 @@ useHead({
       :image-src="room.imageSrc"
       :image-alt="room.imageAlt"
     />
-    <SectionRoomGallery :images="room.gallery" />
-    <SectionRoomAdjacent
+    <LazySectionRoomAbout
+      v-if="room.about"
+      :room-title="room.title"
+      :room-slug="room.slug"
+      :about="room.about"
+    />
+    <LazySectionRoomGallery :images="room.gallery" />
+    <LazySectionRoomAdjacent
       :previous-room="adjacentRooms.previous"
       :next-room="adjacentRooms.next"
     />

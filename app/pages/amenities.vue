@@ -39,11 +39,11 @@ useSeoPage({
       image-src="/images/amenities_facilities_01.png"
       image-alt="Hotel amenities and facilities"
     />
-    <SectionFaq
+    <LazySectionFaq
       overline="Frequently Asked Questions"
     title="Common questions about our facilities"
     :items="amenitiesFaqItems"
     />
-    <SectionExploreSite />
+    <LazySectionExploreSite />
   </div>
 </template>

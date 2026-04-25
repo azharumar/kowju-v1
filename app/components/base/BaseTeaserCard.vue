@@ -52,7 +52,6 @@ const imageHeight = computed(() => {
       <BaseStack
         class="px-4 pb-4 pt-5 md:px-0"
         :class="compact ? 'items-center text-center' : ''"
-        size="tight"
       >
         <template v-if="!compact">
           <h3 class="text-h5 font-semibold text-text">{{ title }}{{ titleSuffix }}</h3>

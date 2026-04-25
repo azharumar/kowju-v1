@@ -23,7 +23,7 @@ const secondaryImages = computed(() => props.images.slice(1, 5));
   <section v-if="props.images.length">
     <BaseContainer>
       <BaseSection rhythm="compact" stack="tight">
-        <BaseStack size="tight">
+        <BaseStack>
           <div class="overflow-hidden rounded-2xl md:hidden">
             <div class="grid grid-cols-2 gap-2">
               <figure

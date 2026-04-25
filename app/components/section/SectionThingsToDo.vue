@@ -9,8 +9,9 @@ import { localAttractions } from "~/data/local-attractions";
     aria-label="Things to do near the hotel"
   >
     <BaseContainer>
-      <BaseSection rhythm="default" stack="default">
-        <BaseStack size="comfortable" class="items-center text-center">
+      <BaseScrollReveal>
+        <BaseSection rhythm="default" stack="default">
+        <BaseStack class="items-center text-center">
           <BaseSectionHeader
             overline="Things to do"
             title="Discover local attractions nearby"
@@ -32,7 +33,7 @@ import { localAttractions } from "~/data/local-attractions";
                 loading="lazy"
                 decoding="async"
               />
-              <BaseStack size="tight" class="flex min-w-0 flex-1 flex-col p-5">
+              <BaseStack class="flex min-w-0 flex-1 flex-col p-5">
                 <h3
                   class="min-w-0 text-left text-h5 font-semibold leading-snug text-text line-clamp-1"
                 >
@@ -56,7 +57,8 @@ import { localAttractions } from "~/data/local-attractions";
             </article>
           </BaseTeaserGrid>
         </BaseStack>
-      </BaseSection>
+        </BaseSection>
+      </BaseScrollReveal>
     </BaseContainer>
   </section>
 </template>

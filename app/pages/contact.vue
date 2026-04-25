@@ -17,6 +17,6 @@ useSeoPage({
       image-src="/images/home_page_12_cta_image.png"
       image-alt="Contact Kowju Airport Hotel"
     />
-    <SectionExploreSite />
+    <LazySectionExploreSite />
   </div>
 </template>

@@ -20,8 +20,9 @@ const gridColumns = computed<2 | 3>(() =>
 <template>
   <section class="bg-surface-100">
     <BaseContainer>
-      <BaseSection rhythm="compact" stack="comfortable">
-        <BaseStack size="comfortable" class="items-center text-center">
+      <BaseScrollReveal>
+        <BaseSection rhythm="compact" stack="comfortable">
+        <BaseStack class="items-center text-center">
           <BaseSectionHeader
             overline="Comfort elevated"
             title="Experience ultimate comfort and convenience"
@@ -45,7 +46,8 @@ const gridColumns = computed<2 | 3>(() =>
             :portrait-image="gridColumns === 3"
           />
         </BaseTeaserGrid>
-      </BaseSection>
+        </BaseSection>
+      </BaseScrollReveal>
     </BaseContainer>
   </section>
 </template>

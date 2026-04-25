@@ -36,7 +36,6 @@ useSeoPage({
   <BaseContainer>
     <BaseSection rhythm="default" class="text-center">
       <BaseStack
-        size="default"
         class="min-h-section-hero items-center justify-center"
       >
         <BasePageHeader
@@ -57,9 +56,10 @@ useSeoPage({
       </BaseStack>
     </BaseSection>
   </BaseContainer>
-  <SectionRoomsSuites />
-  <SectionThingsToDo />
-  <SectionFaq
+  <LazySectionRoomsSuites />
+  <LazySectionThingsToDo />
+  <LazySectionHotelPolicies />
+  <LazySectionFaq
     overline="Frequently Asked Questions"
     title="Answers to common questions about your stay"
     :items="homeFaqItems"

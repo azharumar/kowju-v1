@@ -17,6 +17,6 @@ useSeoPage({
       image-src="/images/home_page_01.png"
       image-alt="Kowju Airport Hotel Calicut"
     />
-    <SectionExploreSite />
+    <LazySectionExploreSite />
   </div>
 </template>

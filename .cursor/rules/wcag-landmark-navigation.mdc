@@ -1,0 +1,37 @@
+---
+description: Enforce WCAG landmark structure and skip links
+globs: **/*.{vue,tsx,jsx,html}
+alwaysApply: false
+---
+
+# WCAG Landmark Navigation
+
+Use semantic landmarks to provide consistent keyboard and screen-reader navigation.
+
+- Each rendered page must contain exactly one `main` landmark with `id="main"`.
+- The skip link must be the first focusable element on the page and target `#main`.
+- Skip link should be visually hidden by default and visible on focus (e.g., `sr-only focus:not-sr-only`).
+- Put site-level chrome in semantic landmarks:
+  - `header` for site header area
+  - `nav` for primary navigation
+  - `footer` for site footer area
+- Prefer semantic elements over `div` + landmark `role`.
+- If more than one `nav` exists, each must have a distinct `aria-label`.
+- `main` must wrap all primary page content, not partial fragments.
+- Do not create nested `main` landmarks.
+
+## Verification Checklist
+
+- Keyboard: `Tab` reaches skip link first and activating it moves focus to `#main`.
+- Automated: run axe and resolve any "Landmark" violations.
+- Route-level: verify landmark structure on each page template/layout path.
+
+## Example (Nuxt/Tailwind)
+
+```vue
+<a href="#main" class="sr-only focus:not-sr-only">Skip to main content</a>
+<header>...</header>
+<nav aria-label="Main navigation">...</nav>
+<main id="main" tabindex="-1"><NuxtPage /></main>
+<footer>...</footer>
+```

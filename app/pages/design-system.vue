@@ -150,6 +150,7 @@ useSeoPage({
     </header>
 
     <nav
+      aria-label="Design system section navigation"
       class="sticky top-0 z-raised border-b border-border bg-bg/95 backdrop-blur-sm"
     >
       <div class="mx-auto max-w-5xl px-4 py-3 sm:px-6 lg:px-8">
@@ -166,7 +167,7 @@ useSeoPage({
       </div>
     </nav>
 
-    <main>
+    <div>
       <BaseContainer>
         <div class="space-y-16">
           <section id="foundations" class="scroll-mt-24">
@@ -911,6 +912,6 @@ useSeoPage({
           </section>
         </div>
       </BaseContainer>
-    </main>
+    </div>
   </div>
 </template>

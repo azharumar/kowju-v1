@@ -10,7 +10,10 @@
     />
   </header>
   <div
-    class="motion-interactive sticky top-0 z-raised bg-surface-muted/30 backdrop-blur-lg hover:bg-surface-muted"
+    :class="[
+      'motion-interactive sticky top-0 z-raised bg-surface-muted/30 backdrop-blur-lg hover:bg-surface-muted',
+      { 'header-scroll-down': isScrollingDown },
+    ]"
   >
     <BaseContainer>
       <div class="flex items-center justify-between gap-4 py-3 md:py-4">
@@ -28,7 +31,7 @@
         </NuxtLink>
 
         <nav
-          aria-label="Primary"
+          aria-label="Main navigation"
           class="hidden items-center gap-6 self-stretch lg:flex"
         >
           <NuxtLink
@@ -111,7 +114,7 @@
 
     <div class="flex h-full flex-col">
       <nav
-        aria-label="Mobile primary"
+        aria-label="Mobile main navigation"
         class="flex-1 space-y-2 overflow-y-auto py-2"
       >
         <NuxtLink
@@ -155,14 +158,17 @@ const hotel = useHotel();
 const selectedLocale = ref(hotel.locales[0]?.code ?? "en");
 
 const phoneTel = computed(() => `tel:${hotel.telephone}`);
+const scrollDirection = useState<"up" | "down">("scroll-direction", () => "up");
+const isScrollingDown = computed(() => scrollDirection.value === "down");
 
 const isMobileMenuOpen = ref(false);
 const mobileDrawerId = "site-mobile-nav";
 
 const navItems = [
-  { label: "Rooms & Suites", to: "/rooms" },
-  { label: "Amenities", to: "/amenities" },
-  { label: "Meetings & Events", to: "/meetings-events" },
+  { label: "Rooms", to: "/rooms" },
+  { label: "Offers", to: "/offers" },
+  { label: "Events", to: "/meetings-events" },
   { label: "Dining", to: "/dining" },
+  { label: "Amenities", to: "/amenities" },
 ];
 </script>

@@ -54,14 +54,14 @@ useSeoPage({
       :image-src="heroImage?.src ?? '/images/dining_experience_01.png'"
       :image-alt="heroImage?.alt ?? 'Dining experience at the hotel'"
     />
-    <SectionRoomGallery
+    <LazySectionRoomGallery
       :images="diningGalleryImages"
     />
-    <SectionFaq
+    <LazySectionFaq
       overline="Frequently Asked Questions"
     title="Common questions about dining at the hotel"
     :items="diningFaqItems"
     />
-    <SectionExploreSite exclude="dining" />
+    <LazySectionExploreSite exclude="dining" />
   </div>
 </template>

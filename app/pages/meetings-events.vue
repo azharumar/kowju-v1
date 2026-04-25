@@ -32,6 +32,16 @@ const meetingsGalleryImages = [
   { src: "/images/events_meetings_07_cta_image.png", alt: "Featured meetings and events image" },
 ]
 const heroImage = meetingsGalleryImages[0]
+const meetingFacilityItems = [
+  { src: '/icons/samples/tv.svg', alt: 'LED TV display', label: 'LED TV Available' },
+  { src: '/icons/samples/speaker.svg', alt: 'Audio visual setup', label: 'Advanced audio visual equipment' },
+  { src: '/icons/samples/wifi.svg', alt: 'High-speed Wi-Fi access', label: 'High-speed Wi-Fi connectivity' },
+  { src: '/icons/samples/utensils-dining.svg', alt: 'Catering options', label: 'Customizable catering options' },
+  { src: '/icons/samples/parking.svg', alt: 'Parking area', label: 'Ample parking space with 24 slots' },
+  { src: '/icons/samples/chair.svg', alt: 'Flexible event seating', label: 'Flexible event seating arrangements' },
+  { src: '/icons/samples/electricity.svg', alt: 'Power backup and climate control', label: 'Power backup & climate control' },
+  { src: '/icons/samples/conference.svg', alt: 'On-site guest accommodation', label: 'On site guest accommodation' },
+]
 
 useSeoPage({
   title: 'Meetings & Events',
@@ -51,14 +61,19 @@ useSeoPage({
       :image-src="heroImage?.src ?? '/images/events_meetings_01.png'"
       :image-alt="heroImage?.alt ?? 'Meetings and events space at the hotel'"
     />
-    <SectionRoomGallery
+    <BaseIconGrid
+      overline="Facilities"
+      title="Modern amenities for every event"
+      :items="meetingFacilityItems"
+    />
+    <LazySectionRoomGallery
       :images="meetingsGalleryImages"
     />
-    <SectionFaq
+    <LazySectionFaq
       overline="Frequently Asked Questions"
     title="Common questions about our meeting and event spaces"
     :items="meetingsFaqItems"
     />
-    <SectionExploreSite exclude="venues" />
+    <LazySectionExploreSite exclude="venues" />
   </div>
 </template>

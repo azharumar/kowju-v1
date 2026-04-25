@@ -15,13 +15,18 @@ async function goHome() {
 
 <template>
   <div class="min-h-screen">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-overlay focus:rounded-md focus:bg-surface focus:px-4 focus:py-2 focus:text-body focus:text-text focus:shadow"
+    >
+      Skip to main content
+    </a>
     <LayoutHeader />
 
-    <main>
+    <main id="main" tabindex="-1">
       <BaseContainer>
         <BaseSection rhythm="default">
           <BaseStack
-            size="default"
             class="min-h-section-hero items-center justify-center text-center"
           >
             <p
@@ -51,5 +56,6 @@ async function goHome() {
 
       <SectionExploreSite />
     </main>
+    <LayoutFooter />
   </div>
 </template>

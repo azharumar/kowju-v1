@@ -50,6 +50,6 @@ useHead({
       :image-src="offer.imageSrc"
       :image-alt="offer.imageAlt"
     />
-    <SectionExploreSite />
+    <LazySectionExploreSite />
   </div>
 </template>

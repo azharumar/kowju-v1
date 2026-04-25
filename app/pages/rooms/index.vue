@@ -52,6 +52,8 @@ const commonAmenities: RoomCardAmenityIcon[] = [
   { src: "/icons/samples/refrigerator.svg", alt: "In-room refrigerator", label: "Refrigerator" },
   { src: "/icons/samples/safe-locker.svg", alt: "Electronic safe locker", label: "Safe" },
 ]
+
+const roomFacilities = commonAmenities
 </script>
 
 <template>
@@ -62,58 +64,70 @@ const commonAmenities: RoomCardAmenityIcon[] = [
       image-src="/images/rooms_suites_01.png"
       image-alt="Hotel rooms and suites interior"
     />
+    <BaseIconGrid
+      overline="Facilities"
+      title="Room facilities and amenities"
+      :items="roomFacilities"
+      link-to="/rooms"
+      link-label="View all"
+    />
     <BaseContainer>
       <BaseSection rhythm="compact" stack="comfortable" class="motion-page-intro">
-        <BaseStack size="comfortable">
-          <div
-            v-for="room in rooms"
+        <BaseStack>
+          <BaseScrollReveal
+            v-for="(room, index) in rooms"
             :id="room.slug"
             :key="room.slug"
             class="scroll-mt-24"
+            tag="div"
           >
-            <BaseRoomCard
-              :title="room.title"
-              :description="room.description"
-              :price-range="room.priceRange"
-              :image-src="room.imageSrc"
-              :image-alt="room.imageAlt"
-              :details="room.details"
-              :amenity-icons="commonAmenities"
-            >
-              <template #actions>
-                <NuxtLink
-                  :to="`/rooms/${room.slug}`"
-                  custom
-                  v-slot="{ href, navigate }"
-                >
-                  <BaseButtonOutlined
-                    label="View more"
-                    as="a"
-                    :href="href"
-                    class="motion-interactive"
-                    @click="navigate"
-                  />
-                </NuxtLink>
-                <NuxtLink to="/contact" custom v-slot="{ href, navigate }">
-                  <BaseButtonPrimary
-                    label="Book now"
-                    as="a"
-                    :href="href"
-                    class="motion-interactive"
-                    @click="navigate"
-                  />
-                </NuxtLink>
-              </template>
-            </BaseRoomCard>
-          </div>
+            <template #default="{ shouldRender }">
+              <BaseRoomCard
+                v-if="index < 2 || shouldRender"
+                :title="room.title"
+                :description="room.description"
+                :price-range="room.priceRange"
+                :image-src="room.imageSrc"
+                :image-alt="room.imageAlt"
+                :details="room.details"
+                :amenity-icons="commonAmenities"
+              >
+                <template #actions>
+                  <NuxtLink
+                    :to="`/rooms/${room.slug}`"
+                    custom
+                    v-slot="{ href, navigate }"
+                  >
+                    <BaseButtonOutlined
+                      label="View more"
+                      as="a"
+                      :href="href"
+                      class="motion-interactive"
+                      @click="navigate"
+                    />
+                  </NuxtLink>
+                  <NuxtLink to="/contact" custom v-slot="{ href, navigate }">
+                    <BaseButtonPrimary
+                      label="Book now"
+                      as="a"
+                      :href="href"
+                      class="motion-interactive"
+                      @click="navigate"
+                    />
+                  </NuxtLink>
+                </template>
+              </BaseRoomCard>
+            </template>
+          </BaseScrollReveal>
         </BaseStack>
       </BaseSection>
     </BaseContainer>
-    <SectionFaq
+    <LazySectionHotelPolicies />
+    <LazySectionFaq
       overline="Frequently Asked Questions"
     title="Common questions about our rooms and suites"
     :items="roomsFaqItems"
     />
-    <SectionExploreSite exclude="rooms" />
+    <LazySectionExploreSite exclude="rooms" />
   </div>
 </template>
