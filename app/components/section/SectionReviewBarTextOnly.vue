@@ -47,11 +47,7 @@ const sectionClass = computed(() =>
 </script>
 
 <template>
-  <BaseSection
-    rhythm="none"
-    :reveal="false"
-    :class="sectionClass"
-  >
+  <BaseSection rhythm="none" :reveal="false" :class="sectionClass">
     <BaseContainer>
       <div
         :class="[
@@ -64,7 +60,9 @@ const sectionClass = computed(() =>
         ]"
       >
         <template v-for="item in reviewScores" :key="item.platform">
-          <div class="flex items-center justify-center gap-x-4 px-6 py-1 md:px-8 md:py-2">
+          <div
+            class="flex items-center justify-center gap-x-4 px-6 py-1 md:px-8 md:py-2"
+          >
             <span
               :class="[
                 'text-caption uppercase tracking-overline whitespace-nowrap',

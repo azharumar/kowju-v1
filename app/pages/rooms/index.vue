@@ -93,6 +93,7 @@ const commonAmenities: RoomCardAmenityIcon[] = [
 ];
 
 const roomFacilities = commonAmenities;
+const orderedRooms = computed(() => [...rooms].sort((a, b) => a.order - b.order));
 
 const roomsAboutParagraphs = [
   "Our rooms and suites are designed for travelers who need comfort, calm, and practical convenience near the airport.",
@@ -130,7 +131,7 @@ const roomsAboutParagraphs = [
       >
         <BaseStack>
           <BaseScrollReveal
-            v-for="(room, index) in rooms"
+            v-for="(room, index) in orderedRooms"
             :id="room.slug"
             :key="room.slug"
             class="scroll-mt-24"

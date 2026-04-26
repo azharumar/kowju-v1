@@ -62,7 +62,7 @@ function icon(file: string) {
 
 export const rooms: RoomRecord[] = [
   {
-    order: 1,
+    order: 3,
     slug: "deluxe-king-room",
     title: "Deluxe King",
     description:
@@ -120,7 +120,7 @@ export const rooms: RoomRecord[] = [
     ],
   },
   {
-    order: 2,
+    order: 1,
     slug: "premium-king-room",
     title: "Premium King",
     description:
@@ -158,7 +158,7 @@ export const rooms: RoomRecord[] = [
     ],
   },
   {
-    order: 3,
+    order: 4,
     slug: "premium-twin-room",
     title: "Premium Twin",
     description:
@@ -196,7 +196,7 @@ export const rooms: RoomRecord[] = [
     ],
   },
   {
-    order: 4,
+    order: 2,
     slug: "family-room",
     title: "Family Room",
     description:
@@ -236,7 +236,7 @@ export const rooms: RoomRecord[] = [
   {
     order: 5,
     slug: "suite-room",
-    title: "Suite Room",
+    title: "Kowju Suite",
     description:
       "About 430 sq ft (40 sq m) with separate living and bedroom areas and individual TVs. One king bed; sleeps up to two adults and two children with one extra bed.",
     about: {
@@ -247,7 +247,7 @@ export const rooms: RoomRecord[] = [
         size: "430 sqft",
       },
       paragraphs: [
-        "The Suite Room offers generous space with separate living and sleeping zones for longer or more relaxed stays.",
+        "The Kowju Suite offers generous space with separate living and sleeping zones for longer or more relaxed stays.",
         "Designed for comfort and privacy, it is a strong fit for families and business travelers who need room to work or unwind.",
         "A king bed, practical amenities, and thoughtful zoning make it easy to settle in during transit or extended visits.",
       ],
@@ -262,7 +262,7 @@ export const rooms: RoomRecord[] = [
     gallery: [
       {
         src: "/images/rooms_suites_06_suites_room.png",
-        alt: "Suite room with separate living area and bedroom",
+        alt: "Kowju suite with separate living area and bedroom",
       },
     ],
     details: [

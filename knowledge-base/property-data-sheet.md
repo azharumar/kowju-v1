@@ -158,7 +158,7 @@
 | **Premium King** | 9 | 25 | 270 | 2 Adults + 2 Child + 1 Extra Bed | 1 King Bed | ₹5,000–6,500 | — |
 | **Premium Twin** | 10 | 25 | 270 | 2 Adults + 1 Extra Bed | 2 Twin Beds | ₹5,000–6,500 | — |
 | **Family Room** | 3 | 30 | 325 | 3 Adults + 2 Child + 1 Extra Bed | 1 King Bed + 1 Twin Bed | ₹5,500–7,000 | Can accommodate 3 guests |
-| **Suite Room** | 5 | 40 | 430 | 2 Adults + 2 Child + 1 Extra Bed | 1 King Bed | ₹7,000–9,000 | Separate living and bed room with individual TV |
+| **Kowju Suite** | 5 | 40 | 430 | 2 Adults + 2 Child + 1 Extra Bed | 1 King Bed | ₹7,000–9,000 | Separate living and bed room with individual TV |
 
 ---
 

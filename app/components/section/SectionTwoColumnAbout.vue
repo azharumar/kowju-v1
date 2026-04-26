@@ -15,7 +15,10 @@ const props = withDefaults(
   <section class="bg-surface">
     <BaseContainer>
       <BaseSection rhythm="default" stack="default">
-        <BaseGrid class="grid-cols-1 items-start md:grid-cols-2" gap="comfortable">
+        <BaseGrid
+          class="grid-cols-1 items-start md:grid-cols-2"
+          gap="comfortable"
+        >
           <BaseSectionHeader
             :overline="overline"
             :title="title"

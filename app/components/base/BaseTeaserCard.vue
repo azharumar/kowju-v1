@@ -50,6 +50,7 @@ const imageHeight = computed(() => {
         decoding="async"
       />
       <BaseStack
+        variant="tight"
         class="px-4 pb-4 pt-5 md:px-0"
         :class="compact ? 'items-center text-center' : ''"
       >

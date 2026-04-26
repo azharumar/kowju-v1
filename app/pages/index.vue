@@ -1,57 +1,115 @@
 <script setup lang="ts">
-import SectionBookDirectBar from "~/components/section/SectionBookDirectBar.vue"
-import SectionReviewBarTextOnly from "~/components/section/SectionReviewBarTextOnly.vue"
+import SectionBookDirectBar from "~/components/section/SectionBookDirectBar.vue";
+import SectionReviewBarTextOnly from "~/components/section/SectionReviewBarTextOnly.vue";
 
 const homeFaqItems = [
   {
-    question: 'What are the check-in and check-out times?',
-    answer: 'Check-in is from 2:00 PM and check-out is by 12:00 noon. Early check-in and late check-out are subject to availability — please contact us in advance.',
+    question: "What are the check-in and check-out times?",
+    answer:
+      "Check-in is from 2:00 PM and check-out is by 12:00 noon. Early check-in and late check-out are subject to availability — please contact us in advance.",
   },
   {
-    question: 'How far is the hotel from Calicut International Airport?',
-    answer: 'We are located just minutes from Calicut International Airport (CCJ), making us the most convenient option for travellers flying in or out of Kozhikode.',
+    question: "How far is the hotel from Calicut International Airport?",
+    answer:
+      "We are located just minutes from Calicut International Airport (CCJ), making us the most convenient option for travellers flying in or out of Kozhikode.",
   },
   {
-    question: 'Is parking available at the hotel?',
-    answer: 'Yes, complimentary parking is available on-site for all guests.',
+    question: "Is parking available at the hotel?",
+    answer: "Yes, complimentary parking is available on-site for all guests.",
   },
   {
-    question: 'Is Wi-Fi available?',
-    answer: 'Yes, high-speed Wi-Fi is available throughout the hotel and in all guest rooms, complimentary for all guests.',
+    question: "Is Wi-Fi available?",
+    answer:
+      "Yes, high-speed Wi-Fi is available throughout the hotel and in all guest rooms, complimentary for all guests.",
   },
   {
-    question: 'Are pets allowed?',
-    answer: 'We do not currently accommodate pets. Please contact us if you have specific requirements and we will do our best to assist.',
+    question: "Are pets allowed?",
+    answer:
+      "We do not currently accommodate pets. Please contact us if you have specific requirements and we will do our best to assist.",
   },
-]
+];
 
 const homeAmenitiesItems = [
-  { src: "/icons/samples/air-purifier.svg", alt: "Air Purifier", label: "Air Purifier" },
-  { src: "/icons/samples/restroom.svg", alt: "Smart Toilet", label: "Smart Toilet" },
-  { src: "/icons/samples/bathtub.svg", alt: "Swimming Pool", label: "Swimming Pool" },
-  { src: "/icons/samples/tv.svg", alt: "55 inch LED TV", label: "55 inch LED TV" },
-  { src: "/icons/samples/air-conditioning.svg", alt: "Air Conditioning", label: "Air Conditioning" },
-  { src: "/icons/samples/mattress.svg", alt: "Orthopedic Mattress", label: "Orthopedic Mattress" },
-  { src: "/icons/samples/safe-locker.svg", alt: "Electronic Locker", label: "Electronic Locker" },
+  {
+    src: "/icons/samples/air-purifier.svg",
+    alt: "Air Purifier",
+    label: "Air Purifier",
+  },
+  {
+    src: "/icons/samples/restroom.svg",
+    alt: "Smart Toilet",
+    label: "Smart Toilet",
+  },
+  {
+    src: "/icons/samples/bathtub.svg",
+    alt: "Swimming Pool",
+    label: "Swimming Pool",
+  },
+  {
+    src: "/icons/samples/tv.svg",
+    alt: "55 inch LED TV",
+    label: "55 inch LED TV",
+  },
+  {
+    src: "/icons/samples/air-conditioning.svg",
+    alt: "Air Conditioning",
+    label: "Air Conditioning",
+  },
+  {
+    src: "/icons/samples/mattress.svg",
+    alt: "Orthopedic Mattress",
+    label: "Orthopedic Mattress",
+  },
+  {
+    src: "/icons/samples/safe-locker.svg",
+    alt: "Electronic Locker",
+    label: "Electronic Locker",
+  },
   { src: "/icons/samples/wifi.svg", alt: "Wi-Fi", label: "Wi-Fi" },
-]
+];
+
+const homeAboutParagraphs = [
+  "Just 10 minutes from Calicut International Airport, our hotel is built for families, business travelers, and quick stopovers looking for a quiet, reliable place to stay. Practical amenities and attentive service keep everything easy, from late arrivals to early departures.",
+  "Our rooms are set up for comfort and convenience, with comfortable beds, smart TVs, and advanced air purification systems. Each space offers complimentary high speed Wi-Fi, elegant bathrooms, and a work desk supporting both focused work and proper rest.",
+];
+
+const homeAboutHighlights = [
+  {
+    src: "/icons/samples/clock.svg",
+    alt: "10 minutes from the airport",
+    label: "10 minutes from the airport",
+  },
+  {
+    src: "/icons/samples/bathtub.svg",
+    alt: "Gym, swimming pool and kids games room",
+    label: "Gym, swimming pool and kids' games room",
+  },
+  {
+    src: "/icons/samples/shuttle.svg",
+    alt: "Complimentary airport shuttle",
+    label: "Complimentary airport shuttle",
+  },
+  {
+    src: "/icons/samples/air-purifier.svg",
+    alt: "Smart in-room amenities",
+    label: "Smart in-room amenities",
+  },
+];
 
 useSeoPage({
-  title: 'Convenient stay near Calicut Airport',
+  title: "Convenient stay near Calicut Airport",
   description:
-    'Comfortable rooms, practical amenities, and easy airport access at Kowju Airport Hotel Calicut.',
-  path: '/',
-  image: '/images/home_page_01.png',
-  imageAlt: 'Kowju Airport Hotel Calicut exterior',
-})
+    "Comfortable rooms, practical amenities, and easy airport access at Kowju Airport Hotel Calicut.",
+  path: "/",
+  image: "/images/home_page_01.png",
+  imageAlt: "Kowju Airport Hotel Calicut exterior",
+});
 </script>
 
 <template>
   <BaseContainer>
     <BaseSection rhythm="default" class="text-center">
-      <BaseStack
-        class="min-h-section-hero items-center justify-center"
-      >
+      <BaseStack class="min-h-section-hero items-center justify-center">
         <BasePageHeader
           title="Convenient stay near Calicut Airport"
           lead="Comfortable rooms, practical amenities, and easy airport access in one place."
@@ -72,6 +130,17 @@ useSeoPage({
   </BaseContainer>
   <SectionBookDirectBar />
   <SectionReviewBarTextOnly variant="dark" />
+  <LazySectionTwoColumnFeatureList
+    image-src="/images/home_page_02_about_us.png"
+    image-alt="Hotel lounge seating area with warm lighting"
+    overline="About us"
+    title="Built to support business travel and family stays"
+    image-aspect="portrait"
+    :paragraphs="homeAboutParagraphs"
+    :features="homeAboutHighlights"
+  />
+  <LazySectionRoomsSuites />
+  <LazySectionRoomsSuitesOverflow />
   <LazySectionTwoColumnMediaText
     image-src="/images/dining_experience_01.png"
     image-alt="Skipol Diner restaurant interior with seating and arched doorway"
@@ -101,7 +170,11 @@ useSeoPage({
     cta-label="View all"
   >
     <template #details>
-      <ul class="grid grid-cols-2 gap-x-6 gap-y-4" role="list" aria-label="Amenities and facilities highlights">
+      <ul
+        class="grid grid-cols-2 gap-x-6 gap-y-4"
+        role="list"
+        aria-label="Amenities and facilities highlights"
+      >
         <li
           v-for="(item, index) in homeAmenitiesItems"
           :key="`${item.label}-${index}`"
@@ -121,7 +194,6 @@ useSeoPage({
       </ul>
     </template>
   </LazySectionTwoColumnMediaText>
-  <LazySectionRoomsSuites />
   <LazySectionThingsToDo />
   <LazySectionHotelPolicies />
   <LazySectionFaq

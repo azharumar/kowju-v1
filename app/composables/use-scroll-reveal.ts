@@ -17,7 +17,7 @@ export function useScrollReveal() {
         isVisible.value = true;
         observer.disconnect();
       },
-      { threshold: 0, rootMargin: "0px 0px -50% 0px" },
+      { threshold: 0, rootMargin: "0px 0px -25% 0px" },
     );
 
     observer.observe(node);
