@@ -147,6 +147,17 @@ export const colors = {
   white: "#ffffff",
 } as const;
 
+/** Default decorative / content icon color (accent gold); PrimeIcons + tint targets. */
+export const icon = {
+  accent: colors.gold[600],
+  /**
+   * CSS `filter` for monochrome stroke SVGs in `<img>` to approximate `accent`.
+   * Re-tune if `accent` changes materially.
+   */
+  monochromeImgFilter:
+    "brightness(0) saturate(100%) invert(52%) sepia(18%) saturate(748%) hue-rotate(352deg) brightness(96%) contrast(88%)",
+} as const;
+
 export const semantic = {
   bg: colors.white,
   surface: {
@@ -225,6 +236,9 @@ export const tailwindThemeExtend = {
     border: {
       DEFAULT: semantic.border.DEFAULT,
       strong: semantic.border.strong,
+    },
+    icon: {
+      accent: icon.accent,
     },
   },
   maxWidth: container,

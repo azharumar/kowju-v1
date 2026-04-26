@@ -33,14 +33,54 @@ const meetingsGalleryImages = [
 ]
 const heroImage = meetingsGalleryImages[0]
 const meetingFacilityItems = [
-  { src: '/icons/samples/tv.svg', alt: 'LED TV display', label: 'LED TV Available' },
-  { src: '/icons/samples/speaker.svg', alt: 'Audio visual setup', label: 'Advanced audio visual equipment' },
-  { src: '/icons/samples/wifi.svg', alt: 'High-speed Wi-Fi access', label: 'High-speed Wi-Fi connectivity' },
-  { src: '/icons/samples/utensils-dining.svg', alt: 'Catering options', label: 'Customizable catering options' },
-  { src: '/icons/samples/parking.svg', alt: 'Parking area', label: 'Ample parking space with 24 slots' },
-  { src: '/icons/samples/chair.svg', alt: 'Flexible event seating', label: 'Flexible event seating arrangements' },
-  { src: '/icons/samples/electricity.svg', alt: 'Power backup and climate control', label: 'Power backup & climate control' },
-  { src: '/icons/samples/conference.svg', alt: 'On-site guest accommodation', label: 'On site guest accommodation' },
+  {
+    src: '/icons/samples/tv.svg',
+    alt: 'LED TV display',
+    label: 'LED TV',
+    subtitle: 'Presentations, signage, and playback on demand',
+  },
+  {
+    src: '/icons/samples/speaker.svg',
+    alt: 'Audio visual setup',
+    label: 'AV equipment',
+    subtitle: 'Clear sound for speeches, panels, and entertainment',
+  },
+  {
+    src: '/icons/samples/wifi.svg',
+    alt: 'High-speed Wi-Fi access',
+    label: 'Wi-Fi',
+    subtitle: 'Reliable connectivity for delegates and streaming',
+  },
+  {
+    src: '/icons/samples/utensils-dining.svg',
+    alt: 'Catering options',
+    label: 'Catering',
+    subtitle: 'Menus tailored from coffee breaks to banquets',
+  },
+  {
+    src: '/icons/samples/parking.svg',
+    alt: 'Parking area',
+    label: 'Parking',
+    subtitle: 'Dedicated spaces for hosts, vendors, and guests',
+  },
+  {
+    src: '/icons/samples/chair.svg',
+    alt: 'Flexible event seating',
+    label: 'Seating',
+    subtitle: 'Layouts matched to theatre, banquet, or boardroom style',
+  },
+  {
+    src: '/icons/samples/electricity.svg',
+    alt: 'Power backup and climate control',
+    label: 'Power & climate',
+    subtitle: 'Backup power and comfortable room conditions throughout',
+  },
+  {
+    src: '/icons/samples/conference.svg',
+    alt: 'On-site guest accommodation',
+    label: 'Guest rooms',
+    subtitle: 'Stay on site before or after your programme',
+  },
 ]
 
 useSeoPage({
@@ -61,9 +101,42 @@ useSeoPage({
       :image-src="heroImage?.src ?? '/images/events_meetings_01.png'"
       :image-alt="heroImage?.alt ?? 'Meetings and events space at the hotel'"
     />
+    <LazySectionTwoColumnMediaText
+      image-src="/images/events_meetings_06_mehmaan_hall.png"
+      image-alt="Mehmaan Hall seating arrangement for events"
+      overline="Mehmaan Hall"
+      title="Where Every Event Shines"
+      description="Mehmaan Hall is designed to host memorable occasions. Ideal for weddings, conventions, banquets, and special gatherings, the space offers a seamless, spacious setting for every event."
+    >
+      <template #details>
+        <p class="inline-flex items-center gap-2 font-semibold text-text">
+          <span class="pi pi-users text-body" aria-hidden="true" />
+          200 Guests
+        </p>
+        <p class="text-body text-muted">Ideal for : Conferences , Weddings , Receptions</p>
+        <p class="text-body text-muted">Note : Pre function area available</p>
+      </template>
+    </LazySectionTwoColumnMediaText>
+    <LazySectionTwoColumnMediaText
+      reversed
+      image-src="/images/events_meetings_03.png"
+      image-alt="Executive board room meeting setup"
+      overline="Executive Board Rooms"
+      title="Private Space for Meetings"
+      description="Our Executive Board Rooms are designed for focused discussions and high level decision making. Ideal for leadership meetings, strategy sessions, and confidential conversations, the boardrooms support clarity, collaboration, and productive outcomes."
+    >
+      <template #details>
+        <p class="inline-flex items-center gap-2 font-semibold text-text">
+          <span class="pi pi-users text-body" aria-hidden="true" />
+          15 Guests
+        </p>
+        <p class="text-body text-muted">Ideal for : Board meetings , Strategy sessions</p>
+        <p class="text-body text-muted">Private &amp; business focused</p>
+      </template>
+    </LazySectionTwoColumnMediaText>
     <BaseIconGrid
-      overline="Facilities"
-      title="Modern amenities for every event"
+      title="Amenities for meetings and events"
+      :heading-level="3"
       :items="meetingFacilityItems"
     />
     <LazySectionRoomGallery

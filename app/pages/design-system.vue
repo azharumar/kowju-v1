@@ -500,7 +500,7 @@ useSeoPage({
                       <img
                         :src="`/icons/samples/${item.file}`"
                         :alt="item.label"
-                        class="size-10 shrink-0 object-contain text-text"
+                        class="icon-tint-accent size-10 shrink-0 object-contain"
                         width="40"
                         height="40"
                         loading="lazy"
@@ -790,7 +790,7 @@ useSeoPage({
                         >
                           <span>View all</span>
                           <span
-                            class="pi pi-arrow-right text-xs leading-none"
+                            class="pi pi-arrow-right text-xs leading-none text-brand-600"
                             aria-hidden="true"
                           />
                         </NuxtLink>

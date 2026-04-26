@@ -7,13 +7,17 @@ const props = withDefaults(
     gap?: RhythmSize;
     gapX?: RhythmSize;
     gapY?: RhythmSize;
+    reveal?: boolean;
     class?: string;
   }>(),
   {
     as: "div",
     gap: "default",
+    reveal: true,
   },
 );
+
+const { rootRef, isVisible } = useScrollReveal();
 
 const gapClass = computed(() => {
   if (props.gapX || props.gapY) return "";
@@ -48,8 +52,17 @@ const gapYClass = computed(() => {
 
 <template>
   <component
+    ref="rootRef"
     :is="props.as"
-    :class="['grid', gapClass, gapXClass, gapYClass, props.class]"
+    :data-visible="props.reveal ? isVisible : undefined"
+    :class="[
+      'grid',
+      gapClass,
+      gapXClass,
+      gapYClass,
+      props.reveal ? 'motion-premium-sequence' : '',
+      props.class,
+    ]"
   >
     <slot />
   </component>

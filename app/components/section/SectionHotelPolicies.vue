@@ -62,8 +62,7 @@ function policyKey(item: HotelPolicyItem, index: number) {
 <template>
   <section aria-label="Hotel policies" :class="props.class">
     <BaseContainer>
-      <BaseScrollReveal>
-        <BaseSection rhythm="comfortable">
+      <BaseSection rhythm="comfortable">
         <BaseStack>
           <BaseSectionHeader
             :overline="overline"
@@ -85,8 +84,7 @@ function policyKey(item: HotelPolicyItem, index: number) {
             </div>
           </dl>
         </BaseStack>
-        </BaseSection>
-      </BaseScrollReveal>
+      </BaseSection>
     </BaseContainer>
   </section>
 </template>

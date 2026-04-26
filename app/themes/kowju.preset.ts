@@ -102,10 +102,10 @@ export default {
             focusBorderColor: '{primary.color}',
           },
           primary: {
-            color: '{primary.500}',
+            color: '{primary.800}',
             contrastColor: colors.white,
-            hoverColor: '{primary.600}',
-            activeColor: '{primary.700}',
+            hoverColor: '{primary.900}',
+            activeColor: '{primary.950}',
           },
         },
       },

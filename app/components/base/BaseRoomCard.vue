@@ -12,6 +12,8 @@ export type RoomCardAmenityIcon = {
   alt: string;
   /** Visible label; defaults to `alt` when set. */
   label?: string;
+  /** Optional supporting line (e.g. icon grids); not shown on compact room cards. */
+  subtitle?: string;
 };
 
 export type RoomCardAmenityLabelVariant = "caption" | "inline" | "tooltip";
@@ -84,7 +86,7 @@ function amenityLabel(item: RoomCardAmenityIcon) {
             v-if="row.iconSrc"
             :src="row.iconSrc"
             alt=""
-            class="size-5 shrink-0 object-contain opacity-90"
+            class="icon-tint-accent size-5 shrink-0 object-contain"
             width="20"
             height="20"
             loading="lazy"
@@ -128,7 +130,7 @@ function amenityLabel(item: RoomCardAmenityIcon) {
                 :src="item.src"
                 alt=""
                 role="presentation"
-                class="size-9 object-contain opacity-80"
+                class="icon-tint-accent size-9 object-contain"
                 width="36"
                 height="36"
                 loading="lazy"
@@ -141,7 +143,7 @@ function amenityLabel(item: RoomCardAmenityIcon) {
                 :src="item.src"
                 alt=""
                 role="presentation"
-                class="size-9 shrink-0 object-contain opacity-80"
+                class="icon-tint-accent size-9 shrink-0 object-contain"
                 width="36"
                 height="36"
                 loading="lazy"

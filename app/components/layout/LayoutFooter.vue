@@ -24,7 +24,7 @@ const socialLinks = [
 </script>
 
 <template>
-  <footer class="bg-brand-800 pt-10 text-text-inverse md:pt-12">
+  <footer class="site-chrome bg-brand-800 pt-10 text-text-inverse md:pt-12">
     <BaseContainer>
       <div class="grid gap-8 md:grid-cols-3 md:gap-10">
         <div class="flex flex-col items-start gap-4">

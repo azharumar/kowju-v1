@@ -93,7 +93,7 @@ watch(
     :header="null"
   >
     <div
-      class="flex h-full min-h-0 flex-col bg-surface px-4 pb-6 pt-2 md:px-6 md:pb-8"
+      class="site-chrome flex h-full min-h-0 flex-col bg-surface px-4 pb-6 pt-2 md:px-6 md:pb-8"
     >
       <Galleria
         v-model:active-index="activeIndex"

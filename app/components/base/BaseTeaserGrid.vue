@@ -2,8 +2,12 @@
 const props = withDefaults(
   defineProps<{
     columns?: 2 | 3;
+    reveal?: boolean;
   }>(),
-  { columns: 2 },
+  {
+    columns: 2,
+    reveal: true,
+  },
 );
 
 const colsClass = computed(() =>
@@ -12,7 +16,7 @@ const colsClass = computed(() =>
 </script>
 
 <template>
-  <BaseGrid gap="default" :class="colsClass">
+  <BaseGrid :reveal="reveal" gap="default" :class="colsClass">
     <slot />
   </BaseGrid>
 </template>

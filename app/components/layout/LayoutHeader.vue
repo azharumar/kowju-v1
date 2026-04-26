@@ -1,5 +1,5 @@
 <template>
-  <header class="relative z-raised">
+  <header class="site-chrome relative z-raised">
     <LayoutHeaderTopbar
       :phone-display="hotel.telephoneDisplay"
       :phone-tel="phoneTel"
@@ -84,7 +84,7 @@
     role="dialog"
   >
     <template #header>
-      <div class="flex w-full items-start justify-between gap-3">
+      <div class="site-chrome flex w-full items-start justify-between gap-3">
         <div class="flex min-w-0 items-center gap-3">
           <img
             src="/kowju-airport-hotel-calicut-logo.svg"
@@ -112,7 +112,7 @@
       </div>
     </template>
 
-    <div class="flex h-full flex-col">
+    <div class="site-chrome flex h-full flex-col">
       <nav
         aria-label="Mobile main navigation"
         class="flex-1 space-y-2 overflow-y-auto py-2"

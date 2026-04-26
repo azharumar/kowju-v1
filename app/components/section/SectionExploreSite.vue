@@ -20,8 +20,7 @@ const gridColumns = computed<2 | 3>(() =>
 <template>
   <section class="bg-surface-100">
     <BaseContainer>
-      <BaseScrollReveal>
-        <BaseSection rhythm="compact" stack="comfortable">
+      <BaseSection rhythm="compact" stack="comfortable">
         <BaseStack class="items-center text-center">
           <BaseSectionHeader
             overline="Comfort elevated"
@@ -31,7 +30,7 @@ const gridColumns = computed<2 | 3>(() =>
             lead="Explore our rooms, dining spaces, and venues designed for comfort and convenience. Whether you’re here for a short stopover or a longer visit, each space is crafted to support your stay with ease and care."
           />
         </BaseStack>
-        <BaseTeaserGrid :columns="gridColumns">
+        <BaseTeaserGrid :columns="gridColumns" :reveal="false">
           <BaseTeaserCard
             v-for="t in items"
             :key="t.id"
@@ -46,8 +45,7 @@ const gridColumns = computed<2 | 3>(() =>
             :portrait-image="gridColumns === 3"
           />
         </BaseTeaserGrid>
-        </BaseSection>
-      </BaseScrollReveal>
+      </BaseSection>
     </BaseContainer>
   </section>
 </template>

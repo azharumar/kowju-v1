@@ -4,6 +4,7 @@ import {
   colors,
   font,
   formField,
+  icon,
   motion,
   radius,
   semantic,
@@ -39,6 +40,8 @@ export default defineNuxtPlugin(() => {
   out['--color-surface-muted'] = semantic.surface.muted
   out['--color-border'] = semantic.border.DEFAULT
   out['--color-border-strong'] = semantic.border.strong
+  out['--color-icon-accent'] = icon.accent
+  out['--icon-monochrome-img-filter'] = icon.monochromeImgFilter
 
   for (const [k, v] of Object.entries(radius)) {
     out[`--radius-${k}`] = v

@@ -32,6 +32,18 @@
     text-rendering: optimizeLegibility;
   }
 
+  /**
+   * PrimeIcons default: accent gold from tokens (`--color-icon-accent`).
+   * Inside PrimeVue buttons, icons follow the control’s `currentColor` for contrast.
+   */
+  .pi {
+    color: var(--color-icon-accent, #a67f52);
+  }
+
+  .p-button .pi {
+    color: currentColor;
+  }
+
   a:not([class*="transition"]):not(.motion-interactive) {
     @apply duration-motion ease-motion;
     transition-property:
@@ -113,12 +125,16 @@
 
 /* PrimeVue hardcodes font-size/text-transform/letter-spacing; we wire our tokens here */
 .p-button {
-  font-size: var(--p-button-font-size);
+  font-size: 0.8333333333rem;
 }
 
 .p-button-label {
   text-transform: var(--p-button-label-text-transform);
   letter-spacing: var(--p-button-label-letter-spacing);
+}
+
+.p-button.p-button-secondary {
+  border-width: 2px;
 }
 
 @layer components {
@@ -152,6 +168,81 @@
     transition-property: box-shadow, border-color;
   }
 
+  .motion-premium-sequence > * {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 1400ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .motion-premium-sequence > *:nth-child(1) { transition-delay: 0ms; }
+  .motion-premium-sequence > *:nth-child(2) { transition-delay: 320ms; }
+  .motion-premium-sequence > *:nth-child(3) { transition-delay: 680ms; }
+  .motion-premium-sequence > *:nth-child(4) { transition-delay: 920ms; }
+  .motion-premium-sequence > *:nth-child(5) { transition-delay: 1120ms; }
+  .motion-premium-sequence > *:nth-child(n + 6) { transition-delay: 1280ms; }
+
+  .motion-premium-sequence[data-visible='true'] > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .motion-section-enter {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 1400ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .motion-section-enter[data-visible='true'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .motion-section-enter-image {
+    transform: translateY(26px) scale(0.98);
+  }
+
+  .motion-section-enter-image[data-visible='true'] {
+    transform: translateY(0) scale(1);
+  }
+
+  .motion-section-enter-copy {
+    transition-delay: 320ms;
+  }
+
+  .motion-section-enter-details {
+    transition-delay: 680ms;
+  }
+
+  .motion-section-enter-cta {
+    transition-delay: 920ms;
+  }
+
+  /**
+   * Site chrome (header, footer, modals with controls): PrimeIcons follow
+   * surrounding text color, not default accent gold.
+   */
+  .site-chrome .pi {
+    color: currentColor;
+  }
+
+  /**
+   * Monochrome stroke icons (e.g. public/icons/samples/*.svg) → `icon.accent`.
+   * For <img> SVGs only; not currentColor SVGs. Filter from `--icon-monochrome-img-filter`.
+   */
+  .icon-tint-accent {
+    filter: var(
+      --icon-monochrome-img-filter,
+      brightness(0) saturate(100%) invert(52%) sepia(18%) saturate(748%)
+        hue-rotate(352deg) brightness(96%) contrast(88%)
+    );
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .motion-scroll-reveal {
       opacity: 1;
@@ -161,6 +252,22 @@
 
     .motion-interactive,
     .motion-card-hover {
+      transition: none;
+    }
+
+    .motion-premium-sequence > * {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .motion-section-enter,
+    .motion-section-enter-image,
+    .motion-section-enter-copy,
+    .motion-section-enter-details,
+    .motion-section-enter-cta {
+      opacity: 1;
+      transform: none;
       transition: none;
     }
   }

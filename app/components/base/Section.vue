@@ -5,13 +5,17 @@ const props = withDefaults(
     title?: string;
     rhythm?: "none" | "hero" | "compact" | "default" | "comfortable";
     stack?: "tight" | "default" | "loose" | "comfortable";
+    reveal?: boolean;
     class?: string;
   }>(),
   {
     rhythm: "default",
     stack: "default",
+    reveal: true,
   },
 );
+
+const { rootRef, isVisible } = useScrollReveal();
 
 const rhythmClass = computed(() => {
   const map = {
@@ -36,8 +40,15 @@ const stackClass = computed(() => {
 </script>
 
 <template>
-  <section :id="id" :class="['scroll-mt-24', rhythmClass, props.class]">
-    <div :class="['flex flex-col', stackClass]">
+  <section
+    :id="id"
+    ref="rootRef"
+    :class="['scroll-mt-24', rhythmClass, props.class]"
+  >
+    <div
+      :class="['flex flex-col', stackClass, props.reveal ? 'motion-premium-sequence' : '']"
+      :data-visible="props.reveal ? isVisible : undefined"
+    >
       <h2
         v-if="props.title"
         class="text-h4 font-semibold text-text"

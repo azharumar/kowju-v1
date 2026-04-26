@@ -57,6 +57,16 @@ useSeoPage({
     <LazySectionRoomGallery
       :images="diningGalleryImages"
     />
+    <LazySectionTwoColumnMediaText
+      id="in-room-dining"
+      image-src="/images/dining_experience_06_in_room_dining.png"
+      image-alt="In-room dining tray with covered dishes on a guest room table"
+      overline="In-room dining"
+      title="Dine in the comfort of your room"
+      description="Prefer privacy or a quiet night in? Order from our in-room dining menu and enjoy the same care and quality as the restaurant, delivered to your door. Ideal for early flights, family evenings, or when you simply want to unwind."
+      cta-to="/contact"
+      cta-label="Contact us"
+    />
     <LazySectionFaq
       overline="Frequently Asked Questions"
     title="Common questions about dining at the hotel"

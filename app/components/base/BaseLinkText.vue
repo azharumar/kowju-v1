@@ -15,7 +15,7 @@ const props = withDefaults(
 
 const textClass =
   "text-body-sm font-semibold uppercase tracking-label";
-const iconClass = "text-body-sm leading-none";
+const iconClass = "text-body-sm leading-none text-brand-600";
 </script>
 
 <template>

@@ -9,8 +9,7 @@ import { localAttractions } from "~/data/local-attractions";
     aria-label="Things to do near the hotel"
   >
     <BaseContainer>
-      <BaseScrollReveal>
-        <BaseSection rhythm="default" stack="default">
+      <BaseSection rhythm="default" stack="default">
         <BaseStack class="items-center text-center">
           <BaseSectionHeader
             overline="Things to do"
@@ -18,7 +17,7 @@ import { localAttractions } from "~/data/local-attractions";
             align="center"
             dividers
           />
-          <BaseTeaserGrid :columns="3">
+          <BaseTeaserGrid :columns="3" :reveal="false">
             <article
               v-for="item in localAttractions"
               :key="item.id"
@@ -33,7 +32,7 @@ import { localAttractions } from "~/data/local-attractions";
                 loading="lazy"
                 decoding="async"
               />
-              <BaseStack class="flex min-w-0 flex-1 flex-col p-5">
+              <BaseStack :reveal="false" class="flex min-w-0 flex-1 flex-col p-5">
                 <h3
                   class="min-w-0 text-left text-h5 font-semibold leading-snug text-text line-clamp-1"
                 >
@@ -57,8 +56,7 @@ import { localAttractions } from "~/data/local-attractions";
             </article>
           </BaseTeaserGrid>
         </BaseStack>
-        </BaseSection>
-      </BaseScrollReveal>
+      </BaseSection>
     </BaseContainer>
   </section>
 </template>

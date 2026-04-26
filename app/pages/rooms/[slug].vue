@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import SectionBookDirectBar from "~/components/section/SectionBookDirectBar.vue";
+import SectionReviewBarTextOnly from "~/components/section/SectionReviewBarTextOnly.vue";
 import { getAdjacentRoomsBySlug, getRoomBySlug } from "~/data/rooms";
 
 const route = useRoute();
@@ -57,6 +59,8 @@ useHead({
       :image-src="room.imageSrc"
       :image-alt="room.imageAlt"
     />
+    <SectionBookDirectBar />
+    <SectionReviewBarTextOnly variant="dark" />
     <LazySectionRoomAbout
       v-if="room.about"
       :room-title="room.title"
