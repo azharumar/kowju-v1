@@ -24,7 +24,7 @@ const socialLinks = [
 </script>
 
 <template>
-  <footer class="site-chrome bg-brand-800 pt-10 text-text-inverse md:pt-12">
+  <footer class="site-chrome bg-brand-900 pt-10 text-text-inverse md:pt-12">
     <BaseContainer>
       <div class="grid gap-8 md:grid-cols-3 md:gap-10">
         <div class="flex flex-col items-start gap-4">
@@ -91,7 +91,7 @@ const socialLinks = [
               &copy; {{ new Date().getFullYear() }} {{ hotel.name }}. All rights
               reserved.
             </p>
-            <p>Developed and maintained by Portico Webworks.</p>
+            <p>Website by Portico Webworks.</p>
           </div>
         </div>
       </div>

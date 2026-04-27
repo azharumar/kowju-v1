@@ -29,45 +29,6 @@ const homeFaqItems = [
   },
 ];
 
-const homeAmenitiesItems = [
-  {
-    src: "/icons/samples/air-purifier.svg",
-    alt: "Air Purifier",
-    label: "Air Purifier",
-  },
-  {
-    src: "/icons/samples/restroom.svg",
-    alt: "Smart Toilet",
-    label: "Smart Toilet",
-  },
-  {
-    src: "/icons/samples/bathtub.svg",
-    alt: "Swimming Pool",
-    label: "Swimming Pool",
-  },
-  {
-    src: "/icons/samples/tv.svg",
-    alt: "55 inch LED TV",
-    label: "55 inch LED TV",
-  },
-  {
-    src: "/icons/samples/air-conditioning.svg",
-    alt: "Air Conditioning",
-    label: "Air Conditioning",
-  },
-  {
-    src: "/icons/samples/mattress.svg",
-    alt: "Orthopedic Mattress",
-    label: "Orthopedic Mattress",
-  },
-  {
-    src: "/icons/samples/safe-locker.svg",
-    alt: "Electronic Locker",
-    label: "Electronic Locker",
-  },
-  { src: "/icons/samples/wifi.svg", alt: "Wi-Fi", label: "Wi-Fi" },
-];
-
 const homeAboutParagraphs = [
   "Just 10 minutes from Calicut International Airport, our hotel is built for families, business travelers, and quick stopovers looking for a quiet, reliable place to stay. Practical amenities and attentive service keep everything easy, from late arrivals to early departures.",
   "Our rooms are set up for comfort and convenience, with comfortable beds, smart TVs, and advanced air purification systems. Each space offers complimentary high speed Wi-Fi, elegant bathrooms, and a work desk supporting both focused work and proper rest.",
@@ -96,38 +57,85 @@ const homeAboutHighlights = [
   },
 ];
 
+const homeIncludedSpacesItems = [
+  {
+    label: "Rooftop pool",
+    overline: "Rooftop pool",
+    title: "Rooftop swimming pool",
+    description:
+      "A glass-walled rooftop pool with a separate kids' pool, shaded loungers and rooftop views over Kondotty - open to all guests, free of charge.",
+    details: ["Adult & kids' pool", "Sun loungers", "Towel service"],
+    imageSrc: "/images/amenities_facilities_01.png",
+    imageAlt: "Rooftop swimming pool with deck chairs",
+    ctaTo: "/amenities",
+    ctaLabel: "View pool",
+  },
+  {
+    label: "Skipol diner",
+    overline: "Skipol diner",
+    title: "Skipol Diner",
+    description:
+      "Forty-seat lobby restaurant serving breakfast buffet, regional Kerala plates and a la carte through the day. 24/7 in-room dining when you'd rather not move.",
+    details: [
+      "Breakfast buffet",
+      "Kerala and continental options",
+      "24/7 room dining",
+    ],
+    imageSrc: "/images/dining_experience_01.png",
+    imageAlt: "Skipol Diner dining area with table seating",
+    ctaTo: "/dining",
+    ctaLabel: "Explore dining",
+  },
+  {
+    label: "Kids' games room",
+    overline: "Kids' games room",
+    title: "Kids' games room",
+    description:
+      "An interactive games room to keep younger guests occupied - perfect for layovers, late check-outs, or a quiet hour while parents wind down.",
+    details: [
+      "Indoor games setup",
+      "Family-friendly area",
+      "All-day guest access",
+    ],
+    imageSrc: "/images/amenities_facilities_02.png",
+    imageAlt: "Kids' games room at the hotel",
+    ctaTo: "/amenities",
+    ctaLabel: "About amenities",
+  },
+  {
+    label: "Gym",
+    overline: "Gym",
+    title: "Modern fitness studio",
+    description:
+      "A compact gym with essential cardio and strength equipment so guests can keep routines consistent during short stays and long layovers.",
+    details: [
+      "Cardio and free-weight equipment",
+      "Air-conditioned indoor setup",
+      "Complimentary for guests",
+    ],
+    imageSrc: "/images/meeting_event_01.png",
+    imageAlt: "Hotel gym equipment area",
+    ctaTo: "/amenities",
+    ctaLabel: "View gym",
+  },
+];
+
 useSeoPage({
   title: "Convenient stay near Calicut Airport",
   description:
     "Comfortable rooms, practical amenities, and easy airport access at Kowju Airport Hotel Calicut.",
   path: "/",
-  image: "/images/home_page_01.png",
-  imageAlt: "Kowju Airport Hotel Calicut exterior",
+  image: "/images/rooms_suites_01.png",
+  imageAlt: "Convenient stay near Calicut Airport",
 });
 </script>
 
 <template>
-  <BaseContainer>
-    <BaseSection rhythm="default" class="text-center">
-      <BaseStack class="min-h-section-hero items-center justify-center">
-        <BasePageHeader
-          title="Convenient stay near Calicut Airport"
-          lead="Comfortable rooms, practical amenities, and easy airport access in one place."
-          align="left"
-        />
-        <p class="text-body text-muted">Kowju Airport Hotel Calicut</p>
-        <NuxtLink to="/design-system" custom v-slot="{ href, navigate }">
-          <BaseButtonPrimary
-            label="Open design system"
-            as="a"
-            :href="href"
-            class="motion-interactive"
-            @click="navigate"
-          />
-        </NuxtLink>
-      </BaseStack>
-    </BaseSection>
-  </BaseContainer>
+  <SectionPageHero
+    title="Convineint stay near Calicut Airport."
+    image-src="/images/home_page_01.png"
+    image-alt="Convineint stay near Calicut Airport"
+  />
   <SectionBookDirectBar />
   <SectionReviewBarTextOnly variant="dark" />
   <LazySectionTwoColumnFeatureList
@@ -141,59 +149,12 @@ useSeoPage({
   />
   <LazySectionRoomsSuites />
   <LazySectionRoomsSuitesOverflow />
-  <LazySectionTwoColumnMediaText
-    image-src="/images/dining_experience_01.png"
-    image-alt="Skipol Diner restaurant interior with seating and arched doorway"
-    overline="Dining experience"
-    title="Flavors that tell stories"
-    description="Skipol Diner, our lobby level restaurant with seating for 40 guests, offers a comfortable place to dine throughout the day. Begin your day with a wholesome breakfast buffet, or enjoy freshly prepared dishes served any time you wish."
-    cta-to="/dining"
-    cta-label="Learn more"
+  <LazySectionIncludedSpaces
+    overline="While you stay"
+    title="On-property amenties exclusive for guests"
+    :items="homeIncludedSpacesItems"
   />
-  <LazySectionTwoColumnMediaText
-    reversed
-    image-src="/images/dining_experience_02.png"
-    image-alt="Hotel dining area with tables and warm lighting"
-    overline="Dining"
-    title="All-day dining at the hotel"
-    description="From early breakfast through late evening, our culinary team focuses on fresh ingredients and regional touches. Whether you want a quick coffee, a working lunch, or a relaxed dinner, you will find something to suit your schedule and appetite."
-    cta-to="/dining"
-    cta-label="Explore dining"
-  />
-  <LazySectionTwoColumnMediaText
-    image-src="/images/amenities_facilities_01.png"
-    image-alt="Rooftop swimming pool at the hotel"
-    overline="Amenities & Facilities"
-    title="Everything You'll Need Here"
-    description=""
-    cta-to="/amenities"
-    cta-label="View all"
-  >
-    <template #details>
-      <ul
-        class="grid grid-cols-2 gap-x-6 gap-y-4"
-        role="list"
-        aria-label="Amenities and facilities highlights"
-      >
-        <li
-          v-for="(item, index) in homeAmenitiesItems"
-          :key="`${item.label}-${index}`"
-          class="inline-flex items-center gap-2 text-body text-text"
-        >
-          <img
-            :src="item.src"
-            :alt="item.alt"
-            class="size-5 object-contain"
-            width="20"
-            height="20"
-            loading="lazy"
-            decoding="async"
-          />
-          <span>{{ item.label }}</span>
-        </li>
-      </ul>
-    </template>
-  </LazySectionTwoColumnMediaText>
+  <LazySectionMeetingsEventsPromo />
   <LazySectionThingsToDo />
   <LazySectionHotelPolicies />
   <LazySectionFaq

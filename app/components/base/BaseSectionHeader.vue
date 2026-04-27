@@ -4,6 +4,7 @@ export type SectionHeaderAlign = "left" | "center" | "right";
 const props = withDefaults(
   defineProps<{
     overline?: string;
+    overlineClass?: string;
     title?: string;
     lead?: string;
     align?: SectionHeaderAlign;
@@ -49,7 +50,7 @@ const showLead = computed(() => Boolean(props.lead) || Boolean(slots.lead));
 
 <template>
   <div :class="['flex flex-col gap-1', alignClass, itemsAlignClass]">
-    <BaseOverline v-if="showOverline" :dividers="dividers">
+    <BaseOverline v-if="showOverline" :dividers="dividers" :class="overlineClass">
       <slot name="overline">{{ overline }}</slot>
     </BaseOverline>
     <component

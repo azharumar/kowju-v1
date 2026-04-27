@@ -14,7 +14,7 @@ const props = withDefaults(
 <template>
   <section class="bg-surface">
     <BaseContainer>
-      <BaseSection rhythm="default" stack="default">
+      <BaseSection rhythm="default" stack="tight">
         <BaseGrid
           class="grid-cols-1 items-start md:grid-cols-2"
           gap="comfortable"
@@ -25,7 +25,7 @@ const props = withDefaults(
             :heading-level="2"
           />
 
-          <BaseStack class="text-muted">
+          <BaseStack variant="tight" class="text-muted">
             <p
               v-for="(paragraph, index) in paragraphs"
               :key="`about-paragraph-${index}`"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-brand-800 text-body-sm text-text-inverse font-semibold tracking-label"
+    class="bg-brand-900 text-body-sm text-text-inverse font-semibold tracking-label"
   >
     <BaseContainer>
       <div
@@ -23,7 +23,7 @@
               <option
                 v-for="opt in locales"
                 :key="opt.code"
-                class="bg-brand-800 text-text"
+                class="bg-brand-900 text-text"
                 :value="opt.code"
               >
                 {{ opt.shortLabel ?? opt.label }}

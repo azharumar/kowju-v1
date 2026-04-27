@@ -9,7 +9,7 @@ function scrollToRoutePosition() {
 
   if (hash) {
     const target = document.querySelector(hash)
-    if (!target) return
+    if (!(target instanceof HTMLElement)) return
 
     if (prefersReducedMotion || !window.__lenis) {
       target.scrollIntoView({ block: 'start' })
@@ -53,7 +53,6 @@ useSchemaOrg([
   }),
   defineLocalBusiness({
     '@id': `${hotel.url}#hotel`,
-    '@type': 'Hotel',
     name: hotel.name,
     url: hotel.url,
     telephone: hotel.telephone,
@@ -79,7 +78,7 @@ onMounted(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const trigger = (event.target as HTMLElement | null)?.closest('a[href]')
-    if (!trigger) return
+    if (!(trigger instanceof HTMLAnchorElement)) return
     if (trigger.target && trigger.target !== '_self') return
     if (trigger.hasAttribute('download')) return
 

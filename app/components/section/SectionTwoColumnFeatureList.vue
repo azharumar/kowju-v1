@@ -53,7 +53,7 @@ const imageAspectClass = computed(() => {
             />
           </div>
 
-          <BaseStack class="text-muted">
+          <BaseStack variant="tight" class="text-muted">
             <BaseSectionHeader
               :overline="overline"
               :title="title"

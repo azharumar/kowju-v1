@@ -124,8 +124,8 @@
 }
 
 /* PrimeVue hardcodes font-size/text-transform/letter-spacing; we wire our tokens here */
-.p-button {
-  font-size: 0.8333333333rem;
+.p-button.p-button {
+  font-size: var(--form-field-sm-font-size, 0.8333333333rem);
 }
 
 .p-button-label {
