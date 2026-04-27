@@ -1,6 +1,8 @@
 <script setup lang="ts">
 type IncludedSpaceItem = {
   label: string;
+  iconSrc?: string;
+  iconAlt?: string;
   overline?: string;
   title: string;
   description: string;
@@ -26,35 +28,9 @@ const props = withDefaults(
 );
 
 const activeIndex = ref(0);
-const TAB_AUTO_ROTATE_MS = 5000;
-let tabTimer: ReturnType<typeof setInterval> | null = null;
-
-function startTabTimer() {
-  if (props.items.length < 2) return;
-  stopTabTimer();
-  tabTimer = setInterval(() => {
-    activeIndex.value = (activeIndex.value + 1) % props.items.length;
-  }, TAB_AUTO_ROTATE_MS);
-}
-
-function stopTabTimer() {
-  if (!tabTimer) return;
-  clearInterval(tabTimer);
-  tabTimer = null;
-}
-
 function handleTabSelect(index: number) {
   activeIndex.value = index;
-  startTabTimer();
 }
-
-onMounted(() => {
-  startTabTimer();
-});
-
-onUnmounted(() => {
-  stopTabTimer();
-});
 </script>
 
 <template>
@@ -63,7 +39,6 @@ onUnmounted(() => {
       <BaseSection rhythm="default" stack="comfortable">
         <BaseStack variant="comfortable">
           <BaseSectionHeader
-            :overline="props.overline"
             :title="props.title"
             :lead="props.lead"
             align="left"
@@ -71,7 +46,7 @@ onUnmounted(() => {
           />
 
           <div
-            class="included-spaces-tabs grid gap-0 border-t border-border md:grid-cols-4"
+            class="included-spaces-tabs flex flex-wrap gap-2 border-b border-border"
             role="tablist"
             aria-label="Included spaces"
           >
@@ -80,14 +55,25 @@ onUnmounted(() => {
               :key="`${item.label}-${index}`"
               type="button"
               role="tab"
-              class="tab-button flex flex-col items-start gap-2 px-5 py-4 text-left text-body-lg text-muted"
-              :class="{ 'is-active text-text': activeIndex === index }"
+              class="tab-button px-6 py-3 text-body-lg font-semibold text-muted"
+              :class="{ 'is-active': activeIndex === index }"
               :aria-selected="activeIndex === index"
               :aria-controls="`included-space-panel-${index}`"
               @click="handleTabSelect(index)"
             >
-              <BaseOverline>0{{ index + 1 }}</BaseOverline>
-              <span class="text-body-lg">{{ item.label }}</span>
+              <span class="inline-flex items-center gap-2">
+                <img
+                  v-if="item.iconSrc"
+                  :src="item.iconSrc"
+                  :alt="item.iconAlt ?? ''"
+                  class="h-6 w-6 icon-tint-accent"
+                  width="24"
+                  height="24"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span>{{ item.label }}</span>
+              </span>
             </button>
           </div>
 
@@ -101,10 +87,6 @@ onUnmounted(() => {
               <BaseGrid class="grid-cols-1 items-center md:grid-cols-2" gap="default">
                 <BaseStack variant="default">
                   <BaseSectionHeader
-                    :overline="
-                      props.items[activeIndex].overline ??
-                      props.items[activeIndex].label
-                    "
                     :title="props.items[activeIndex].title"
                     :heading-level="3"
                     align="left"
@@ -161,21 +143,15 @@ onUnmounted(() => {
 }
 
 .tab-button {
-  border-top: 0.1875rem solid transparent;
-  border-right: 0.0625rem solid var(--p-warm-200);
+  border-bottom: 0.125rem solid transparent;
   transition:
-    border-top-color 200ms ease-out,
-    color 200ms ease-out,
-    background-color 200ms ease-out;
+    border-bottom-color 200ms ease-out,
+    color 200ms ease-out;
 }
 
 .tab-button.is-active {
-  border-top-color: var(--p-brand-700);
-  background-color: var(--p-surface);
-}
-
-.tab-button:last-child {
-  border-right: none;
+  border-bottom-color: var(--p-brand-700);
+  color: var(--p-text-color);
 }
 
 .tab-panel-enter-active,

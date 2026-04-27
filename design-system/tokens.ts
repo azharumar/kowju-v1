@@ -149,7 +149,7 @@ export const colors = {
 
 /** Default decorative / content icon color (accent gold); PrimeIcons + tint targets. */
 export const icon = {
-  accent: colors.gold[600],
+  accent: colors.gold[300],
   /**
    * CSS `filter` for monochrome stroke SVGs in `<img>` to approximate `accent`.
    * Re-tune if `accent` changes materially.

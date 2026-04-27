@@ -23,6 +23,7 @@ const totalPagesLabel = computed(() =>
 function scrollTrack(direction: "prev" | "next") {
   const track = sliderRef.value;
   if (!track) return;
+  if (!totalPages.value) return;
 
   const firstCard = track.querySelector<HTMLElement>("[data-room-card]");
   if (!firstCard) return;
@@ -31,9 +32,19 @@ function scrollTrack(direction: "prev" | "next") {
     window.getComputedStyle(track).columnGap || "0",
   );
   const step = firstCard.offsetWidth + gap;
-  const delta = direction === "next" ? step : -step;
+  if (!step) return;
 
-  track.scrollBy({ left: delta, behavior: "smooth" });
+  const maxIndex = totalPages.value - 1;
+  const targetIndex =
+    direction === "next"
+      ? activeIndex.value >= maxIndex
+        ? 0
+        : activeIndex.value + 1
+      : activeIndex.value <= 0
+        ? maxIndex
+        : activeIndex.value - 1;
+
+  track.scrollTo({ left: targetIndex * step, behavior: "smooth" });
 }
 
 function updateActiveIndex() {
@@ -65,7 +76,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="bg-surface">
+  <section class="bg-surface-muted">
     <BaseContainer>
       <BaseSection rhythm="default" stack="comfortable" :reveal="false">
         <BaseSectionHeader
