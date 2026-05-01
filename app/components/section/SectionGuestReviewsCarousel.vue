@@ -222,7 +222,7 @@ watch(() => props.reviews.length, () => {
 }
 
 .review-carousel-slide {
-  flex: 0 0 70%;
+  flex: 0 0 80%;
 }
 
 @media (min-width: 768px) {

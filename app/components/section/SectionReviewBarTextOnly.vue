@@ -47,75 +47,77 @@ const sectionClass = computed(() =>
 </script>
 
 <template>
-  <BaseSection rhythm="none" :reveal="false" :class="sectionClass">
-    <BaseContainer width="full">
-      <div
-        :class="[
-          'grid min-w-0 w-full grid-cols-3 divide-x',
-          isLightVariant
-            ? 'divide-border'
-            : isGoldVariant
-              ? 'divide-gold-200'
-              : 'divide-text-inverse/15',
-        ]"
-      >
-        <template v-for="item in reviewScores" :key="item.platform">
-          <div
-            class="flex min-w-0 flex-col items-start gap-1 px-2 py-3 text-left sm:gap-2 sm:px-3 md:flex-row md:items-center md:justify-center md:gap-x-4 md:px-8 md:py-2"
-          >
-            <span
-              :class="[
-                'text-caption uppercase tracking-overline',
-                isLightVariant
-                  ? 'text-text'
-                  : isGoldVariant
-                    ? 'text-warm-800'
-                    : 'text-text-inverse',
-              ]"
+  <div class="bg-brand-900">
+    <BaseContainer>
+      <BaseSection rhythm="none" :reveal="false" :class="sectionClass">
+        <div
+          :class="[
+            '-mx-4 grid min-w-0 w-auto grid-cols-3 divide-x sm:mx-0 sm:w-full',
+            isLightVariant
+              ? 'divide-border'
+              : isGoldVariant
+                ? 'divide-gold-200'
+                : 'divide-text-inverse/15',
+          ]"
+        >
+          <template v-for="item in reviewScores" :key="item.platform">
+            <div
+              class="flex min-w-0 flex-col items-center gap-1 px-2 py-3 text-center sm:items-start sm:gap-2 sm:px-3 sm:text-left md:flex-row md:items-center md:justify-center md:gap-x-4 md:px-8 md:py-2"
             >
-              {{ platformLabelMap[item.platform] }}
-            </span>
-            <div class="flex min-w-0 flex-col items-start">
-              <span
-                :class="[
-                  'text-h3 font-extrabold leading-none sm:text-h2',
-                  isLightVariant
-                    ? 'text-brand-700'
-                    : isGoldVariant
-                      ? 'text-gold-700'
-                      : 'text-gold-300',
-                ]"
-              >
-                {{ item.score
-                }}<span
-                  :class="[
-                    'text-caption',
-                    isLightVariant
-                      ? 'text-muted'
-                      : isGoldVariant
-                        ? 'text-warm-600'
-                        : 'text-gold-400',
-                  ]"
-                >
-                  /{{ item.outOf }}</span
-                >
-              </span>
               <span
                 :class="[
                   'text-caption uppercase tracking-overline',
                   isLightVariant
-                    ? 'text-muted'
+                    ? 'text-text'
                     : isGoldVariant
-                      ? 'text-warm-700'
-                      : 'text-text-inverse/60',
+                      ? 'text-warm-800'
+                      : 'text-text-inverse',
                 ]"
               >
-                {{ item.descriptor }}
+                {{ platformLabelMap[item.platform] }}
               </span>
+              <div class="flex min-w-0 flex-col items-center sm:items-start">
+                <span
+                  :class="[
+                    'text-h3 font-extrabold leading-none sm:text-h2',
+                    isLightVariant
+                      ? 'text-brand-700'
+                      : isGoldVariant
+                        ? 'text-gold-700'
+                        : 'text-gold-300',
+                  ]"
+                >
+                  {{ item.score
+                  }}<span
+                    :class="[
+                      'text-caption',
+                      isLightVariant
+                        ? 'text-muted'
+                        : isGoldVariant
+                          ? 'text-warm-600'
+                          : 'text-gold-400',
+                    ]"
+                  >
+                    /{{ item.outOf }}</span
+                  >
+                </span>
+                <span
+                  :class="[
+                    'text-caption uppercase tracking-overline',
+                    isLightVariant
+                      ? 'text-muted'
+                      : isGoldVariant
+                        ? 'text-warm-700'
+                        : 'text-text-inverse/60',
+                  ]"
+                >
+                  {{ item.descriptor }}
+                </span>
+              </div>
             </div>
-          </div>
-        </template>
-      </div>
+          </template>
+        </div>
+      </BaseSection>
     </BaseContainer>
-  </BaseSection>
+  </div>
 </template>

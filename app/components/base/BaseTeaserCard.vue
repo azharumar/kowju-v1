@@ -12,16 +12,20 @@ const props = withDefaults(
     compact?: boolean;
     /** When compact, use portrait crop only if true (e.g. three-column grid). */
     portraitImage?: boolean;
+    /** On mobile only, use portrait crop and revert at md+. */
+    portraitOnMobile?: boolean;
   }>(),
   {
     titleSuffix: "",
     linkLabel: "Learn more",
     compact: false,
     portraitImage: false,
+    portraitOnMobile: false,
   },
 );
 
 const imageAspectClass = computed(() => {
+  if (props.portraitOnMobile && !props.compact) return "aspect-portrait md:aspect-teaser";
   if (!props.compact) return "aspect-teaser";
   return props.portraitImage ? "aspect-portrait" : "aspect-teaser";
 });

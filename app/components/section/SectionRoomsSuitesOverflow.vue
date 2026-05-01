@@ -106,6 +106,7 @@ onUnmounted(() => {
                 :image-src="room.imageSrc"
                 :image-alt="room.imageAlt"
                 link-label="View room"
+                portrait-on-mobile
               />
             </div>
             <div class="rooms-overflow-filler shrink-0" aria-hidden="true" />
@@ -155,7 +156,7 @@ onUnmounted(() => {
 }
 
 .rooms-overflow-card {
-  width: 70%;
+  width: 80%;
 }
 
 .rooms-overflow-filler {
