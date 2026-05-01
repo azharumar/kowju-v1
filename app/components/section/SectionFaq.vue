@@ -10,6 +10,7 @@ const props = withDefaults(
     items: FaqItem[];
     overline?: string;
     title?: string;
+    showFooter?: boolean;
     headingLevel?: 2 | 3 | 4;
     headingAlign?: "left" | "center" | "right";
     multiple?: boolean;
@@ -19,6 +20,7 @@ const props = withDefaults(
   {
     headingLevel: 2,
     headingAlign: "center",
+    showFooter: true,
     multiple: false,
     expandFirst: true,
   },
@@ -37,6 +39,31 @@ function panelKey(item: FaqItem, index: number) {
 
 function panelValue(index: number) {
   return String(index);
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function formatAnswer(answer: string) {
+  const escaped = escapeHtml(answer);
+  const withUrls = escaped.replace(
+    /(https?:\/\/[^\s]+)/g,
+    '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-brand-600 underline">$1</a>',
+  );
+  const withEmails = withUrls.replace(
+    /([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/g,
+    '<a href="mailto:$1" class="text-brand-600 underline">$1</a>',
+  );
+  return withEmails.replace(
+    /(\+?\d[\d\s-]{7,}\d)/g,
+    '<a href="tel:$1" class="text-brand-600 underline">$1</a>',
+  );
 }
 </script>
 
@@ -69,12 +96,22 @@ function panelValue(index: number) {
                 {{ item.question }}
               </AccordionHeader>
               <AccordionContent>
-                <p class="text-body text-muted">
-                  {{ item.answer }}
-                </p>
+                <p class="text-body text-muted" v-html="formatAnswer(item.answer)" />
               </AccordionContent>
             </AccordionPanel>
           </Accordion>
+          <BaseStack
+            v-if="showFooter"
+            class="items-center text-center"
+            rhythm="tight"
+          >
+            <p class="text-body text-muted">
+              If you have more questions, please feel free to check out our FAQ
+              section. Still curious? Feel free to reach out by email or simply
+              give reception a call.
+            </p>
+            <BaseLinkText to="/faq" label="Go to FAQ Section" />
+          </BaseStack>
         </BaseStack>
       </BaseSection>
     </BaseContainer>

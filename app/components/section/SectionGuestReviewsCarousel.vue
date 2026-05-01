@@ -26,10 +26,35 @@ const props = withDefaults(
 
 const sliderTrack = ref<HTMLElement | null>(null);
 const slideIndex = ref(0);
-const visibleSlides = 3;
+const visibleSlides = ref(3);
 const maxIndex = computed(() =>
-  Math.max(props.reviews.length - visibleSlides, 0),
+  Math.max(props.reviews.length - visibleSlides.value, 0),
 );
+
+function recomputeVisibleSlides() {
+  const element = sliderTrack.value;
+  if (!element) return;
+  const card = element.querySelector<HTMLElement>("[data-review-slide]");
+  if (!card) return;
+  const gap = Number.parseFloat(
+    window.getComputedStyle(element).columnGap || "0",
+  );
+  const step = card.offsetWidth + gap;
+  if (!step) return;
+  visibleSlides.value = Math.max(1, Math.round(element.clientWidth / step));
+  if (slideIndex.value > maxIndex.value) {
+    slideIndex.value = maxIndex.value;
+  }
+}
+
+onMounted(() => {
+  recomputeVisibleSlides();
+  window.addEventListener("resize", recomputeVisibleSlides);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", recomputeVisibleSlides);
+});
 const navDisabled = computed(() => props.reviews.length === 0);
 const currentPageLabel = computed(() =>
   String(
@@ -197,6 +222,12 @@ watch(() => props.reviews.length, () => {
 }
 
 .review-carousel-slide {
-  flex: 0 0 calc((100% - 2rem) / 3);
+  flex: 0 0 70%;
+}
+
+@media (min-width: 768px) {
+  .review-carousel-slide {
+    flex: 0 0 calc((100% - 2rem) / 3);
+  }
 }
 </style>

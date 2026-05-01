@@ -77,6 +77,27 @@
   }
 }
 
+@keyframes book-direct-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.book-direct-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: book-direct-marquee 36s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-direct-marquee-track {
+    animation: none;
+  }
+}
+
 .page-enter-active,
 .page-leave-active {
   will-change: opacity, transform, filter;

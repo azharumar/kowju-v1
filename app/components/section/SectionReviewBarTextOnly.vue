@@ -48,10 +48,10 @@ const sectionClass = computed(() =>
 
 <template>
   <BaseSection rhythm="none" :reveal="false" :class="sectionClass">
-    <BaseContainer>
+    <BaseContainer width="full">
       <div
         :class="[
-          'mx-auto grid max-w-4xl grid-cols-3 divide-x',
+          'grid min-w-0 w-full grid-cols-3 divide-x',
           isLightVariant
             ? 'divide-border'
             : isGoldVariant
@@ -61,11 +61,11 @@ const sectionClass = computed(() =>
       >
         <template v-for="item in reviewScores" :key="item.platform">
           <div
-            class="flex items-center justify-center gap-x-4 px-6 py-1 md:px-8 md:py-2"
+            class="flex min-w-0 flex-col items-start gap-1 px-2 py-3 text-left sm:gap-2 sm:px-3 md:flex-row md:items-center md:justify-center md:gap-x-4 md:px-8 md:py-2"
           >
             <span
               :class="[
-                'text-caption uppercase tracking-overline whitespace-nowrap',
+                'text-caption uppercase tracking-overline',
                 isLightVariant
                   ? 'text-text'
                   : isGoldVariant
@@ -75,15 +75,15 @@ const sectionClass = computed(() =>
             >
               {{ platformLabelMap[item.platform] }}
             </span>
-            <div class="flex flex-col justify-center">
+            <div class="flex min-w-0 flex-col items-start">
               <span
                 :class="[
-                  'text-h2 font-extrabold leading-none',
+                  'text-h3 font-extrabold leading-none sm:text-h2',
                   isLightVariant
                     ? 'text-brand-700'
                     : isGoldVariant
                       ? 'text-gold-700'
-                      : 'text-brand-400',
+                      : 'text-gold-300',
                 ]"
               >
                 {{ item.score
@@ -94,7 +94,7 @@ const sectionClass = computed(() =>
                       ? 'text-muted'
                       : isGoldVariant
                         ? 'text-warm-600'
-                        : 'text-text-inverse/80',
+                        : 'text-gold-400',
                   ]"
                 >
                   /{{ item.outOf }}</span
@@ -102,7 +102,7 @@ const sectionClass = computed(() =>
               </span>
               <span
                 :class="[
-                  'text-caption uppercase tracking-overline whitespace-nowrap',
+                  'text-caption uppercase tracking-overline',
                   isLightVariant
                     ? 'text-muted'
                     : isGoldVariant

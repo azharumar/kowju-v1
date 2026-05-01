@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import SectionBookDirectBarStrip from "./SectionBookDirectBarStrip.vue";
+
 type BookDirectBenefit = {
   label: string;
   icon?: string;
@@ -41,39 +43,49 @@ const benefits = computed(() =>
     aria-label="Why book direct benefits"
     class="border-y border-gold-200 bg-gold-50"
   >
-    <BaseContainer>
+    <div
+      class="book-direct-mobile-marquee md:hidden overflow-hidden py-1 motion-reduce:hidden"
+    >
+      <div class="book-direct-marquee-track">
+        <template v-for="dup in [0, 1]" :key="dup">
+          <div
+            class="flex shrink-0 items-center pr-12 pl-4"
+            :aria-hidden="dup === 1 ? true : undefined"
+          >
+            <SectionBookDirectBarStrip
+              :strip-label="stripLabel"
+              :benefits="benefits"
+            />
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <div
+      class="hidden overflow-x-auto py-1 motion-reduce:block md:hidden"
+      tabindex="0"
+    >
+      <div class="mx-auto w-max px-4">
+        <SectionBookDirectBarStrip
+          :strip-label="stripLabel"
+          :benefits="benefits"
+        />
+      </div>
+    </div>
+
+    <BaseContainer class="hidden md:block">
       <BaseSection
         rhythm="none"
         :reveal="false"
         class="motion-page-intro py-1 md:py-2"
       >
         <div
-          class="flex items-center justify-between py-0.5 md:py-1 text-body-sm mx-auto"
-          aria-label="Book direct benefits"
+          class="mx-auto flex items-center justify-between py-0.5 text-body-sm md:py-1"
         >
-          <div class="flex items-center">
-            <span
-              class="font-semibold uppercase tracking-overline text-brand-600"
-            >
-              {{ stripLabel }}
-            </span>
-            <span aria-hidden="true" class="mx-3 text-body text-brand-600/60"
-              >•</span
-            >
-            <template v-for="(benefit, index) in benefits" :key="benefit.label">
-              <span
-                class="whitespace-nowrap font-semibold uppercase tracking-overline text-brand-600"
-                >{{ benefit.label }}</span
-              >
-              <span
-                v-if="index < benefits.length - 1"
-                aria-hidden="true"
-                class="mx-3 text-brand-600"
-              >
-                •
-              </span>
-            </template>
-          </div>
+          <SectionBookDirectBarStrip
+            :strip-label="stripLabel"
+            :benefits="benefits"
+          />
         </div>
       </BaseSection>
     </BaseContainer>
