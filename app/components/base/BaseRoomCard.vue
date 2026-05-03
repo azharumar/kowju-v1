@@ -1,3 +1,8 @@
+<script lang="ts">
+export type { RoomCardPriceCurrency } from "./room-card-price-currencies";
+export { ROOM_CARD_PRICE_CURRENCIES } from "./room-card-price-currencies";
+</script>
+
 <script setup lang="ts">
 export type RoomCardDetail = {
   label: string;
@@ -18,12 +23,14 @@ export type RoomCardAmenityIcon = {
 
 export type RoomCardAmenityLabelVariant = "caption" | "inline" | "tooltip";
 
+const CURRENCY_ICON = "/icons/samples/currency.svg";
+
 withDefaults(
   defineProps<{
     title: string;
     description: string;
-    /** Price band, e.g. ₹4,500–6,000 (from CMS / property sheet). */
-    priceRange: string;
+    /** Indicative nightly band, formatted for the listing currency (parent owns conversion). */
+    priceBandLabel?: string;
     imageSrc: string;
     imageAlt: string;
     details: RoomCardDetail[];
@@ -32,6 +39,7 @@ withDefaults(
     amenityLabelVariant?: RoomCardAmenityLabelVariant;
   }>(),
   {
+    priceBandLabel: undefined,
     amenityIcons: () => [],
     amenityLabelVariant: "caption",
   },
@@ -46,7 +54,7 @@ function amenityLabel(item: RoomCardAmenityIcon) {
   <article
     class="motion-card-hover flex flex-col overflow-hidden rounded-2xl border border-border bg-surface md:flex-row md:items-stretch"
   >
-    <div class="relative min-h-48 shrink-0 md:w-1/2 md:min-h-0 md:self-stretch">
+    <div class="relative aspect-photo w-full shrink-0 md:w-3/5 md:self-start">
       <img
         :src="imageSrc"
         :alt="imageAlt"
@@ -57,26 +65,19 @@ function amenityLabel(item: RoomCardAmenityIcon) {
         decoding="async"
       />
     </div>
-    <div class="flex min-h-0 min-w-0 flex-1 flex-col gap-4 p-6 md:gap-5 md:p-8">
-      <div
-        class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4"
-      >
-        <h3 class="text-h5 font-semibold leading-snug text-text">
-          {{ title }}
-        </h3>
-        <div class="shrink-0 sm:text-right">
-          <p class="text-body font-semibold tabular-nums text-text">
-            {{ priceRange }}
-          </p>
-        </div>
-      </div>
+    <div
+      class="flex min-h-0 min-w-0 flex-1 flex-col gap-4 p-6 md:w-2/5 md:flex-none md:gap-5 md:p-8"
+    >
+      <h3 class="text-h5 font-semibold leading-snug text-text">
+        {{ title }}
+      </h3>
       <p
-        class="text-body leading-snug text-muted line-clamp-2"
+        class="text-body leading-snug text-muted line-clamp-3"
         :title="description"
       >
         {{ description }}
       </p>
-      <ul class="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2" role="list">
+      <ul class="flex flex-col gap-4" role="list">
         <li
           v-for="(row, index) in details"
           :key="index"
@@ -100,6 +101,22 @@ function amenityLabel(item: RoomCardAmenityIcon) {
             aria-hidden="true"
           />
           <span>{{ row.label }}</span>
+        </li>
+        <li
+          v-if="priceBandLabel"
+          class="flex items-center gap-2 text-body-sm text-muted"
+        >
+          <img
+            :src="CURRENCY_ICON"
+            alt=""
+            class="icon-tint-accent size-5 shrink-0 object-contain"
+            width="20"
+            height="20"
+            loading="lazy"
+            decoding="async"
+            role="presentation"
+          />
+          <span class="font-semibold tabular-nums">{{ priceBandLabel }}</span>
         </li>
       </ul>
       <template v-if="amenityIcons.length">

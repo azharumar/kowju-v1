@@ -9,6 +9,8 @@ export function typeStep(n: number): string {
 export const font = {
   family: {
     sans: "Montserrat, ui-sans-serif, system-ui, sans-serif",
+    serif:
+      "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
   },
   weight: {
     regular: "400",
@@ -162,7 +164,7 @@ export const semantic = {
   bg: colors.white,
   surface: {
     DEFAULT: colors.white,
-    muted: colors.warm[50],
+    muted: colors.gold[50],
   },
   text: {
     DEFAULT: colors.warm[900],
@@ -253,6 +255,7 @@ export const tailwindThemeExtend = {
   },
   fontFamily: {
     sans: [font.family.sans],
+    serif: [font.family.serif],
   },
   fontWeight: {
     bold: font.weight.bold,

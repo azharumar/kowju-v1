@@ -262,7 +262,6 @@ useSeoPage({
   />
   <LazySectionGuestReviewsCarousel :reviews="homeGuestReviews" />
   <LazySectionHotelPolicies />
-  <LazySectionThingsToDo />
   <LazySectionMeetingsEventsPromo />
   <LazySectionFaq
     overline="Frequently Asked Questions"

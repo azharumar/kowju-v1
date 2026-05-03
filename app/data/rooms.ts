@@ -50,8 +50,8 @@ export type RoomRecord = {
   imageSrc: string
   imageAlt: string
   gallery: { src: string; alt: string; width?: number; height?: number }[]
-  /** Typical rate band (property data sheet). */
-  priceRange: string
+  /** Indicative nightly band in INR; listing converts with fixed factors. */
+  priceNightlyInr: { min: number; max: number }
   details: RoomCardDetail[]
 }
 
@@ -84,7 +84,7 @@ export const rooms: RoomRecord[] = [
         items: [...ROOM_FACILITY_ITEMS],
       },
     },
-    priceRange: "₹4,500–6,000",
+    priceNightlyInr: { min: 4500, max: 6000 },
     imageSrc: "/images/rooms_suites_02_deluxe_king_room.png",
     imageAlt: "Deluxe king guest room with king bed",
     gallery: [
@@ -115,6 +115,10 @@ export const rooms: RoomRecord[] = [
     ],
     details: [
       { iconSrc: icon("king-bed.svg"), label: "1 King Bed" },
+      {
+        iconSrc: icon("check-in-door.svg"),
+        label: "Bedroom · Vestibule · Bathroom",
+      },
       { iconSrc: icon("floor-area.svg"), label: "215 sq ft" },
       { iconSrc: icon("people-group.svg"), label: "2 Adults + 2 Child" },
     ],
@@ -142,7 +146,7 @@ export const rooms: RoomRecord[] = [
         items: [...ROOM_FACILITY_ITEMS],
       },
     },
-    priceRange: "₹5,000–6,500",
+    priceNightlyInr: { min: 5000, max: 6500 },
     imageSrc: "/images/rooms_suites_04_premium_king_room.png",
     imageAlt: "Premium king room with king bed",
     gallery: [
@@ -153,6 +157,10 @@ export const rooms: RoomRecord[] = [
     ],
     details: [
       { iconSrc: icon("king-bed.svg"), label: "1 King Bed" },
+      {
+        iconSrc: icon("check-in-door.svg"),
+        label: "Bedroom · Vestibule · Bathroom",
+      },
       { iconSrc: icon("floor-area.svg"), label: "270 sq ft" },
       { iconSrc: icon("people-group.svg"), label: "2 Adults + 2 Child + 1 Extra Bed" },
     ],
@@ -180,7 +188,7 @@ export const rooms: RoomRecord[] = [
         items: [...ROOM_FACILITY_ITEMS],
       },
     },
-    priceRange: "₹5,000–6,500",
+    priceNightlyInr: { min: 5000, max: 6500 },
     imageSrc: "/images/rooms_suites_05_premium_twin_room.png",
     imageAlt: "Premium twin room with two twin beds",
     gallery: [
@@ -191,6 +199,10 @@ export const rooms: RoomRecord[] = [
     ],
     details: [
       { iconSrc: icon("twin-bed.svg"), label: "2 Twin Beds" },
+      {
+        iconSrc: icon("check-in-door.svg"),
+        label: "Bedroom · Vestibule · Bathroom",
+      },
       { iconSrc: icon("floor-area.svg"), label: "270 sq ft" },
       { iconSrc: icon("people-group.svg"), label: "2 Adults + 1 Extra Bed" },
     ],
@@ -218,7 +230,7 @@ export const rooms: RoomRecord[] = [
         items: [...ROOM_FACILITY_ITEMS],
       },
     },
-    priceRange: "₹5,500–7,000",
+    priceNightlyInr: { min: 5500, max: 7000 },
     imageSrc: "/images/rooms_suites_03_family_room.png",
     imageAlt: "Family room with king and twin beds",
     gallery: [
@@ -229,6 +241,10 @@ export const rooms: RoomRecord[] = [
     ],
     details: [
       { iconSrc: icon("multi-level-beds.svg"), label: "1 King + 1 Twin Bed" },
+      {
+        iconSrc: icon("check-in-door.svg"),
+        label: "Bedroom · Vestibule · Bathroom",
+      },
       { iconSrc: icon("floor-area.svg"), label: "325 sq ft" },
       { iconSrc: icon("people-group.svg"), label: "3 Adults + 2 Child + 1 Extra Bed" },
     ],
@@ -256,7 +272,7 @@ export const rooms: RoomRecord[] = [
         items: [...ROOM_FACILITY_ITEMS],
       },
     },
-    priceRange: "₹7,000–9,000",
+    priceNightlyInr: { min: 7000, max: 9000 },
     imageSrc: "/images/rooms_suites_06_suites_room.png",
     imageAlt: "Suite with separate living area and bedroom",
     gallery: [
@@ -267,6 +283,10 @@ export const rooms: RoomRecord[] = [
     ],
     details: [
       { iconSrc: icon("king-bed.svg"), label: "1 King Bed" },
+      {
+        iconSrc: icon("sofa.svg"),
+        label: "Bedroom · Living room · Vestibule · Bathroom",
+      },
       { iconSrc: icon("floor-area.svg"), label: "430 sq ft" },
       { iconSrc: icon("people-group.svg"), label: "2 Adults + 2 Child + 1 Extra Bed" },
     ],

@@ -1,3 +1,4 @@
+import { locationDetailPaths } from "./app/data/locations";
 import { offers } from "./app/data/offers";
 import { rooms } from "./app/data/rooms";
 
@@ -41,6 +42,7 @@ export default defineNuxtConfig({
       "/",
       "/amenities",
       "/contact",
+      "/location",
       "/dining",
       "/meetings-events",
       "/hotel-policies",
@@ -49,6 +51,7 @@ export default defineNuxtConfig({
       "/offers",
       ...rooms.map((room) => `/rooms/${room.slug}`),
       ...offers.map((offer) => `/offers/${offer.slug}`),
+      ...locationDetailPaths(),
     ],
   },
   fonts: {

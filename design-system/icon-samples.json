@@ -63,6 +63,7 @@
     { "file": "thermostat.svg", "label": "Thermostat / Dial control", "icon": "Gauge" },
     { "file": "air-conditioning.svg", "label": "Air conditioning", "icon": "AirVent" },
     { "file": "wifi.svg", "label": "Wi‑Fi", "icon": "Wifi" },
-    { "file": "car.svg", "label": "Car", "icon": "CarFront" }
+    { "file": "car.svg", "label": "Car", "icon": "CarFront" },
+    { "file": "currency.svg", "label": "Currency / indicative rates", "icon": "CircleDollarSign" }
   ]
 }

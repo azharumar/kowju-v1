@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * Retired: not mounted on the homepage. File kept for reuse or reference.
+ * Was: local attractions grid from `~/data/local-attractions`.
+ */
 import { localAttractions } from "~/data/local-attractions";
 </script>
 

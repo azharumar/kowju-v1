@@ -16,6 +16,9 @@ import type {
   RoomCardAmenityIcon,
   RoomCardDetail,
 } from "~/components/base/BaseRoomCard.vue";
+import { ROOM_CARD_PRICE_CURRENCIES } from "~/components/base/room-card-price-currencies";
+import type { RoomCardPriceCurrency } from "~/components/base/room-card-price-currencies";
+import { formatRoomNightlyBand } from "~/utils/room-price-format";
 import iconSamplesManifest from "~~/design-system/icon-samples.json";
 
 const faqSamples: FaqItem[] = [
@@ -83,9 +86,23 @@ const amenitiesFeatureItems = [
 
 const roomCardDemoDetails: RoomCardDetail[] = [
   { iconSrc: "/icons/samples/king-bed.svg", label: "1 King Bed" },
+  {
+    iconSrc: "/icons/samples/check-in-door.svg",
+    label: "Bedroom · Vestibule · Bathroom",
+  },
   { iconSrc: "/icons/samples/floor-area.svg", label: "215 sq ft" },
   { iconSrc: "/icons/samples/people-group.svg", label: "2 Adults + 2 Child" },
 ];
+
+const roomCardDemoListingCurrency = ref<RoomCardPriceCurrency>("INR");
+const roomCardDemoPriceInr = { min: 4500, max: 6000 };
+const roomCardDemoPriceLabel = computed(() =>
+  formatRoomNightlyBand(
+    roomCardDemoPriceInr.min,
+    roomCardDemoPriceInr.max,
+    roomCardDemoListingCurrency.value,
+  ),
+);
 
 const roomCardDemoAmenities: RoomCardAmenityIcon[] = [
   { src: "/icons/samples/wifi.svg", alt: "Wi-Fi internet access", label: "Wi-Fi" },
@@ -614,10 +631,38 @@ useSeoPage({
                   <h3 class="mb-4 text-h5 font-semibold text-text">
                     Room card
                   </h3>
+                  <div
+                    class="mb-6 flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <p class="text-body-sm text-muted">
+                      Listing currency (same pattern as /rooms)
+                    </p>
+                    <fieldset>
+                      <legend class="sr-only">Demo currency</legend>
+                      <div class="flex flex-wrap gap-2" role="radiogroup">
+                        <button
+                          v-for="code in ROOM_CARD_PRICE_CURRENCIES"
+                          :key="code"
+                          type="button"
+                          role="radio"
+                          :aria-checked="roomCardDemoListingCurrency === code"
+                          class="rounded-md border px-3 py-2 text-body-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+                          :class="
+                            roomCardDemoListingCurrency === code
+                              ? 'border-brand-600 bg-brand-50 font-semibold text-brand-700'
+                              : 'border-border bg-surface text-muted hover:border-warm-300 hover:text-text'
+                          "
+                          @click="roomCardDemoListingCurrency = code"
+                        >
+                          {{ code }}
+                        </button>
+                      </div>
+                    </fieldset>
+                  </div>
                   <BaseRoomCard
                     title="Deluxe King Room"
                     description="This 215 square feet Deluxe King Room features a comfortable king bed. It can accommodate two adults and two children."
-                    price-range="₹4,500–6,000"
+                    :price-band-label="roomCardDemoPriceLabel"
                     image-src="/images/deluxe_king_room_01.png"
                     image-alt="Deluxe king guest room with king bed and seating area"
                     :details="roomCardDemoDetails"

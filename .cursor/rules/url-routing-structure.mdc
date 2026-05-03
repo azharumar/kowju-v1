@@ -44,6 +44,10 @@ Single source of truth for URL patterns on mid-scale airport hotel sites (Nuxt +
 - Listing: all offers (`/offers`).
 - Detail: one offer, including direct-booking benefits in **data**, same URL pattern (`/offers/[slug]`).
 
+#### Nearby locations (stub)
+
+- Detail only: one place note (`/locations/[slug]`). Optional listing route only if product adds `/locations`.
+
 ## 3. Final URL Structure
 
 ### Static
@@ -56,6 +60,7 @@ Single source of truth for URL patterns on mid-scale airport hotel sites (Nuxt +
 | `/amenities` |
 | `/privacy-policy` |
 | `/contact` |
+| `/location` |
 | `/hotel-policies` |
 
 ### Dynamic
@@ -68,6 +73,7 @@ Single source of truth for URL patterns on mid-scale airport hotel sites (Nuxt +
 | `/blog/[slug]` |
 | `/offers` |
 | `/offers/[slug]` |
+| `/locations/[slug]` |
 
 ## 4. Nuxt Folder Structure
 
@@ -81,6 +87,7 @@ pages/
   amenities.vue
   privacy-policy.vue
   contact.vue
+  location.vue
   hotel-policies.vue
   rooms/
     index.vue
@@ -90,6 +97,8 @@ pages/
     [slug].vue
   offers/
     index.vue
+    [slug].vue
+  locations/
     [slug].vue
 ```
 

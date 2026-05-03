@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import type { RoomCardAmenityIcon } from "~/components/base/BaseRoomCard.vue";
+import { ROOM_CARD_PRICE_CURRENCIES } from "~/components/base/room-card-price-currencies";
+import type { RoomCardPriceCurrency } from "~/components/base/room-card-price-currencies";
 import SectionBookDirectBar from "~/components/section/SectionBookDirectBar.vue";
 import SectionReviewBarTextOnly from "~/components/section/SectionReviewBarTextOnly.vue";
 import { rooms } from "~/data/rooms";
+import { formatRoomNightlyBand } from "~/utils/room-price-format";
 
 const roomsFaqItems = [
   {
@@ -97,6 +100,16 @@ const orderedRooms = computed(() =>
   [...rooms].sort((a, b) => a.order - b.order),
 );
 
+const listingCurrency = ref<RoomCardPriceCurrency>("INR");
+
+function roomPriceLabel(room: (typeof rooms)[number]) {
+  return formatRoomNightlyBand(
+    room.priceNightlyInr.min,
+    room.priceNightlyInr.max,
+    listingCurrency.value,
+  );
+}
+
 const roomsAboutParagraphs = [
   "Our rooms and suites are designed for travelers who need comfort, calm, and practical convenience near the airport.",
   "Each space combines modern essentials, restful interiors, and flexible layouts to support short stopovers, business trips, and family stays.",
@@ -132,6 +145,38 @@ const roomsAboutParagraphs = [
         class="motion-page-intro"
       >
         <BaseStack>
+          <div
+            class="flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+          >
+            <p class="text-body-sm text-muted">
+              Indicative nightly rates (before taxes and fees)
+            </p>
+            <fieldset class="min-w-0">
+              <legend class="sr-only">Display currency</legend>
+              <div
+                class="flex flex-wrap gap-2"
+                role="radiogroup"
+                aria-label="Display currency"
+              >
+                <button
+                  v-for="code in ROOM_CARD_PRICE_CURRENCIES"
+                  :key="code"
+                  type="button"
+                  role="radio"
+                  :aria-checked="listingCurrency === code"
+                  class="rounded-md border px-3 py-2 text-body-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
+                  :class="
+                    listingCurrency === code
+                      ? 'border-brand-600 bg-brand-50 font-semibold text-brand-700'
+                      : 'border-border bg-surface text-muted hover:border-warm-300 hover:text-text'
+                  "
+                  @click="listingCurrency = code"
+                >
+                  {{ code }}
+                </button>
+              </div>
+            </fieldset>
+          </div>
           <BaseScrollReveal
             v-for="(room, index) in orderedRooms"
             :id="room.slug"
@@ -144,7 +189,7 @@ const roomsAboutParagraphs = [
                 v-if="index < 2 || shouldRender"
                 :title="room.title"
                 :description="room.description"
-                :price-range="room.priceRange"
+                :price-band-label="roomPriceLabel(room)"
                 :image-src="room.imageSrc"
                 :image-alt="room.imageAlt"
                 :details="room.details"

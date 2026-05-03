@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import {
+  diningOverviewCtaPrimary,
+  diningOverviewCtaSecondary,
+  diningOverviewDetailRows,
+  diningOverviewIntroParagraphs,
+  diningOverviewOverline,
+  diningOverviewTitle,
+} from "~/data/dining-overview";
+
 const diningFaqItems = [
   {
     question: 'What are the restaurant opening hours?',
@@ -39,7 +48,7 @@ const heroImage = diningGalleryImages[0]
 useSeoPage({
   title: 'Dining',
   description:
-    'Fresh flavors and all-day options from quick bites to relaxed dining experiences.',
+    'All-day restaurant dining with Indian, Chinese, and continental cuisine. Vegetarian, non-vegetarian, and Jain options on request. Breakfast buffet and à la carte.',
   path: '/dining',
   image: heroImage?.src ?? '/images/dining_experience_01.png',
   imageAlt: heroImage?.alt ?? 'Dining experience at the hotel',
@@ -53,6 +62,15 @@ useSeoPage({
       lead="Fresh flavors and all-day options, from quick bites to relaxed meals."
       :image-src="heroImage?.src ?? '/images/dining_experience_01.png'"
       :image-alt="heroImage?.alt ?? 'Dining experience at the hotel'"
+    />
+    <LazySectionTwoColumnDiningOverview
+      id="restaurant"
+      :overline="diningOverviewOverline"
+      :title="diningOverviewTitle"
+      :intro-paragraphs="diningOverviewIntroParagraphs"
+      :detail-rows="diningOverviewDetailRows"
+      :cta-primary="diningOverviewCtaPrimary"
+      :cta-secondary="diningOverviewCtaSecondary"
     />
     <LazySectionRoomGallery
       :images="diningGalleryImages"

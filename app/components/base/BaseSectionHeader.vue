@@ -6,6 +6,8 @@ const props = withDefaults(
     overline?: string;
     overlineClass?: string;
     title?: string;
+    /** Optional DOM id on the heading (e.g. for `aria-labelledby` on a region). */
+    titleId?: string;
     lead?: string;
     align?: SectionHeaderAlign;
     dividers?: boolean;
@@ -56,6 +58,7 @@ const showLead = computed(() => Boolean(props.lead) || Boolean(slots.lead));
     <component
       :is="heading.tag"
       v-if="title || $slots.default"
+      :id="titleId"
       :class="[heading.class, 'font-sans font-bold text-balance text-text']"
     >
       <slot>{{ title }}</slot>

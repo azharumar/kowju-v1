@@ -35,7 +35,7 @@ Before adding new primitives or one-off markup for a section, **search this proj
 | **BaseButtonPrimary** | `base/BaseButtonPrimary.vue` | Primary filled button (default emphasis). |
 | **BaseButtonSecondary** | `base/BaseButtonSecondary.vue` | Secondary severity button. |
 | **BaseButtonOutlined** | `base/BaseButtonOutlined.vue` | Outlined button. |
-| **BaseLinkText** | `base/BaseLinkText.vue` | Text link with arrow. Props: `to` (for links), `label` (default `"Learn more"`), `variant` (`default` | `label`), `as` (`link` | `text`) for non-link visual use. |
+| **BaseLinkText** | `base/BaseLinkText.vue` | Text link with trailing icon. Props: `to`, `label` (default `"Learn more"`), `as` (`link` | `text`), `trailingIcon` (`arrow` \| `download`), `external` (NuxtLink). |
 | **BaseGalleryLightbox** | `base/BaseGalleryLightbox.vue` | Full-screen PrimeVue `Drawer` + `Galleria` with thumbnails: `images` (`src`, `alt`, optional `width`/`height`), `v-model:visible`, optional `drawerId` (for `aria-controls`), optional `startIndex`. |
 
 ## Content patterns
@@ -50,8 +50,10 @@ Before adding new primitives or one-off markup for a section, **search this proj
 | **SectionTwoColumnFeatureList** | `section/SectionTwoColumnFeatureList.vue` | Reusable two-column media + content section with paragraphs, optional icon feature list, configurable image aspect ratio, and `copy`/`details` slots for overrides. |
 | **SectionTwoColumnAbout** | `section/SectionTwoColumnAbout.vue` | Reusable two-column about block for landing pages. Left column renders section heading; right column renders paragraphs and optional facts grid. |
 | **SectionTwoColumnMediaText** | `section/SectionTwoColumnMediaText.vue` | Media + text columns (`md`: **3/5** media, **2/5** copy): `imageSrc` / `imageAlt`, `overline` (with **BaseOverline** dividers), `title`, `description`, optional **BaseLinkText** (`ctaTo`, `ctaLabel`). Prop **`reversed`** swaps columns from `md`. Optional `id`, `headingLevel` (`2`–`4`, **BaseSectionHeader**), `imageLoading`. |
+| **SectionTwoColumnDiningOverview** | `section/SectionTwoColumnDiningOverview.vue` | Conversion-first dining block: **BaseSectionHeader** (`overline`, `title` as `h2`, optional `titleId` via `BaseSectionHeader`), `introParagraphs[]`, **BaseButtonPrimary** + **BaseButtonSecondary** (`ctaPrimary` / `ctaSecondary`, `NuxtLink` + `external`), right column `detailRows` (`term` / `value`) as `<dl>`. Props: `id`, `overline` (default **Restaurant**). Data: `data/dining-overview`. |
 | **SectionExploreSite** | `section/SectionExploreSite.vue` | Internal-linking block: Rooms / Dining / Meetings & Events teasers from `data/explore-site-teasers`. Optional `exclude` (`rooms` \| `dining` \| `venues`); grid columns follow visible count. |
-| **SectionThingsToDo** | `section/SectionThingsToDo.vue` | Local attractions grid: overline + title, cards from `data/local-attractions` (image, title, body, map-marker + distance/time). |
+| **SectionThingsToDo** | `section/SectionThingsToDo.vue` | **Retired** (not used on `pages/index.vue`; file retained). Was: local attractions grid from `data/local-attractions` (image, title, body, map-marker + distance/time). |
+| **SectionFooterLocation** | `section/SectionFooterLocation.vue` | Footer “from the front desk” nearby strip: dashed frame, copy `data/footer-journeys`, Intro block: hotel **Open in Maps** (`sameAs` / fallback) + **Explore location** → `/location` under the serif paragraph; then `data/locations` grid (`sm:` two columns, `border-warm-200` cell dividers); stamp `public/images/kondotty-stamp.png`; coords from `useHotel()`. |
 
 ## Reuse workflow (new section)
 

@@ -6,18 +6,37 @@ type ReviewScore = {
   score: string;
   outOf: string;
   descriptor: string;
+  /** Total reviews on the platform (dummy in defaults; pass from CMS later). */
+  reviewCount?: number;
 };
 
 const defaultScores: ReviewScore[] = [
-  { platform: "google", score: "4.6", outOf: "5", descriptor: "Excellent" },
+  {
+    platform: "google",
+    score: "4.6",
+    outOf: "5",
+    descriptor: "Excellent",
+    reviewCount: 1246,
+  },
   {
     platform: "tripadvisor",
     score: "4.5",
     outOf: "5",
     descriptor: "Very Good",
+    reviewCount: 892,
   },
-  { platform: "booking", score: "8.9", outOf: "10", descriptor: "Superb" },
+  {
+    platform: "booking",
+    score: "8.9",
+    outOf: "10",
+    descriptor: "Superb",
+    reviewCount: 2156,
+  },
 ];
+
+function formatReviewCount(count: number) {
+  return new Intl.NumberFormat("en-US").format(count);
+}
 
 const props = defineProps<{
   scores?: ReviewScore[];
@@ -76,7 +95,7 @@ const sectionClass = computed(() =>
               >
                 {{ platformLabelMap[item.platform] }}
               </span>
-              <div class="flex min-w-0 flex-col items-center sm:items-start">
+              <div class="flex min-w-0 flex-col items-center gap-1 sm:items-start">
                 <span
                   :class="[
                     'text-h3 font-extrabold leading-none sm:text-h2',
@@ -100,6 +119,19 @@ const sectionClass = computed(() =>
                   >
                     /{{ item.outOf }}</span
                   >
+                </span>
+                <span
+                  v-if="item.reviewCount != null"
+                  :class="[
+                    'text-body-sm font-medium tabular-nums',
+                    isLightVariant
+                      ? 'text-text'
+                      : isGoldVariant
+                        ? 'text-warm-800'
+                        : 'text-text-inverse/85',
+                  ]"
+                >
+                  {{ formatReviewCount(item.reviewCount) }} reviews
                 </span>
                 <span
                   :class="[

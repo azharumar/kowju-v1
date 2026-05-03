@@ -24,77 +24,80 @@ const socialLinks = [
 </script>
 
 <template>
-  <footer class="site-chrome bg-brand-900 pt-10 text-text-inverse md:pt-12">
-    <BaseContainer>
-      <div class="grid gap-8 md:grid-cols-3 md:gap-10">
-        <div class="flex flex-col items-start gap-4">
-          <img
-            src="/kowju-airport-hotel-calicut-logo.svg"
-            alt="Kowju Airport Hotel Calicut"
-            class="h-12 w-auto self-start brightness-0 invert"
-            decoding="async"
-          />
-          <p class="text-body text-text-inverse/90">
-            Comfortable rooms, practical amenities, and seamless airport access.
-          </p>
-          <div class="flex flex-col gap-1 text-body">
-            <a class="hover:text-gold-200" :href="`tel:${hotel.telephone}`">
-              {{ hotel.telephoneDisplay }}
-            </a>
-            <a class="hover:text-gold-200" :href="`mailto:${hotel.email}`">
-              {{ hotel.email }}
-            </a>
+  <footer class="site-chrome">
+    <SectionFooterLocation />
+    <div class="bg-brand-900 pt-10 text-text-inverse md:pt-12">
+      <BaseContainer>
+        <div class="grid gap-8 md:grid-cols-3 md:gap-10">
+          <div class="flex flex-col items-start gap-4">
+            <img
+              src="/kowju-airport-hotel-calicut-logo.svg"
+              alt="Kowju Airport Hotel Calicut"
+              class="h-12 w-auto self-start brightness-0 invert"
+              decoding="async"
+            />
+            <p class="text-body text-text-inverse/90">
+              Comfortable rooms, practical amenities, and seamless airport access.
+            </p>
+            <div class="flex flex-col gap-1 text-body">
+              <a class="hover:text-gold-200" :href="`tel:${hotel.telephone}`">
+                {{ hotel.telephoneDisplay }}
+              </a>
+              <a class="hover:text-gold-200" :href="`mailto:${hotel.email}`">
+                {{ hotel.email }}
+              </a>
+            </div>
+            <div class="flex flex-wrap gap-3 text-body">
+              <NuxtLink
+                v-for="item in socialLinks"
+                :key="item.label"
+                :to="item.to"
+                external
+                :aria-label="item.label"
+                class="inline-flex items-center justify-center text-body text-text-inverse transition-colors hover:text-gold-200"
+              >
+                <i :class="[item.icon, 'text-xl']" aria-hidden="true" />
+              </NuxtLink>
+            </div>
           </div>
-          <div class="flex flex-wrap gap-3 text-body">
+
+          <div class="flex flex-col gap-3">
+            <p class="text-body font-semibold">Explore</p>
             <NuxtLink
-              v-for="item in socialLinks"
-              :key="item.label"
+              v-for="item in footerPrimaryLinks"
+              :key="item.to"
               :to="item.to"
-              external
-              :aria-label="item.label"
-              class="inline-flex items-center justify-center text-body text-text-inverse transition-colors hover:text-gold-200"
+              class="text-body text-text-inverse/90 hover:text-gold-200"
             >
-              <i :class="[item.icon, 'text-xl']" aria-hidden="true" />
+              {{ item.label }}
             </NuxtLink>
           </div>
-        </div>
 
-        <div class="flex flex-col gap-3">
-          <p class="text-body font-semibold">Explore</p>
-          <NuxtLink
-            v-for="item in footerPrimaryLinks"
-            :key="item.to"
-            :to="item.to"
-            class="text-body text-text-inverse/90 hover:text-gold-200"
-          >
-            {{ item.label }}
-          </NuxtLink>
-        </div>
+          <div class="flex flex-col gap-3">
+            <p class="text-body font-semibold">Guest Information</p>
+            <NuxtLink
+              v-for="item in footerSecondaryLinks"
+              :key="item.to"
+              :to="item.to"
+              class="text-body text-text-inverse/90 hover:text-gold-200"
+            >
+              {{ item.label }}
+            </NuxtLink>
+          </div>
 
-        <div class="flex flex-col gap-3">
-          <p class="text-body font-semibold">Guest Information</p>
-          <NuxtLink
-            v-for="item in footerSecondaryLinks"
-            :key="item.to"
-            :to="item.to"
-            class="text-body text-text-inverse/90 hover:text-gold-200"
-          >
-            {{ item.label }}
-          </NuxtLink>
-        </div>
-
-        <div class="border-t border-white/10 md:col-span-3 py-3 md:py-4">
-          <div
-            class="flex flex-col gap-1 text-body-sm text-text-inverse/70 md:flex-row md:items-center md:justify-between"
-          >
-            <p>
-              &copy; {{ new Date().getFullYear() }} {{ hotel.name }}. All rights
-              reserved.
-            </p>
-            <p>Website by Portico Webworks.</p>
+          <div class="border-t border-white/10 md:col-span-3 py-3 md:py-4">
+            <div
+              class="flex flex-col gap-1 text-body-sm text-text-inverse/70 md:flex-row md:items-center md:justify-between"
+            >
+              <p>
+                &copy; {{ new Date().getFullYear() }} {{ hotel.name }}. All rights
+                reserved.
+              </p>
+              <p>Website by Portico Webworks.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </BaseContainer>
+      </BaseContainer>
+    </div>
   </footer>
 </template>
