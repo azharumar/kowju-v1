@@ -11,7 +11,7 @@
   </header>
   <div
     :class="[
-      'motion-interactive sticky top-0 z-raised bg-surface-muted/30 backdrop-blur-lg hover:bg-surface-muted',
+      'motion-interactive sticky top-0 z-raised bg-gold-50/30 backdrop-blur-lg hover:bg-gold-50/80',
       { 'header-scroll-down': isScrollingDown },
     ]"
   >

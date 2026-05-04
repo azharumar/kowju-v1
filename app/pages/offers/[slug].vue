@@ -13,7 +13,7 @@ if (!offer) {
 
 useSeoPage({
   title: offer.title,
-  description: `Discover details and benefits included in our ${offer.title.toLowerCase()} package.`,
+  description: offer.description,
   path: `/offers/${offer.slug}`,
   image: offer.imageSrc,
   imageAlt: offer.imageAlt,
@@ -28,7 +28,7 @@ useHead({
         "@context": "https://schema.org",
         "@type": "Offer",
         name: offer.title,
-        description: `Discover details and benefits included in our ${offer.title.toLowerCase()} package.`,
+        description: offer.description,
         url: offerUrl,
         image: new URL(offer.imageSrc, hotel.url).toString(),
         seller: {
@@ -46,10 +46,9 @@ useHead({
   <div>
     <SectionPageHero
       :title="offer.title"
-      :lead="`Discover details and benefits included in our ${offer.title.toLowerCase()} package.`"
+      :lead="offer.description"
       :image-src="offer.imageSrc"
       :image-alt="offer.imageAlt"
     />
-    <LazySectionExploreSite />
   </div>
 </template>

@@ -224,12 +224,12 @@ const roomsAboutParagraphs = [
         </BaseStack>
       </BaseSection>
     </BaseContainer>
+    <LazySectionRoomOffers />
     <LazySectionHotelPolicies />
     <LazySectionFaq
       overline="Frequently Asked Questions"
       title="Common questions about our rooms and suites"
       :items="roomsFaqItems"
     />
-    <LazySectionExploreSite exclude="rooms" />
   </div>
 </template>

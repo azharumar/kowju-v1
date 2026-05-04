@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import {
+  computed,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
 import Button from "primevue/button";
 
 export interface GuestReviewItem {
@@ -160,12 +167,12 @@ watch(() => props.reviews.length, () => {
               v-for="(item, index) in reviews"
               :key="panelKey(item, index)"
               data-review-slide
-              class="review-carousel-slide flex min-h-4xs snap-start flex-col rounded-lg border border-border bg-surface p-5"
+              class="review-carousel-slide flex min-h-4xs snap-start flex-col rounded-2xl border border-gold-200 bg-gold-100 p-5"
             >
               <div class="mb-4 text-caption text-gold-500">{{ starLabel(item.rating) }}</div>
               <h3 class="text-h4 text-text">{{ item.title }}</h3>
               <p class="mt-3 flex-1 text-body text-muted">{{ item.review }}</p>
-              <div class="mt-5 border-t border-border pt-4">
+              <div class="mt-5 border-t border-gold-200 pt-4">
                 <div class="flex items-center gap-3">
                   <span
                     class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-caption text-text-inverse"

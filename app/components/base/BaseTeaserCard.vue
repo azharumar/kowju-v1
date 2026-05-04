@@ -12,7 +12,7 @@ const props = withDefaults(
     compact?: boolean;
     /** When compact, use portrait crop only if true (e.g. three-column grid). */
     portraitImage?: boolean;
-    /** On mobile only, use portrait crop and revert at md+. */
+    /** Below md, portrait crop; at md+ matches `portraitImage` when compact, else landscape teaser. */
     portraitOnMobile?: boolean;
   }>(),
   {
@@ -27,16 +27,21 @@ const props = withDefaults(
 const imageAspectClass = computed(() => {
   if (props.portraitOnMobile && !props.compact) return "aspect-portrait md:aspect-teaser";
   if (!props.compact) return "aspect-teaser";
+  if (props.portraitOnMobile && !props.portraitImage) {
+    return "aspect-portrait md:aspect-teaser";
+  }
   return props.portraitImage ? "aspect-portrait" : "aspect-teaser";
 });
 
 const imageWidth = computed(() => {
   if (!props.compact) return 800;
-  return props.portraitImage ? 600 : 800;
+  if (props.portraitImage || props.portraitOnMobile) return 600;
+  return 800;
 });
 const imageHeight = computed(() => {
   if (!props.compact) return 500;
-  return props.portraitImage ? 800 : 500;
+  if (props.portraitImage || props.portraitOnMobile) return 800;
+  return 500;
 });
 </script>
 

@@ -44,6 +44,5 @@ useSeoPage({
     title="Common questions about our facilities"
     :items="amenitiesFaqItems"
     />
-    <LazySectionExploreSite />
   </div>
 </template>

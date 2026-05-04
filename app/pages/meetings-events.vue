@@ -147,6 +147,5 @@ useSeoPage({
     title="Common questions about our meeting and event spaces"
     :items="meetingsFaqItems"
     />
-    <LazySectionExploreSite exclude="venues" />
   </div>
 </template>

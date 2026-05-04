@@ -40,6 +40,7 @@ export type RoomRecord = {
       occupancy: string
       bedding: string
       size: string
+      layout: string
     }
     paragraphs: string[]
     facilities: {
@@ -73,6 +74,7 @@ export const rooms: RoomRecord[] = [
         occupancy: "2 Adults + 2 Child",
         bedding: "01 King Bed",
         size: "215 sqft",
+        layout: "Studio",
       },
       paragraphs: [
         "Designed for short stays, business travel, and airport transit, the Deluxe King Room offers a calm and well balanced environment just 10 minutes from Calicut International Airport.",
@@ -135,6 +137,7 @@ export const rooms: RoomRecord[] = [
         occupancy: "2 Adults + 2 Child + 1 Extra Bed",
         bedding: "01 King Bed",
         size: "270 sqft",
+        layout: "Studio",
       },
       paragraphs: [
         "The Premium King Room offers extra floor area for guests who prefer more space while staying close to the airport.",
@@ -177,6 +180,7 @@ export const rooms: RoomRecord[] = [
         occupancy: "2 Adults + 1 Extra Bed",
         bedding: "02 Twin Beds",
         size: "270 sqft",
+        layout: "Studio",
       },
       paragraphs: [
         "The Premium Twin Room is designed for guests who prefer separate bedding without compromising on comfort or space.",
@@ -219,6 +223,7 @@ export const rooms: RoomRecord[] = [
         occupancy: "3 Adults + 2 Child + 1 Extra Bed",
         bedding: "01 King + 01 Twin Bed",
         size: "325 sqft",
+        layout: "Studio",
       },
       paragraphs: [
         "The Family Room provides additional space and mixed bedding for group and family travel near Calicut airport.",
@@ -261,6 +266,7 @@ export const rooms: RoomRecord[] = [
         occupancy: "2 Adults + 2 Child + 1 Extra Bed",
         bedding: "01 King Bed",
         size: "430 sqft",
+        layout: "Living + bedroom",
       },
       paragraphs: [
         "The Kowju Suite offers generous space with separate living and sleeping zones for longer or more relaxed stays.",

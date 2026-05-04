@@ -11,6 +11,8 @@ const props = withDefaults(
     description: string;
     ctaTo?: RouteLocationRaw;
     ctaLabel?: string;
+    ctaExternal?: boolean;
+    ctaTrailingIcon?: "arrow" | "download";
     /** When true, media column is on the right and text on the left at `md` and up. */
     reversed?: boolean;
     headingLevel?: 2 | 3 | 4;
@@ -21,6 +23,8 @@ const props = withDefaults(
     reversed: false,
     headingLevel: 2,
     imageLoading: "lazy",
+    ctaExternal: false,
+    ctaTrailingIcon: "arrow",
   },
 );
 
@@ -85,6 +89,8 @@ const { rootRef: sectionRoot, isVisible } = useScrollReveal();
               :data-visible="isVisible"
               :to="ctaTo"
               :label="ctaLabel ?? 'Learn more'"
+              :external="ctaExternal"
+              :trailing-icon="ctaTrailingIcon"
             />
           </div>
         </BaseGrid>

@@ -33,14 +33,6 @@ export const diningOverviewCtaPrimary: {
   to: "/documents/restaurant-menu.pdf",
 };
 
-export const diningOverviewCtaSecondary: {
-  label: string;
-  to: RouteLocationRaw;
-} = {
-  label: "In-Room Dining Menu",
-  to: "/documents/in-room-dining-menu.pdf",
-};
-
 /*
  * SEO-first intro (landing / long-form), optional:
  * "Enjoy all-day dining at our restaurant with a wide selection of Indian,

@@ -68,6 +68,7 @@ useHead({
       :about="room.about"
     />
     <LazySectionRoomGallery :images="room.gallery" />
+    <LazySectionRoomOffers />
     <LazySectionRoomAdjacent
       :previous-room="adjacentRooms.previous"
       :next-room="adjacentRooms.next"

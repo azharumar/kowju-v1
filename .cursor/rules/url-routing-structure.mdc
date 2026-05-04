@@ -62,6 +62,7 @@ Single source of truth for URL patterns on mid-scale airport hotel sites (Nuxt +
 | `/contact` |
 | `/location` |
 | `/hotel-policies` |
+| `/book-direct` |
 
 ### Dynamic
 
@@ -89,6 +90,7 @@ pages/
   contact.vue
   location.vue
   hotel-policies.vue
+  book-direct.vue
   rooms/
     index.vue
     [slug].vue

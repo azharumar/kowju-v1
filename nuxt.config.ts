@@ -8,13 +8,36 @@ const isIndexable =
     ? isProduction
     : process.env.NUXT_SITE_INDEXABLE === "true";
 
+const staticRoutes = [
+  "/",
+  "/amenities",
+  "/book-direct",
+  "/contact",
+  "/location",
+  "/dining",
+  "/meetings-events",
+  "/hotel-policies",
+  "/privacy-policy",
+  "/faq",
+  "/rooms",
+  "/offers",
+];
+
+const dynamicRoutes = [
+  ...rooms.map((room) => `/rooms/${room.slug}`),
+  ...offers.map((offer) => `/offers/${offer.slug}`),
+  ...locationDetailPaths(),
+];
+
+const allRoutes = [...staticRoutes, ...dynamicRoutes];
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   app: {
     pageTransition: { name: "page" },
   },
-  devtools: { enabled: true },
+  devtools: { enabled: !isProduction },
   css: ["~/assets/css/main.css"],
   modules: [
     "@nuxt/fonts",
@@ -31,28 +54,25 @@ export default defineNuxtConfig({
     url: "https://kowjuhotels.com",
     name: "Kowju Airport Hotel Calicut",
   },
+  // Static-first rendering: every known route is pre-built into HTML at build time.
+  // Anything else still SSRs on demand. Mirrors Astro's "ship HTML, hydrate islands" model.
   routeRules: {
-    "/design-system": { robots: false },
+    "/design-system": { robots: false, prerender: false },
+    ...Object.fromEntries(allRoutes.map((path) => [path, { prerender: true }])),
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      failOnError: false,
+      routes: allRoutes,
+    },
+    compressPublicAssets: { gzip: true, brotli: true },
   },
   robots: {
     disallow: isIndexable ? [] : ["/"],
   },
   sitemap: {
-    urls: [
-      "/",
-      "/amenities",
-      "/contact",
-      "/location",
-      "/dining",
-      "/meetings-events",
-      "/hotel-policies",
-      "/privacy-policy",
-      "/rooms",
-      "/offers",
-      ...rooms.map((room) => `/rooms/${room.slug}`),
-      ...offers.map((offer) => `/offers/${offer.slug}`),
-      ...locationDetailPaths(),
-    ],
+    urls: allRoutes,
   },
   fonts: {
     families: [
@@ -67,12 +87,27 @@ export default defineNuxtConfig({
   },
   experimental: {
     serverAppConfig: false,
+    payloadExtraction: true,
+    headNext: true,
+  },
+  features: {
+    inlineStyles: true,
   },
   primevue: {
     importTheme: { from: "~/themes/kowju.preset.ts" },
     options: {
-      ripple: true,
+      ripple: false,
       inputVariant: "filled",
     },
+  },
+  vite: {
+    build: {
+      target: "esnext",
+      cssMinify: "lightningcss",
+    },
+  },
+  sourcemap: {
+    server: false,
+    client: false,
   },
 });

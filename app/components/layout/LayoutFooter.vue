@@ -3,6 +3,7 @@ const hotel = useHotel();
 
 const footerPrimaryLinks = [
   { label: "Rooms & Suites", to: "/rooms" },
+  { label: "Book direct", to: "/book-direct" },
   { label: "Meetings & Events", to: "/meetings-events" },
   { label: "Dining", to: "/dining" },
   { label: "Amenities", to: "/amenities" },
@@ -25,7 +26,6 @@ const socialLinks = [
 
 <template>
   <footer class="site-chrome">
-    <SectionFooterLocation />
     <div class="bg-brand-900 pt-10 text-text-inverse md:pt-12">
       <BaseContainer>
         <div class="grid gap-8 md:grid-cols-3 md:gap-10">
@@ -37,7 +37,8 @@ const socialLinks = [
               decoding="async"
             />
             <p class="text-body text-text-inverse/90">
-              Comfortable rooms, practical amenities, and seamless airport access.
+              Comfortable rooms, practical amenities, and seamless airport
+              access.
             </p>
             <div class="flex flex-col gap-1 text-body">
               <a class="hover:text-gold-200" :href="`tel:${hotel.telephone}`">
@@ -90,8 +91,8 @@ const socialLinks = [
               class="flex flex-col gap-1 text-body-sm text-text-inverse/70 md:flex-row md:items-center md:justify-between"
             >
               <p>
-                &copy; {{ new Date().getFullYear() }} {{ hotel.name }}. All rights
-                reserved.
+                &copy; {{ new Date().getFullYear() }} {{ hotel.name }}. All
+                rights reserved.
               </p>
               <p>Website by Portico Webworks.</p>
             </div>

@@ -217,6 +217,12 @@ export const card = {
   titleFontWeight: font.weight.medium,
 } as const;
 
+/** `BaseRoomCard` horizontal split at `md` (media / copy). */
+export const roomCard = {
+  mediaWidth: "55%",
+  copyWidth: "45%",
+} as const;
+
 export const tailwindThemeExtend = {
   spacing,
   fontSize: { ...fontSize },
@@ -244,6 +250,10 @@ export const tailwindThemeExtend = {
     },
   },
   maxWidth: container,
+  width: {
+    "room-card-media": roomCard.mediaWidth,
+    "room-card-copy": roomCard.copyWidth,
+  },
   borderRadius: {
     ...radius,
   },

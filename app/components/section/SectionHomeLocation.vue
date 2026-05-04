@@ -26,10 +26,7 @@ const pinDisplay = computed(() => {
   return pc;
 });
 
-const boxTag = computed(
-  () =>
-    `From Kowju · ${hotel.address.addressLocality}`,
-);
+const boxTag = computed(() => `From Kowju · ${hotel.address.addressLocality}`);
 
 const stampAlt = computed(
   () =>
@@ -39,9 +36,9 @@ const stampAlt = computed(
 
 <template>
   <section
-    id="footer-location"
-    class="border-b border-warm-200 bg-gold-50"
-    aria-labelledby="footer-location-heading"
+    id="home-location"
+    class="border-b border-gold-200 bg-gold-50"
+    aria-labelledby="home-location-heading"
   >
     <BaseContainer class="py-12 md:py-16">
       <div class="flex flex-col gap-8 md:gap-10">
@@ -49,9 +46,11 @@ const stampAlt = computed(
           class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-8"
         >
           <div class="flex min-w-0 flex-1 flex-col gap-4">
-            <BaseOverline dividers>{{ footerJourneysContent.overline }}</BaseOverline>
+            <BaseOverline dividers>{{
+              footerJourneysContent.overline
+            }}</BaseOverline>
             <h2
-              id="footer-location-heading"
+              id="home-location-heading"
               class="max-w-4xl text-h2 font-medium text-text md:text-h1 font-serif"
             >
               {{ footerJourneysContent.headline }}
@@ -65,7 +64,7 @@ const stampAlt = computed(
         </header>
 
         <div
-          class="rounded-2xl border-2 border-dashed border-warm-300 p-6 md:p-10"
+          class="rounded-2xl border-2 border-dashed border-gold-300 bg-gold-100 p-6 md:p-10"
         >
           <div
             class="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between"
@@ -84,6 +83,7 @@ const stampAlt = computed(
                 role="group"
                 aria-label="Hotel map and location guide"
               >
+                <BaseLinkText to="/location" label="Explore location" />
                 <BaseButtonPrimary
                   label="Open in Maps"
                   as="a"
@@ -92,36 +92,31 @@ const stampAlt = computed(
                   rel="noopener noreferrer"
                   class="motion-interactive"
                 />
-                <BaseLinkText to="/location" label="Explore location" />
               </div>
             </div>
 
-            <img
-              src="/images/kondotty-stamp.png"
-              :alt="stampAlt"
-              width="240"
-              height="240"
-              class="mx-auto h-40 w-40 shrink-0 object-contain lg:mx-0"
-              loading="lazy"
-              decoding="async"
+            <div
+              role="img"
+              :aria-label="stampAlt"
+              class="home-location-stamp mx-auto h-40 w-40 shrink-0 bg-gold-100 bg-contain bg-center bg-no-repeat bg-blend-multiply lg:mx-0"
             />
           </div>
 
           <ul
-            class="mt-10 grid list-none grid-cols-1 gap-0 border-t border-warm-200 pt-8 pl-0 sm:grid-cols-2 md:pt-10"
+            class="mt-10 grid list-none grid-cols-1 gap-0 border-t border-gold-200 pt-8 pl-0 sm:grid-cols-2 md:pt-10"
             role="list"
           >
             <li
               v-for="loc in footerNearbyLocations"
               :key="loc.slug"
-              class="min-w-0 border-b border-warm-200 px-4 py-8 last:border-b-0 sm:border-b-0 sm:px-6 sm:py-8 sm:[&:nth-child(-n+2)]:border-b sm:[&:nth-child(2n+1)]:border-r"
+              class="min-w-0 border-gold-200 border-b px-4 py-8 last:border-b-0 sm:border-b-0 sm:px-6 sm:py-8 sm:[&:nth-child(-n+2)]:border-b sm:[&:nth-child(2n+1)]:border-r"
             >
               <article
                 class="flex min-w-0 flex-col gap-3"
-                :aria-labelledby="`footer-location-${loc.slug}-title`"
+                :aria-labelledby="`home-location-${loc.slug}-title`"
               >
                 <h3
-                  :id="`footer-location-${loc.slug}-title`"
+                  :id="`home-location-${loc.slug}-title`"
                   class="text-h4 font-medium font-serif text-text"
                 >
                   {{ loc.listTitle }}
@@ -142,3 +137,9 @@ const stampAlt = computed(
     </BaseContainer>
   </section>
 </template>
+
+<style scoped>
+.home-location-stamp {
+  background-image: url("/images/kondotty-stamp.png");
+}
+</style>

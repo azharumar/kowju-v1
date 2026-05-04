@@ -69,15 +69,15 @@ useSeoPage({
         />
       </BaseSection>
       <BaseSection rhythm="comfortable">
-        <div class="overflow-hidden rounded-lg border border-border">
+        <div class="overflow-hidden rounded-lg border border-gold-200">
           <BaseGrid class="items-stretch lg:grid-cols-12">
-            <aside class="border-border lg:col-span-4 lg:border-r">
+            <aside class="border-gold-200 lg:col-span-4 lg:border-r">
               <nav aria-label="FAQ category tabs">
                 <ul role="tablist" aria-orientation="vertical">
                   <li
                     v-for="category in faqCategories"
                     :key="category.id"
-                    class="border-b border-border last:border-b-0"
+                    class="border-b border-gold-200 last:border-b-0"
                   >
                     <button
                       :id="`tab-${category.id}`"
@@ -94,7 +94,10 @@ useSeoPage({
                       @click="selectCategory(category.id)"
                     >
                       <span>{{ category.title }}</span>
-                      <span class="pi pi-arrow-right" aria-hidden="true" />
+                      <span
+                        class="pi pi-arrow-right text-gold-600"
+                        aria-hidden="true"
+                      />
                     </button>
                   </li>
                 </ul>
@@ -139,6 +142,5 @@ useSeoPage({
         </div>
       </BaseSection>
     </BaseContainer>
-    <LazySectionExploreSite />
   </div>
 </template>

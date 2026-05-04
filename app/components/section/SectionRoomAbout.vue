@@ -18,7 +18,7 @@ const props = defineProps<{
             :heading-level="2"
           />
 
-          <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+          <dl class="grid grid-cols-1 gap-4 sm:grid-cols-4 sm:gap-6">
             <div class="flex flex-col gap-1">
               <dt>
                 <BaseOverline>Occupancy</BaseOverline>
@@ -36,6 +36,12 @@ const props = defineProps<{
                 <BaseOverline>Size</BaseOverline>
               </dt>
               <dd class="text-body text-muted">{{ about.facts.size }}</dd>
+            </div>
+            <div class="flex flex-col gap-1">
+              <dt>
+                <BaseOverline>Layout</BaseOverline>
+              </dt>
+              <dd class="text-body text-muted">{{ about.facts.layout }}</dd>
             </div>
           </dl>
 

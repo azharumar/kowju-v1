@@ -4,21 +4,27 @@ import {
   type ExploreSiteTeaserId,
 } from "~/data/explore-site-teasers";
 
-const props = defineProps<{
-  exclude?: ExploreSiteTeaserId;
-}>();
+const route = useRoute();
+
+function teaserExcludeForPath(path: string): ExploreSiteTeaserId | undefined {
+  if (path === "/dining" || path.startsWith("/dining/")) return "dining";
+  if (path === "/meetings-events" || path.startsWith("/meetings-events/"))
+    return "venues";
+  if (path === "/rooms" || path.startsWith("/rooms/")) return "rooms";
+  return undefined;
+}
+
+const exclude = computed(() => teaserExcludeForPath(route.path));
 
 const items = computed(() =>
-  exploreSiteTeasers.filter((t) => t.id !== props.exclude),
+  exploreSiteTeasers.filter((t) => t.id !== exclude.value),
 );
 
-const gridColumns = computed<2 | 3>(() =>
-  items.value.length >= 3 ? 3 : 2,
-);
+const gridColumns = computed<2 | 3>(() => (items.value.length >= 3 ? 3 : 2));
 </script>
 
 <template>
-  <section class="bg-surface-100">
+  <section class="bg-surface-100" aria-label="Explore the hotel">
     <BaseContainer>
       <BaseSection rhythm="compact" stack="comfortable">
         <BaseStack class="items-center text-center">
@@ -42,6 +48,7 @@ const gridColumns = computed<2 | 3>(() =>
             :image-alt="t.imageAlt"
             :link-label="t.linkLabel"
             compact
+            portrait-on-mobile
             :portrait-image="gridColumns === 3"
           />
         </BaseTeaserGrid>

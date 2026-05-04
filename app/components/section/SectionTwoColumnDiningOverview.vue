@@ -10,7 +10,7 @@ const props = withDefaults(
     introParagraphs: string[];
     detailRows: DiningDetailRow[];
     ctaPrimary: { label: string; to: RouteLocationRaw };
-    ctaSecondary: { label: string; to: RouteLocationRaw };
+    ctaSecondary?: { label: string; to: RouteLocationRaw };
   }>(),
   {
     overline: "Restaurant",
@@ -52,22 +52,9 @@ const headingId = computed(
                 {{ paragraph }}
               </p>
             </BaseStack>
-            <div class="flex flex-wrap gap-3">
+            <div class="flex flex-wrap gap-4">
               <NuxtLink
-                :to="ctaPrimary.to"
-                external
-                custom
-                v-slot="{ href, navigate }"
-              >
-                <BaseButtonPrimary
-                  :label="ctaPrimary.label"
-                  as="a"
-                  :href="href"
-                  class="motion-interactive"
-                  @click="navigate"
-                />
-              </NuxtLink>
-              <NuxtLink
+                v-if="ctaSecondary"
                 :to="ctaSecondary.to"
                 external
                 custom
@@ -81,6 +68,12 @@ const headingId = computed(
                   @click="navigate"
                 />
               </NuxtLink>
+              <BaseLinkText
+                :to="ctaPrimary.to"
+                :label="ctaPrimary.label"
+                trailing-icon="download"
+                external
+              />
             </div>
           </BaseStack>
 

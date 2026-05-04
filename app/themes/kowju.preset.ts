@@ -165,15 +165,24 @@ export default {
       accordion: {
         panel: {
           background: 'transparent',
+          borderColor: '{gold.200}',
         },
         header: {
           background: 'transparent',
           hoverBackground: 'transparent',
           activeBackground: 'transparent',
           activeHoverBackground: 'transparent',
+          borderColor: '{gold.200}',
+          toggleIcon: {
+            color: '{gold.600}',
+            hoverColor: '{gold.700}',
+            activeColor: '{gold.700}',
+            activeHoverColor: '{gold.800}',
+          },
         },
         content: {
           background: 'transparent',
+          borderColor: '{gold.200}',
         },
       },
       card: {

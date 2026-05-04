@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
   diningOverviewCtaPrimary,
-  diningOverviewCtaSecondary,
   diningOverviewDetailRows,
   diningOverviewIntroParagraphs,
   diningOverviewOverline,
@@ -70,7 +69,6 @@ useSeoPage({
       :intro-paragraphs="diningOverviewIntroParagraphs"
       :detail-rows="diningOverviewDetailRows"
       :cta-primary="diningOverviewCtaPrimary"
-      :cta-secondary="diningOverviewCtaSecondary"
     />
     <LazySectionRoomGallery
       :images="diningGalleryImages"
@@ -82,14 +80,15 @@ useSeoPage({
       overline="In-room dining"
       title="Dine in the comfort of your room"
       description="Prefer privacy or a quiet night in? Order from our in-room dining menu and enjoy the same care and quality as the restaurant, delivered to your door. Ideal for early flights, family evenings, or when you simply want to unwind."
-      cta-to="/contact"
-      cta-label="Contact us"
+      cta-to="/documents/in-room-dining-menu.pdf"
+      cta-label="View In-room Dining Menu"
+      :cta-external="true"
+      cta-trailing-icon="download"
     />
     <LazySectionFaq
       overline="Frequently Asked Questions"
     title="Common questions about dining at the hotel"
     :items="diningFaqItems"
     />
-    <LazySectionExploreSite exclude="dining" />
   </div>
 </template>

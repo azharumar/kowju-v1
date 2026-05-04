@@ -56,25 +56,19 @@
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center gap-3">
+            <div class="flex flex-wrap items-center gap-4">
+              <BaseLinkText
+                to="/meetings-events"
+                label="View event spaces"
+                tone="inverse"
+              />
               <NuxtLink to="/contact" custom v-slot="{ href, navigate }">
-                <BaseButtonPrimary
+                <BaseButtonOnBrandPrimary
                   label="Request a proposal"
                   as="a"
                   :href="href"
-                  class="motion-interactive"
                   @click="navigate"
                 />
-              </NuxtLink>
-              <NuxtLink to="/meetings-events" custom v-slot="{ href, navigate }">
-                <BaseButtonOutlined
-                  as="a"
-                  :href="href"
-                  class="motion-interactive"
-                  @click="navigate"
-                >
-                  View event spaces
-                </BaseButtonOutlined>
               </NuxtLink>
             </div>
           </div>

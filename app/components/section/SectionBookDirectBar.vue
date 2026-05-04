@@ -25,11 +25,9 @@ const props = withDefaults(
   defineProps<{
     benefits?: BookDirectBenefit[];
     stripLabel?: string;
-    offersHref?: string;
   }>(),
   {
     stripLabel: "BOOK DIRECT. GET MORE.",
-    offersHref: "#",
   },
 );
 

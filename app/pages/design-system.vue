@@ -566,10 +566,10 @@ useSeoPage({
             <div class="space-y-8">
               <BaseCard>
                 <h3 class="mb-4 text-h5 font-semibold text-text">Buttons</h3>
-                <div class="flex flex-wrap gap-3">
-                  <BaseButtonPrimary label="Primary" />
+                <div class="flex flex-wrap gap-4">
                   <BaseButtonSecondary label="Secondary" />
                   <BaseButtonOutlined label="Outlined" />
+                  <BaseButtonPrimary label="Primary" />
                 </div>
               </BaseCard>
               <BaseCard>

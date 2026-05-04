@@ -54,7 +54,9 @@ function amenityLabel(item: RoomCardAmenityIcon) {
   <article
     class="motion-card-hover flex flex-col overflow-hidden rounded-2xl border border-border bg-surface md:flex-row md:items-stretch"
   >
-    <div class="relative aspect-photo w-full shrink-0 md:w-3/5 md:self-start">
+    <div
+      class="relative aspect-photo w-full shrink-0 self-stretch overflow-hidden md:aspect-auto md:min-h-0 md:w-room-card-media"
+    >
       <img
         :src="imageSrc"
         :alt="imageAlt"
@@ -66,7 +68,7 @@ function amenityLabel(item: RoomCardAmenityIcon) {
       />
     </div>
     <div
-      class="flex min-h-0 min-w-0 flex-1 flex-col gap-4 p-6 md:w-2/5 md:flex-none md:gap-5 md:p-8"
+      class="flex min-h-0 min-w-0 flex-1 flex-col gap-4 p-6 md:w-room-card-copy md:flex-none md:gap-5 md:p-8"
     >
       <h3 class="text-h5 font-semibold leading-snug text-text">
         {{ title }}
@@ -177,7 +179,7 @@ function amenityLabel(item: RoomCardAmenityIcon) {
           </li>
         </ul>
       </template>
-      <div v-if="$slots.actions" class="mt-auto flex flex-wrap gap-3 pt-2">
+      <div v-if="$slots.actions" class="mt-auto flex flex-wrap gap-4 pt-2">
         <slot name="actions" />
       </div>
     </div>

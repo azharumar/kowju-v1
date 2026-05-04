@@ -37,14 +37,6 @@ const mapsHref = mapsSearchUrl(location.mapsQuery);
             heading-level="1"
           />
           <div class="flex flex-wrap gap-4">
-            <BaseButtonPrimary
-              label="Open in Maps"
-              as="a"
-              :href="mapsHref"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="motion-interactive"
-            />
             <NuxtLink to="/contact" custom v-slot="{ href, navigate }">
               <BaseButtonOutlined
                 label="Contact the desk"
@@ -54,6 +46,14 @@ const mapsHref = mapsSearchUrl(location.mapsQuery);
                 @click="navigate"
               />
             </NuxtLink>
+            <BaseButtonPrimary
+              label="Open in Maps"
+              as="a"
+              :href="mapsHref"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="motion-interactive"
+            />
           </div>
           <p class="max-w-3xl text-body text-text">
             {{ location.body }}

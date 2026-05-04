@@ -132,7 +132,10 @@ onUnmounted(() => {
     <main id="main" tabindex="-1">
       <NuxtPage />
     </main>
+    <LayoutFooterInternalNav />
     <LayoutFooter />
-    <ScrollTop />
+    <ClientOnly>
+      <ScrollTop />
+    </ClientOnly>
   </div>
 </template>

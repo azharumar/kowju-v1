@@ -254,8 +254,8 @@ useSeoPage({
     :paragraphs="homeAboutParagraphs"
     :features="homeAboutHighlights"
   />
-  <LazySectionRoomsSuites />
   <LazySectionRoomsSuitesOverflow />
+  <LazySectionRoomOffers />
   <LazySectionIncludedSpaces
     title="On-property amenties exclusive for guests"
     :items="homeIncludedSpacesItems"
@@ -263,10 +263,10 @@ useSeoPage({
   <LazySectionGuestReviewsCarousel :reviews="homeGuestReviews" />
   <LazySectionHotelPolicies />
   <LazySectionMeetingsEventsPromo />
+  <LazySectionHomeLocation />
   <LazySectionFaq
     overline="Frequently Asked Questions"
     title="Answers to common questions about your stay"
     :items="homeFaqItems"
   />
-  <LazySectionExploreSite />
 </template>

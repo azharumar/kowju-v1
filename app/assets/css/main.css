@@ -8,6 +8,15 @@
   :root {
     --motion-duration: 280ms;
     --motion-ease: cubic-bezier(0.33, 1, 0.68, 1);
+    /* Mirrors design-system/tokens.ts. Inlined here so SSR HTML ships with these
+       vars set — avoids a client-only plugin doing the same work post-hydration. */
+    --color-brand-500: #007679;
+    --color-surface-muted: #fbf8f3;
+    --color-icon-accent: #e6c093;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --form-field-sm-font-size: 0.8333333333rem;
+    --icon-monochrome-img-filter: brightness(0) saturate(100%) invert(52%)
+      sepia(18%) saturate(748%) hue-rotate(352deg) brightness(96%) contrast(88%);
   }
 
   html {
@@ -159,6 +168,34 @@
 }
 
 @layer components {
+  /**
+   * Accordion (FAQ / SectionFaq): generous vertical rhythm; PrimeVue token
+   * padding can read tight after build — lock comfortable padding here.
+   */
+  .p-accordion.p-component .p-accordionpanel .p-accordionheader {
+    padding-block: 3.5rem;
+    padding-inline: 1.75rem 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .p-accordion.p-component .p-accordionpanel .p-accordionheader {
+      padding-block: 4.5rem;
+      padding-inline: 2rem 3rem;
+    }
+  }
+
+  .p-accordion.p-component .p-accordionpanel .p-accordioncontent-content {
+    padding-block: 1.25rem 3.5rem;
+    padding-inline: 1.75rem 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .p-accordion.p-component .p-accordionpanel .p-accordioncontent-content {
+      padding-block: 1.5rem 4.5rem;
+      padding-inline: 2rem 3rem;
+    }
+  }
+
   .header-scroll-down {
     background-color: color-mix(
       in srgb,

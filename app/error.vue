@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
 const props = defineProps<{
   error: {
     statusCode: number
@@ -53,9 +55,8 @@ async function goHome() {
           </BaseStack>
         </BaseSection>
       </BaseContainer>
-
-      <SectionExploreSite />
     </main>
+    <LayoutFooterInternalNav />
     <LayoutFooter />
   </div>
 </template>
