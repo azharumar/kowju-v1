@@ -195,28 +195,29 @@ const roomsAboutParagraphs = [
                 :details="room.details"
               >
                 <template #actions>
-                  <NuxtLink
-                    :to="`/rooms/${room.slug}`"
-                    custom
-                    v-slot="{ href, navigate }"
+                  <div
+                    class="flex w-full flex-wrap items-center gap-4"
                   >
-                    <BaseButtonOutlined
-                      label="View more"
-                      as="a"
-                      :href="href"
-                      class="motion-interactive"
-                      @click="navigate"
+                    <BaseLinkText
+                      :to="`/rooms/${room.slug}`"
+                      label="More Details"
                     />
-                  </NuxtLink>
-                  <NuxtLink to="/contact" custom v-slot="{ href, navigate }">
-                    <BaseButtonPrimary
-                      label="Book now"
-                      as="a"
-                      :href="href"
-                      class="motion-interactive"
-                      @click="navigate"
-                    />
-                  </NuxtLink>
+                    <div class="ms-auto shrink-0">
+                      <NuxtLink
+                        to="/contact"
+                        custom
+                        v-slot="{ href, navigate }"
+                      >
+                        <BaseButtonPrimary
+                          label="Check availability"
+                          as="a"
+                          :href="href"
+                          class="motion-interactive"
+                          @click="navigate"
+                        />
+                      </NuxtLink>
+                    </div>
+                  </div>
                 </template>
               </BaseRoomCard>
             </template>

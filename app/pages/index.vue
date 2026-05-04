@@ -261,9 +261,9 @@ useSeoPage({
     :items="homeIncludedSpacesItems"
   />
   <LazySectionGuestReviewsCarousel :reviews="homeGuestReviews" />
-  <LazySectionHotelPolicies />
   <LazySectionMeetingsEventsPromo />
   <LazySectionHomeLocation />
+  <LazySectionHotelPolicies />
   <LazySectionFaq
     overline="Frequently Asked Questions"
     title="Answers to common questions about your stay"
